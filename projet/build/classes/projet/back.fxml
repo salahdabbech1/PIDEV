@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" styleClass="user_bg" stylesheets="@back.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.BackController">
+   <left>
+      <AnchorPane prefHeight="700.0" prefWidth="296.0" style="-fx-background-color: #021e38;" styleClass="btn" stylesheets="@back.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="189.0" fitWidth="211.0" layoutX="62.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/téléchargement-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="78.0" layoutX="27.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/Menu.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="148.0" layoutY="386.0" text="Menu" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="backClose" layoutX="73.0" layoutY="576.0" minWidth="35.0" mnemonicParsing="false" onAction="#closeBackButtonOnAction" prefHeight="67.0" prefWidth="125.0" styleClass="btn" stylesheets="@style.css" text="Exit">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane fx:id="ap" prefHeight="700.0" prefWidth="954.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="4.0" prefHeight="700.0" prefWidth="955.0">
+               <children>
+                  <TabPane prefHeight="699.0" prefWidth="954.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Gestion User">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tabUser" layoutX="66.0" layoutY="282.0" onMouseClicked="#SelectRow" prefHeight="347.0" prefWidth="871.0" style="-fx-background-radius: 10px;" styleClass="lbl-status" stylesheets="@style.css">
+                                      <columns>
+                                        <TableColumn fx:id="Colid" prefWidth="219.7332992553711" text="ID" />
+                                        <TableColumn fx:id="Colname" prefWidth="152.26669311523438" text="Name" />
+                                          <TableColumn fx:id="Colpassword" prefWidth="159.20004272460938" text="Password" />
+                                          <TableColumn fx:id="Colemail" prefWidth="165.60003662109375" text="Email" />
+                                          <TableColumn fx:id="Colrole" prefWidth="62.933349609375" text="Role" />
+                                          <TableColumn fx:id="Colimage" prefWidth="109.0667724609375" text="Image" />
+                                      </columns>
+                                    </TableView>
+                                    <Label layoutX="84.0" layoutY="46.0" prefHeight="32.0" prefWidth="74.0" styleClass="lbl-user" stylesheets="@style.css" text="name" />
+                                    <Label layoutX="89.0" layoutY="123.0" prefHeight="22.0" prefWidth="70.0" styleClass="lbl-user" stylesheets="@style.css" text="password" />
+                                    <Label layoutX="103.0" layoutY="203.0" styleClass="lbl-user" stylesheets="@style.css" text="email" />
+                                    <TextField fx:id="TextFieldUserid" layoutX="176.0" layoutY="46.0" />
+                                    <TextField fx:id="TextFieldUserpassword" layoutX="176.0" layoutY="108.0" />
+                                    <TextField fx:id="TextFieldUseremail" layoutX="178.0" layoutY="188.0" />
+                                    <Button fx:id="btnUpdate" layoutX="570.0" layoutY="44.0" mnemonicParsing="false" onAction="#ModifyRow" prefHeight="66.0" prefWidth="152.0" styleClass="btn" stylesheets="@style.css" text="Update">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnDelete" layoutX="571.0" layoutY="161.0" mnemonicParsing="false" onAction="#removeRowUser" prefHeight="69.0" prefWidth="147.0" styleClass="btn" stylesheets="@style.css" text="Delete">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Gestion Reservation">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="18.0" layoutY="19.0" prefHeight="40.0" prefWidth="58.0" styleClass="lbl-user" stylesheets="@style.css" text="idUser" />
+                                    <Label layoutX="16.0" layoutY="113.0" prefHeight="40.0" prefWidth="65.0" styleClass="lbl-user" stylesheets="@style.css" text="idCinema " />
+                                    <Label layoutX="16.0" layoutY="65.0" prefHeight="40.0" prefWidth="58.0" styleClass="lbl-user" stylesheets="@style.css" text="date" />
+                                    <Label layoutX="17.0" layoutY="163.0" prefHeight="40.0" prefWidth="58.0" styleClass="lbl-user" stylesheets="@style.css" text="idSalle " />
+                                    <Label layoutX="16.0" layoutY="211.0" prefHeight="40.0" prefWidth="58.0" text="chaise" />
+                                    <Label layoutX="14.0" layoutY="258.0" prefHeight="40.0" prefWidth="58.0" text="idEvent " />
+                                    <Label layoutX="12.0" layoutY="303.0" prefHeight="40.0" prefWidth="58.0" text="montant" />
+                                    <TextField fx:id="idUserR" layoutX="87.0" layoutY="27.0" />
+                                    <TextField fx:id="idCinema" layoutX="86.0" layoutY="120.0" />
+                                    <TextField fx:id="idSalla" layoutX="91.0" layoutY="170.0" />
+                                    <TextField fx:id="chaise" layoutX="90.0" layoutY="219.0" />
+                                    <TextField fx:id="idEvent" layoutX="86.0" layoutY="265.0" />
+                                    <TextField fx:id="montant" layoutX="88.0" layoutY="311.0" />
+                                    <DatePicker fx:id="dateR" layoutX="83.0" layoutY="73.0" />
+                                    <Button fx:id="addRes" layoutX="64.0" layoutY="442.0" mnemonicParsing="false" onAction="#insertRes" prefHeight="46.0" prefWidth="98.0" styleClass="btn" stylesheets="@style.css" text="Add" />
+                                    <Button layoutX="235.0" layoutY="443.0" mnemonicParsing="false" onAction="#ModifyRowRes" prefHeight="46.0" prefWidth="98.0" styleClass="btn" stylesheets="@style.css" text="Update" />
+                                    <Button layoutX="381.0" layoutY="441.0" mnemonicParsing="false" onAction="#removeRowRes" prefHeight="46.0" prefWidth="98.0" styleClass="btn" stylesheets="@style.css" text="Delete" />
+                                    <TableView fx:id="tabRes" layoutX="351.0" layoutY="13.0" prefHeight="390.0" prefWidth="584.0" stylesheets="@style.css">
+                                      <columns>
+                                        <TableColumn fx:id="ColResid" prefWidth="75.0" text="Id" />
+                                        <TableColumn fx:id="ColResidUser" prefWidth="75.0" text="IdUser" />
+                                          <TableColumn fx:id="ColResDate" prefWidth="75.0" text="Date" />
+                                          <TableColumn fx:id="ColResidCinema" prefWidth="75.0" text="IdCinema " />
+                                          <TableColumn fx:id="ColResidSalle" prefWidth="75.0" text="IdSalle " />
+                                          <TableColumn fx:id="Colchaise" prefWidth="75.0" text="chaise" />
+                                          <TableColumn fx:id="ColidEvent" prefWidth="75.0" text="IdEvent " />
+                                          <TableColumn fx:id="ColMontant" prefWidth="75.0" text="Montant" />
+                                      </columns>
+                                       <styleClass>
+                                          <String fx:value="login_bg" />
+                                          <String fx:value="btn" />
+                                          <String fx:value="lbl-user" />
+                                          <String fx:value="lbl-status" />
+                                       </styleClass>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+   </center>
+</BorderPane>

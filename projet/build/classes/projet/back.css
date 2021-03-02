@@ -1,0 +1,27 @@
+/*
+ * Empty Stylesheet file.
+ */
+.user_bg {
+-fx-background-color: linear-gradient(to top ,#13c2b3,#1340c2);
+}
+.btn{
+    -fx-background-color: #1340c2;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 8px;
+}
+
+.lbl-status{
+    -fx-background-color: #13c2b3;
+    -fx-text-fill: #FFF;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 96px;
+     }
+     
+ .lbl-user{
+         -fx-text-fill: black;
+         -fx-alignment: CENTER;
+       }    
+       
+    
+   
+    
