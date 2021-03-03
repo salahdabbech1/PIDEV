@@ -75,5 +75,12 @@ public class Musician {
     public String getImage() {
         return image;
     }
+
+    public Musician(int id) {
+        this.id = id;
+    }
+
+    public Musician() {
+    }
     
 }
