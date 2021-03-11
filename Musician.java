@@ -80,6 +80,10 @@ public class Musician {
         this.id = id;
     }
 
+    public Musician(String name) {
+        this.name = name;
+    }
+
     public Musician() {
     }
     

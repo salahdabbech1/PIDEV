@@ -13,13 +13,17 @@ public class Concert {
     
 int id;
 String name;
-int idmusician;
+String idmusician;
 String musics;
 String image;
 
     @Override
     public String toString() {
         return "Concert{" + "id=" + id + ", name=" + name + ", idmusician=" + idmusician + ", musics=" + musics + ", image=" + image + '}';
+    }
+
+    public Concert(String idmusician) {
+        this.idmusician = idmusician;
     }
 
     public void setId(int id) {
@@ -30,7 +34,7 @@ String image;
         this.name = name;
     }
 
-    public void setIdmusician(int idmusician) {
+    public void setIdmusician(String idmusician) {
         this.idmusician = idmusician;
     }
 
@@ -50,7 +54,7 @@ String image;
         return name;
     }
 
-    public int getIdmusician() {
+    public String getIdmusician() {
         return idmusician;
     }
 
@@ -62,7 +66,7 @@ String image;
         return image;
     }
 
-    public Concert(int id, String name, int idmusician, String musics, String image) {
+    public Concert(int id, String name, String idmusician, String musics, String image) {
         this.id = id;
         this.name = name;
         this.idmusician = idmusician;

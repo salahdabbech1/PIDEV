@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -16,32 +15,51 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crudaziz.MusicianController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TabPane prefHeight="531.0" prefWidth="642.0" stylesheets="@stylesheet.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="618.0" prefWidth="992.0" stylesheets="@stylesheet.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Gestion des musiciens">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <Tab text="Mailing">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="login_bg" stylesheets="@style.css">
                      <children>
-                        <ImageView fitHeight="510.0" fitWidth="642.0" layoutY="-7.0">
+                        <TextField fx:id="fxrec" layoutX="220.0" layoutY="127.0" />
+                        <TextField fx:id="fxsubj" layoutX="220.0" layoutY="186.0" />
+                        <TextField fx:id="fxbody" layoutX="220.0" layoutY="258.0" />
+                        <Label layoutX="152.0" layoutY="131.0" text="Destinataire" textFill="WHITE" />
+                        <Label layoutX="160.0" layoutY="190.0" text="Sujet" textFill="WHITE" />
+                        <Label layoutX="160.0" layoutY="262.0" text="Corps" textFill="WHITE" />
+                        <Button fx:id="sendm" layoutX="220.0" layoutY="344.0" mnemonicParsing="false" onAction="#verifierMail" styleClass="btn_CRUD" stylesheets="@style.css" text="Envoyer le mail" textFill="WHITE" />
+                        <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="-20.0" layoutY="127.0">
                            <image>
-                              <Image url="@../img/try2.png" />
+                              <Image url="@../../../../../../../../Downloads/a.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="fxid" layoutX="75.0" layoutY="53.0" />
-                        <TextField fx:id="fxname" layoutX="100.0" layoutY="118.0" />
-                        <DatePicker fx:id="fxdate" layoutX="488.0" layoutY="53.0" prefHeight="17.0" prefWidth="140.0" />
-                        <TextField fx:id="fxdesc" layoutX="447.0" layoutY="118.0" />
-                        <TextField fx:id="fxpr" layoutX="134.0" layoutY="184.0" prefHeight="27.0" prefWidth="166.0" />
-                        <TableView fx:id="TableMusician" layoutX="14.0" layoutY="291.0" onMouseClicked="#SelectRow" prefHeight="154.0" prefWidth="602.0" stylesheets="@t.css">
+                        <ImageView fitHeight="143.0" fitWidth="150.0" layoutX="496.0" layoutY="131.0">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/gmail.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Gestion des musiciens">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="login_bg" stylesheets="@style.css">
+                     <children>
+                        <TextField fx:id="fxname" layoutX="85.0" layoutY="51.0" prefHeight="25.0" prefWidth="135.0" />
+                        <DatePicker fx:id="fxdate" layoutX="72.0" layoutY="156.0" prefHeight="17.0" prefWidth="140.0" />
+                        <TextField fx:id="fxdesc" layoutX="92.0" layoutY="203.0" prefHeight="25.0" prefWidth="95.0" />
+                        <TextField fx:id="fxpr" layoutX="88.0" layoutY="105.0" prefHeight="27.0" prefWidth="126.0" />
+                        <TableView fx:id="TableMusician" layoutX="261.0" layoutY="59.0" onMouseClicked="#SelectRow" prefHeight="386.0" prefWidth="500.0" stylesheets="@t.css">
                            <columns>
-                              <TableColumn fx:id="ColID" prefWidth="67.0" text="ID" />
-                              <TableColumn fx:id="ColName" prefWidth="144.0" text="Name" />
-                              <TableColumn fx:id="Colpr" prefWidth="66.0" text="Prenom" />
-                              <TableColumn fx:id="ColDate" prefWidth="104.0" text="Date de naissance" />
+                              <TableColumn fx:id="ColName" prefWidth="85.0" text="Name" />
+                              <TableColumn fx:id="Colpr" prefWidth="78.0" text="Prenom" />
+                              <TableColumn fx:id="ColDate" prefWidth="151.0" text="Date de naissance" />
                               <TableColumn fx:id="ColDesc" prefWidth="95.0" text="Description" />
                               <TableColumn fx:id="ColIm" prefWidth="75.0" text="Image" />
                            </columns>
@@ -64,68 +82,111 @@
                               <Image url="@../img/delete.png" />
                            </image>
                         </ImageView>
-                        <Button id="red" fx:id="join" layoutX="423.0" layoutY="185.0" mnemonicParsing="false" onAction="#JoinBut" stylesheets="@t.css" text="Joindre" />
-                        <ImageView fx:id="imagev" fitHeight="60.0" fitWidth="54.0" layoutX="467.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" />
-                        <ListView fx:id="fximage" layoutX="493.0" layoutY="180.0" prefHeight="41.0" prefWidth="132.0" />
-                        <ImageView fx:id="imv" fitHeight="150.0" fitWidth="200.0" layoutX="221.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
-                        <TextField fx:id="filterField" layoutX="238.0" layoutY="244.0" />
+                        <Button fx:id="join" layoutX="124.0" layoutY="244.0" mnemonicParsing="false" onAction="#FileChooser" styleClass="btn_CRUD" stylesheets="@style.css" text="Joindre" textFill="WHITE" />
+                        <TextField fx:id="filterField" layoutX="437.0" layoutY="23.0" />
+                        <Label fx:id="time" layoutX="573.0" layoutY="523.0" prefHeight="36.0" prefWidth="191.0" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="502.0" layoutY="458.0" mnemonicParsing="false" onAction="#imprimer" styleClass="btn_CRUD" stylesheets="@style.css" text="PDF" textFill="WHITE" />
+                        <ImageView fx:id="imv" fitHeight="309.0" fitWidth="197.0" layoutX="774.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="37.0" layoutY="55.0" text="NOM" textFill="WHITE" />
+                        <Label layoutX="30.0" layoutY="109.0" text="PRENOM" textFill="WHITE" />
+                        <Label layoutX="30.0" layoutY="160.0" text="DATE" textFill="WHITE" />
+                        <Label layoutX="8.0" layoutY="207.0" text="DESCRIPTION" textFill="WHITE" />
+                        <Label layoutX="30.0" layoutY="248.0" text="IMAGE" textFill="WHITE" />
+                        <ImageView fitHeight="149.0" fitWidth="138.0" layoutX="73.0" layoutY="286.0">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/a.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
           <Tab text="Gestion des concerts">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="login_bg" stylesheets="@style.css">
                      <children>
-                        <ImageView fitHeight="506.0" fitWidth="642.0" layoutX="-1.0">
-                           <image>
-                              <Image url="@../img/try1.png" />
-                           </image>
-                        </ImageView>
-                        <TextField fx:id="fxidc" layoutX="77.0" layoutY="59.0" stylesheets="@t.css" />
-                        <TextField fx:id="nomC" layoutX="416.0" layoutY="62.0" />
-                        <TextArea fx:id="Chan" layoutX="482.0" layoutY="124.0" prefHeight="70.0" prefWidth="146.0" />
-                        <TableView fx:id="tableCo" layoutX="22.0" layoutY="319.0" prefHeight="151.0" prefWidth="608.0" stylesheets="@t.css">
+                        <TextField fx:id="nomC" layoutX="124.0" layoutY="38.0" />
+                        <TextArea fx:id="Chan" layoutX="126.0" layoutY="145.0" prefHeight="70.0" prefWidth="146.0" />
+                        <TableView fx:id="tableCo" layoutX="329.0" layoutY="59.0" onMouseClicked="#SelectRowConcerts" prefHeight="463.0" prefWidth="573.0" stylesheets="@t.css">
                           <columns>
-                            <TableColumn fx:id="CidC" prefWidth="75.0" text="ID" />
-                            <TableColumn fx:id="Cidnom" prefWidth="123.0" text="Nom du concert" />
-                              <TableColumn fx:id="Cidmu" prefWidth="124.0" text="ID du musicien" />
-                              <TableColumn fx:id="Cchans" prefWidth="97.0" text="Chansons" />
-                              <TableColumn fx:id="Cim" prefWidth="116.0" text="Image" />
+                            <TableColumn fx:id="Cidnom" prefWidth="104.0" text="Nom du concert" />
+                              <TableColumn fx:id="Cidmu" minWidth="0.0" prefWidth="121.0" text="ID du musicien" />
+                              <TableColumn fx:id="Cchans" prefWidth="163.0" text="Chansons" />
+                              <TableColumn fx:id="Cim" prefWidth="208.0" text="Image" />
                           </columns>
                         </TableView>
-                        <Button id="red" fx:id="addC" layoutX="157.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="31.0" prefWidth="39.0" stylesheets="@stylesheet.css" />
-                        <Button id="red" fx:id="editC" layoutX="303.0" layoutY="269.0" mnemonicParsing="false" onAction="#ModifierConcert" prefHeight="36.0" prefWidth="38.0" stylesheets="@stylesheet.css" />
-                        <Button id="red" fx:id="deleteC" layoutX="427.0" layoutY="274.0" mnemonicParsing="false" onAction="#removeConcert" prefHeight="31.0" prefWidth="35.0" stylesheets="@stylesheet.css" />
-                        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="165.0" layoutY="273.0">
+                        <Button id="red" fx:id="addC" layoutX="84.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="31.0" prefWidth="39.0" stylesheets="@stylesheet.css" />
+                        <Button id="red" fx:id="editC" layoutX="185.0" layoutY="311.0" mnemonicParsing="false" onAction="#ModifierConcert" prefHeight="36.0" prefWidth="38.0" stylesheets="@stylesheet.css" />
+                        <Button id="red" fx:id="deleteC" layoutX="284.0" layoutY="312.0" mnemonicParsing="false" onAction="#removeConcert" prefHeight="31.0" prefWidth="35.0" stylesheets="@stylesheet.css" />
+                        <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="92.0" layoutY="318.0">
                            <image>
                               <Image url="@../img/add.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="308.0" layoutY="275.0">
+                        <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="190.0" layoutY="317.0">
                            <image>
                               <Image url="@../img/edit.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="433.0" layoutY="276.0">
+                        <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="291.0" layoutY="314.0">
                            <image>
                               <Image url="@../img/delete.png" />
                            </image>
                         </ImageView>
-                        <ComboBox fx:id="idmu" layoutX="209.0" layoutY="159.0" prefHeight="25.0" prefWidth="99.0" />
-                        <ListView fx:id="fxima" layoutX="429.0" layoutY="214.0" prefHeight="46.0" prefWidth="191.0" />
-                        <Button id="red" layoutX="358.0" layoutY="227.0" mnemonicParsing="false" onAction="#JoinBut" stylesheets="@t.css" text="Joindre" />
-                        <TextField fx:id="field1" layoutX="269.0" layoutY="299.0" prefHeight="25.0" prefWidth="112.0" />
+                        <ComboBox fx:id="idmu" layoutX="147.0" layoutY="96.0" prefHeight="25.0" prefWidth="99.0" />
+                        <Button layoutX="178.0" layoutY="233.0" mnemonicParsing="false" onAction="#FileChooser" styleClass="btn_CRUD" stylesheets="@style.css" text="Joindre" textFill="WHITE" />
+                        <TextField fx:id="field1" layoutX="505.0" layoutY="14.0" prefHeight="25.0" prefWidth="112.0" />
+                        <ImageView fitHeight="369.0" fitWidth="276.0" layoutX="652.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="63.0" layoutY="42.0" text="NOM" textFill="#e8e8e8" />
+                        <Label layoutX="30.0" layoutY="100.0" text="NOM DU MUSICIEN" textFill="WHITE" />
+                        <Label layoutX="50.0" layoutY="163.0" text="CHANSONS" textFill="WHITE" />
+                        <ImageView fitHeight="150.0" fitWidth="129.0" layoutX="83.0" layoutY="372.0">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/a.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Untitled Tab">
+            <Tab text="Statistiques">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="login_bg" stylesheets="@style.css">
                      <children>
                         <PieChart fx:id="piechart" layoutX="14.0" layoutY="10.0" prefHeight="397.0" prefWidth="610.0" />
-                        <Label fx:id="label" layoutX="73.0" layoutY="36.0" text="Label" />
+                        <Label fx:id="label" layoutX="21.0" layoutY="8.0" prefHeight="49.0" prefWidth="394.0" text="Les musiciens ayant réalisés le plus de concerts  " textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font></Label>
+                        <ImageView fitHeight="145.0" fitWidth="146.0" layoutX="410.0" layoutY="-5.0">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/a.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Text Voice">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="login_bg" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="98.0" layoutY="51.0" prefHeight="51.0" prefWidth="151.0" text="Entrez votre texte" textFill="WHITE">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="283.0" layoutY="136.0" mnemonicParsing="false" onAction="#textvoice" styleClass="btn_CRUD" stylesheets="@style.css" text="Tester la voix" textFill="WHITE" />
+                        <TextField fx:id="voicet" layoutX="261.0" layoutY="64.0" />
+                        <ImageView fitHeight="113.0" fitWidth="108.0" layoutY="20.0">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/a.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
               </content>
