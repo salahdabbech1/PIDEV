@@ -7,6 +7,7 @@ package entité;
 
 import java.time.LocalDate;
 import java.util.Date;
+import javafx.scene.control.ComboBox;
 
 /**
  *
@@ -15,24 +16,31 @@ import java.util.Date;
 public class Theatre {
     private Long id;
     private String name;
-    private Long idTactor;
+    private Tactor tactor;
     private String Genre;
     private LocalDate rdate;
+   private String image;
 
-    public Theatre(Long id, String name, Long idTactor, String Genre, LocalDate rdate) {
+    public Theatre(Long id, String name, Tactor tactor, String Genre, LocalDate rdate,String image) {
         this.id = id;
         this.name = name;
-        this.idTactor = idTactor;
+        this.tactor = tactor;
         this.Genre = Genre;
         this.rdate = rdate;
+        this.image = image;
     }
-    public Theatre( String name, Long idTactor, String Genre, LocalDate rdate) {
+    public Theatre( String name, Tactor tactor, String Genre, LocalDate rdate,String image) {
         this.name = name;
-        this.idTactor = idTactor;
+        this.tactor = tactor;
         this.Genre = Genre;
         this.rdate = rdate;
+        this.image = image;
     }
 
+ 
+
+
+    
     public Long getId() {
         return id;
     }
@@ -49,12 +57,12 @@ public class Theatre {
         this.name = name;
     }
 
-    public Long getidTactor() {
-        return idTactor;
+    public Tactor getTactor() {
+        return tactor;
     }
 
-    public void setidTactor(Long idTactor) {
-        this.idTactor = idTactor;
+    public void setTactor(Tactor tactor) {
+        this.tactor = tactor;
     }
 
     public String getGenre() {
@@ -72,10 +80,17 @@ public class Theatre {
     public void setRdate(LocalDate rdate) {
         this.rdate = rdate;
     }
+      public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     @Override
     public String toString() {
-        return "Theatre{" + "id=" + id + ", name=" + name + ", idTactor=" + idTactor + ", Genre=" + Genre + ", rdate=" + rdate + '}';
+        return "Theatre{" + "id=" + id + ", name=" + name + ", tactor=" + tactor.getName() + ", Genre=" + Genre + ", rdate=" + rdate + '}';
     }
 
     

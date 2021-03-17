@@ -6,6 +6,8 @@
 package gui;
 
 import entité.Tactor;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -15,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,10 +38,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import service.ServiceTactor;
 
 /**
@@ -46,7 +54,6 @@ import service.ServiceTactor;
  * @author bouyo
  */
 public class TactorController implements Initializable {
-    @FXML
     private AnchorPane ap;
     @FXML
     private BorderPane bp;
@@ -76,9 +83,13 @@ public class TactorController implements Initializable {
     private TableColumn<Tactor, String> ColImage;
     @FXML
     private TableView<Tactor> TableActors;
-      @FXML
-    private HBox hb;
-
+  private String statusCode,statusClick;
+  ObservableList<Tactor> tactorListSearch;
+    @FXML
+    private TextField TextSearch;
+    @FXML
+    private ImageView imageTactor;
+    String imagePath = null;
     /**
      * Initializes the controller class.
      */
@@ -101,8 +112,20 @@ public class TactorController implements Initializable {
         }
         bp.setCenter(root);
     }
-
-   
+    @FXML
+  private void clear(){
+        FieldName.clear();
+        FieldDesc.clear();
+        FieldBorn.setValue(null);
+        statusCode = "0";
+        imageTactor.setImage(null);
+    }
+  @FXML
+    private void actionSearch(KeyEvent event) {
+        ServiceTactor st= new ServiceTactor();
+        tactorListSearch = st.likeByName(TextSearch.getText());
+        TableActors.setItems(tactorListSearch);
+    }
 
   
     public Connection getConnection(){ 
@@ -130,14 +153,18 @@ public class TactorController implements Initializable {
         FieldName.setText(TableActors.getSelectionModel().getSelectedItem().getName());
         FieldDesc.setText(TableActors.getSelectionModel().getSelectedItem().getDescription());
         FieldBorn.setValue(LocalDate.parse(TableActors.getSelectionModel().getSelectedItem().getBorn().toString()));
+        Image image = new Image("file:///"+TableActors.getSelectionModel().getSelectedItem().getImage());
+        imageTactor.setImage(image);
+        imagePath=TableActors.getSelectionModel().getSelectedItem().getImage();
     }
 
     @FXML
     private void ModifyRow() throws SQLException {
-        Tactor t = new Tactor(TableActors.getSelectionModel().getSelectedItem().getId(), FieldName.getText(),FieldBorn.getValue(),FieldDesc.getText(),null);
+        Tactor t = new Tactor(TableActors.getSelectionModel().getSelectedItem().getId(), FieldName.getText(),FieldBorn.getValue(),FieldDesc.getText(),imagePath);
         ServiceTactor st= new ServiceTactor();
         st.update(t);
         showTactor();
+        clear();
     }
 
     private void showTactor() throws SQLException {
@@ -170,11 +197,12 @@ public class TactorController implements Initializable {
     
     @FXML
     public void insertTactor() throws SQLException{
-        Tactor t = new Tactor(null, FieldName.getText(),FieldBorn.getValue(),FieldDesc.getText(),null);
+        
+        Tactor t = new Tactor(null, FieldName.getText(),FieldBorn.getValue(),FieldDesc.getText(),imagePath);
         ServiceTactor st= new ServiceTactor();
         st.add(t);
-       
         showTactor();
+        clear();
     }
 
     @FXML
@@ -182,6 +210,7 @@ public class TactorController implements Initializable {
         ServiceTactor st= new ServiceTactor();
         st.delete(TableActors.getSelectionModel().getSelectedItem().getId());
         showTactor();
+        clear();
     }
 
  @FXML
@@ -193,5 +222,26 @@ public class TactorController implements Initializable {
     public void theatrePage(MouseEvent event) {
         loadPage("Theatre");
     }
+
+   
+    
+    @FXML
+    String FileChooser(){
+        FileChooser fc = new FileChooser();
+        
+       
+        fc.setInitialDirectory(new File("D:\\Esprit\\NetbeansProjects\\pi\\src\\image\\tactors"));
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpg"));
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpeg"));
+        File f = fc.showOpenDialog(null);
+        if(f != null)
+        {
+            System.out.println(f);
+        }
+        imagePath=f.getPath();
+        imagePath=imagePath.replace("\\","\\\\");
+        return f.getName();
+    }
+  
   
 }

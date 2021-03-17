@@ -5,6 +5,7 @@
  */
 package service;
 
+import gui.TactorController;
 import utils.DatabaseConnection;
 import entité.Tactor;
 import intService.IService;
@@ -16,6 +17,10 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -25,13 +30,13 @@ public class ServiceTactor implements IService<Tactor> {
      Connection cnx ;
     public ServiceTactor() {
          cnx = DatabaseConnection.getInstance().getConn();
-        
+     
     }
 
     @Override
     public void add(Tactor t) throws SQLException {
         Statement st = cnx.createStatement();
-        String query = "INSERT INTO `tactor` (`id`, `name`, `born`, `description`, `image`) VALUES (NULL, '"+t.getName()+"', '"+ t.getBorn() +"', '"+t.getDescription() +"', '');";
+        String query = "INSERT INTO `tactor` (`id`, `name`, `born`, `description`, `image`) VALUES (NULL, '"+t.getName()+"', '"+ t.getBorn() +"', '"+t.getDescription() +"','"+t.getImage()+"');";
         st.executeUpdate(query);
        
     }
@@ -40,7 +45,7 @@ public class ServiceTactor implements IService<Tactor> {
     public List<Tactor> read() throws SQLException {
         List<Tactor> ls = new ArrayList<Tactor>();
         Statement st = cnx.createStatement();
-        String req = "select * from tactor";
+        String req = "select * from tactor order by name";
         ResultSet rs = st.executeQuery(req);
 
         while(rs.next()){
@@ -48,7 +53,8 @@ public class ServiceTactor implements IService<Tactor> {
             String name = rs.getString("name");
             LocalDate born = rs.getDate("born").toLocalDate();
             String description = rs.getString("description");
-            Tactor p = new Tactor(id, name, born,description,null);
+            String image = rs.getString("image");
+            Tactor p = new Tactor(id, name, born,description,image);
             ls.add(p);
          
         }
@@ -59,7 +65,7 @@ public class ServiceTactor implements IService<Tactor> {
     @Override
     public void update(Tactor t) throws SQLException {
         Statement st = cnx.createStatement();
-        String query = "UPDATE `tactor` SET `name` = '"+ t.getName() +"',`born` = '"+ t.getBorn() +"', `description` = '"+t.getDescription() + "' WHERE `tactor`.`id` = "+ t.getId()+";";       
+        String query = "UPDATE `tactor` SET `name` = '"+ t.getName() +"',`born` = '"+ t.getBorn() +"', `description` = '"+t.getDescription() + "', `image` = '"+t.getImage() + "' WHERE `tactor`.`id` = "+ t.getId()+";";       
         st.executeUpdate(query);
     }
 
@@ -68,6 +74,27 @@ public class ServiceTactor implements IService<Tactor> {
          Statement st = cnx.createStatement();
         String query = "DELETE FROM `tactor` WHERE `tactor`.`id` = '"+id+"'";        
         st.executeUpdate(query);
+    }
+    
+    public ObservableList<Tactor> likeByName(String a) {
+       
+        ObservableList<Tactor> listData = FXCollections.observableArrayList();
+        try {
+            String sql = "select * from tactor where id like '%"+a+"%' or name like '%"+a+"%' or born like '%"+a+"%' or description like '%"+a+"%'  ";
+            ResultSet rs = cnx.createStatement().executeQuery(sql);
+            while (rs.next()) {  
+                Tactor m = new Tactor();
+                m.setId(rs.getLong(1));
+                m.setName(rs.getString(2));
+                m.setBorn(rs.getDate(3).toLocalDate()); 
+               m.setDescription(rs.getString(4));
+               m.setImage(rs.getString(5));
+                listData.add(m);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Tactor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listData;
     }
     
 }

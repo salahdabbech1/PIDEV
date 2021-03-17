@@ -27,6 +27,13 @@ public class Tactor {
         this.image = image;
     }
 
+    public Tactor() {
+     
+        
+    }
+
+ 
+
     public Long getId() {
         return id;
     }

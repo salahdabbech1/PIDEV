@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1047.0" styleClass="bodybgimg" stylesheets="@Theater.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FrontController">
+   <children>
+      <AnchorPane layoutX="187.0" layoutY="195.0" prefHeight="536.0" prefWidth="868.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 20;">
+         <children>
+            <ImageView fx:id="imageView" fitHeight="252.0" fitWidth="207.0" layoutX="14.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox layoutX="238.0" layoutY="52.0" prefHeight="131.0" prefWidth="632.0" spacing="2.0" style="-fx-border-color: #808080; -fx-border-radius: 10;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="172.0" style="-fx-font: bold;" text="Current Theatre:" textFill="WHITE" />
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="148.0" style="-fx-font: bold;" text="Debut Date:" textFill="WHITE" />
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="151.0" style="-fx-font: bold;" text="IMDB rating:" textFill="WHITE" />
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="109.0" style="-fx-font: bold;" text="Genre" textFill="WHITE" />
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="113.0" style="-fx-font: bold;" text="Actors" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox layoutX="403.0" layoutY="57.0" prefHeight="122.0" prefWidth="455.0" spacing="2.0">
+               <children>
+                  <Label fx:id="TheatreName" style="-fx-font: bold;" textFill="WHITE" />
+                  <Label fx:id="Duration" style="-fx-font: bold;" textFill="WHITE" />
+                  <Label fx:id="Rating" style="-fx-font: bold;" textFill="WHITE" />
+                  <Label fx:id="Genre" textFill="WHITE" />
+                  <Label fx:id="ActorsName" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox layoutX="224.0" layoutY="231.0" prefHeight="90.0" prefWidth="176.0" style="-fx-background-color: #F2384E; -fx-border-radius: 20; -fx-background-radius: 20;">
+               <children>
+                  <Label contentDisplay="TOP" prefHeight="21.0" prefWidth="177.0" style="-fx-alignment: center;" text="Seats" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Seats" alignment="CENTER" prefHeight="66.0" prefWidth="175.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="222.0" layoutY="331.0" prefHeight="90.0" prefWidth="176.0" style="-fx-background-color: #FECF39; -fx-background-radius: 20;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="21.0" prefWidth="172.0" text="Place" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Place" alignment="CENTER" prefHeight="71.0" prefWidth="174.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Button fx:id="buyTicket" layoutX="14.0" layoutY="303.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="188.0" style="-fx-background-color: #4C0FB0; -fx-background-radius: 20;" text="Buy Ticket" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <VBox layoutX="419.0" layoutY="282.0" prefHeight="244.0" prefWidth="448.0" style="-fx-border-radius: 10; -fx-border-color: #808080;">
+               <children>
+                  <Label fx:id="Descrption" alignment="TOP_CENTER" prefHeight="176.0" prefWidth="127.0" style="-fx-font: bold;" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox layoutX="230.0" prefHeight="57.0" prefWidth="639.0" style="-fx-background-color: #F18400; -fx-background-radius: 10;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="221.0" text="Informations" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="31.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="413.0" layoutY="237.0" prefHeight="46.0" prefWidth="455.0" style="-fx-background-color: #F18400; -fx-background-radius: 10;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="31.0" prefWidth="157.0" text="Description" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="188.0" layoutY="40.0" prefHeight="144.0" prefWidth="861.0" style="-fx-border-color: black; -fx-background-color: transparent; -fx-border-radius: 20;">
+         <children>
+            <ComboBox fx:id="comboTheatre" layoutX="596.0" layoutY="99.0" onAction="#SelectedBox" prefHeight="31.0" prefWidth="251.0" promptText="select" styleClass="combo-box" />
+            <Text fill="#151b68" layoutX="14.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Art Life" wrappingWidth="399.37451171875">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0">
+                     <input>
+                        <Lighting>
+                           <bumpInput>
+                              <Glow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Glow>
+               </effect>
+            </Text>
+         </children>
+      </AnchorPane>
+      <VBox layoutX="8.0" layoutY="14.0" prefHeight="702.0" prefWidth="163.0" style="-fx-border-color: black; -fx-border-radius: 20;">
+         <children>
+            <Text fill="#fffafe" strokeType="OUTSIDE" strokeWidth="0.0" text="HOME" textAlignment="CENTER" wrappingWidth="161.01513671875">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
