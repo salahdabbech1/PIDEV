@@ -66,10 +66,7 @@ import static jdk.nashorn.internal.runtime.Debug.id;
 import service.ServiceTactor;
 import service.ServiceTheatre;
 
-/**
- *
- * @author bouyo
- */
+
 public class TheatreController implements Initializable {
     
     @FXML
