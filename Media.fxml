@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="810.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.MediaController">
+   <children>
+      <BorderPane layoutX="15.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="728.0">
+         <center>
+            <StackPane fx:id="pane" prefHeight="448.0" prefWidth="728.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" maxHeight="40.0" prefHeight="50.0" StackPane.alignment="BOTTOM_CENTER">
+                     <children>
+                        <Slider fx:id="progressBar" />
+                        <HBox alignment="BOTTOM_CENTER" maxHeight="40.0" prefHeight="30.0">
+                           <children>
+                              <Button fx:id="Bnext" mnemonicParsing="false" onAction="#nexttrack" text="NEXT" />
+                              <Button fx:id="playB" mnemonicParsing="false" onAction="#playVideo" text="Play">
+                                 <HBox.margin>
+                                    <Insets bottom="7.0" right="7.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#pauseVideo" text="Pause">
+                                 <HBox.margin>
+                                    <Insets bottom="7.0" right="7.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#stopVideo" text="Stop">
+                                 <HBox.margin>
+                                    <Insets bottom="7.0" right="7.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#furtherSlowDownVideo" text="&lt;&lt;&lt;">
+                                 <HBox.margin>
+                                    <Insets bottom="7.0" right="7.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#back5" text="-5s">
+                                 <HBox.margin>
+                                    <Insets bottom="7.0" right="7.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="skipB" mnemonicParsing="false" onAction="#skip5" text="+5s">
+                                 <HBox.margin>
+                                    <Insets bottom="7.0" right="7.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#furtherSpeedUpVideo" text="&gt;&gt;&gt;">
+                                 <HBox.margin>
+                                    <Insets bottom="7.0" right="7.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Slider fx:id="volumeSlider">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </HBox.margin>
+                              </Slider>
+                           </children>
+                        </HBox>
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </VBox>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+      <ListView fx:id="listV" layoutX="29.0" layoutY="601.0" onMouseClicked="#tester" prefHeight="164.0" prefWidth="276.0" />
+      <Label fx:id="lbStart" layoutX="29.0" layoutY="534.0" />
+      <Label fx:id="lbEnd" layoutX="706.0" layoutY="534.0" />
+      <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="482.0" layoutY="559.0" />
+   </children>
+</AnchorPane>

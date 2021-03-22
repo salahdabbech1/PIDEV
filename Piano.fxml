@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="Movie.PianoController">
+   <children>
+      <Button layoutX="38.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickDo" prefHeight="134.0" prefWidth="39.0" text="DO" />
+      <Button layoutX="97.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickRe" prefHeight="134.0" prefWidth="39.0" text="RE" />
+      <Button layoutX="149.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickMi" prefHeight="134.0" prefWidth="39.0" text="MI" />
+      <Button layoutX="208.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickFa" prefHeight="134.0" prefWidth="39.0" text="FA" />
+      <Button layoutX="261.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickSol" prefHeight="134.0" prefWidth="39.0" text="SOL" />
+      <Button layoutX="321.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickLa" prefHeight="134.0" prefWidth="39.0" text="LA" />
+      <Button layoutX="378.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickSi" prefHeight="134.0" prefWidth="39.0" text="SI" />
+      <Button layoutX="432.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickDo1" prefHeight="134.0" prefWidth="39.0" text="DO" />
+      <Button layoutX="483.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickRe" prefHeight="134.0" prefWidth="39.0" text="RE" />
+      <Button layoutX="536.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickMi1" prefHeight="134.0" prefWidth="39.0" text="MI" />
+      <Button layoutX="66.0" layoutY="84.0" mnemonicParsing="false" onAction="#clickDoD" prefHeight="77.0" prefWidth="39.0" text="DO#">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button layoutX="126.0" layoutY="83.0" mnemonicParsing="false" onAction="#clickReD" prefHeight="77.0" prefWidth="39.0" text="RE#" />
+      <Button layoutX="234.0" layoutY="85.0" mnemonicParsing="false" onAction="#clickFaD" prefHeight="77.0" prefWidth="39.0" text="FA#" />
+      <Button layoutX="294.0" layoutY="85.0" mnemonicParsing="false" onAction="#clickSolD" prefHeight="77.0" prefWidth="39.0" text="SOL#">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button layoutX="349.0" layoutY="85.0" mnemonicParsing="false" onAction="#clickLaD" prefHeight="77.0" prefWidth="39.0" text="LA#" />
+      <Button layoutX="452.0" layoutY="84.0" mnemonicParsing="false" onAction="#clickDoD1" prefHeight="77.0" prefWidth="39.0" text="DO#">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button layoutX="509.0" layoutY="84.0" mnemonicParsing="false" onAction="#clickRE1" prefHeight="77.0" prefWidth="39.0" text="RE#" />
+   </children>
+</AnchorPane>

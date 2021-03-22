@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crudaziz;
+package Movie;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ public class DatabaseConnection {
 
 
     public Connection getConnection(){
-       // String databaseName="aziz";
+       // String databaseName="karim";
             String databaseUser="root";
             String databasePassword = "";
             String url = "jdbc:mysql://localhost:3306/artlife";

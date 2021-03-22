@@ -3,12 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crudaziz;
-
-/**
- *
- * @author HP
- */
+package Movie;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
@@ -28,12 +23,11 @@ import marytts.signalproc.effects.AudioEffect;
 import marytts.signalproc.effects.AudioEffects;
 
 /**
- * @author GOXR3PLUS
  *
+ * @author HP
  */
 public class TextToSpeech {
-	
-	private AudioPlayer tts;
+    private AudioPlaye tts;
 	private MaryInterface marytts;
 	
 	/**
@@ -73,7 +67,7 @@ public class TextToSpeech {
 			
 			// Player is a thread(threads can only run one time) so it can be
 			// used has to be initiated every time
-			tts = new AudioPlayer();
+			tts = new AudioPlaye();
 			tts.setAudio(audio);
 			tts.setGain(gainValue);
 			tts.setDaemon(daemon);
@@ -137,5 +131,4 @@ public class TextToSpeech {
 	public void setVoice(String voice) {
 		marytts.setVoice(voice);
 	}
-	
 }
