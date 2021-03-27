@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="248.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="projet.MyTicketController">
+   <children>
+      <TableView fx:id="tabTick" layoutX="14.0" layoutY="11.0" onMouseClicked="#SelectRowRes" prefHeight="278.0" prefWidth="450.0" stylesheets="@style.css">
+         <columns>
+            <TableColumn fx:id="ColTidUser" prefWidth="75.0" text="User" />
+            <TableColumn fx:id="ColTDate" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="ColTdCinema" prefWidth="75.0" text="Cinema " />
+            <TableColumn fx:id="ColTidSalle" prefWidth="75.0" text="Salle " />
+            <TableColumn fx:id="ColTchaise" prefWidth="75.0" text="chaise" />
+            <TableColumn fx:id="ColTEvent" prefWidth="75.0" text="Event " />
+            <TableColumn fx:id="ColMontant" prefWidth="75.0" text="Montant" />
+         </columns>
+         <styleClass>
+            <String fx:value="login_bg" />
+            <String fx:value="btn" />
+            <String fx:value="lbl-user" />
+            <String fx:value="lbl-status" />
+            <String fx:value="btn_CRUD" />
+         </styleClass>
+      </TableView>
+      <Button fx:id="detailedViewButton" layoutX="540.0" layoutY="72.0" mnemonicParsing="false" onAction="#changeSceneToDetailedView" prefHeight="26.0" prefWidth="194.0" text="Details" />
+      <Button fx:id="BACKFR" layoutX="611.0" layoutY="164.0" mnemonicParsing="false" onAction="#closeBackButtonOnAction" text="Exit" />
+      <Label fx:id="lbTick" layoutX="576.0" layoutY="14.0" prefHeight="18.0" prefWidth="100.0" />
+   </children>
+</AnchorPane>

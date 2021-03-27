@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="193.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="projet.TicketViewController">
+   <children>
+      <Label layoutX="24.0" layoutY="30.0" prefHeight="18.0" prefWidth="34.0" text="Name" />
+      <Label layoutX="24.0" layoutY="78.0" prefHeight="18.0" prefWidth="27.0" text="Date" />
+      <Label layoutX="24.0" layoutY="138.0" prefHeight="18.0" prefWidth="42.0" text="Chaise" />
+      <Label layoutX="276.0" layoutY="30.0" prefHeight="18.0" prefWidth="42.0" text="Event" />
+      <Label layoutX="276.0" layoutY="87.0" prefHeight="18.0" prefWidth="42.0" text="Cinema" />
+      <Label layoutX="276.0" layoutY="147.0" prefHeight="18.0" prefWidth="27.0" text="Salle" />
+      <Label fx:id="lbName" layoutX="136.0" layoutY="31.0" prefHeight="18.0" prefWidth="88.0" text=" " />
+      <Label fx:id="lbDate" layoutX="136.0" layoutY="78.0" prefHeight="18.0" prefWidth="88.0" text=" " />
+      <Label fx:id="lbChaise" layoutX="136.0" layoutY="138.0" prefHeight="18.0" prefWidth="88.0" text=" " />
+      <Label fx:id="lbEvent" layoutX="360.0" layoutY="22.0" prefHeight="18.0" prefWidth="88.0" text=" " />
+      <Label fx:id="lbCinema" layoutX="367.0" layoutY="87.0" prefHeight="18.0" prefWidth="88.0" text=" " />
+      <Label fx:id="lbSalle" layoutX="367.0" layoutY="147.0" prefHeight="18.0" prefWidth="88.0" text=" " />
+   </children>
+</AnchorPane>

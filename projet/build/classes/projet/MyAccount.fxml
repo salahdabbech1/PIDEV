@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="842.0" prefWidth="1152.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.MyAccountController">
+   <children>
+      <TextField fx:id="userField" layoutX="345.0" layoutY="135.0" prefHeight="46.0" prefWidth="294.0" />
+      <TextField fx:id="passField" layoutX="348.0" layoutY="208.0" prefHeight="46.0" prefWidth="294.0" />
+      <TextField fx:id="emailField" layoutX="347.0" layoutY="351.0" prefHeight="46.0" prefWidth="294.0" />
+      <Label layoutX="239.0" layoutY="150.0" text="username" />
+      <Label layoutX="255.0" layoutY="224.0" text="password" />
+      <Label layoutX="248.0" layoutY="365.0" prefHeight="18.0" prefWidth="71.0" text="email" />
+      <Button layoutX="467.0" layoutY="457.0" mnemonicParsing="false" onAction="#update" prefHeight="26.0" prefWidth="120.0" text="update" />
+      <TextField fx:id="passConfField" layoutX="349.0" layoutY="281.0" prefHeight="46.0" prefWidth="294.0" />
+      <Label layoutX="222.0" layoutY="297.0" prefHeight="18.0" prefWidth="122.0" text="Confirmed Pass" />
+      <Label fx:id="accLB" layoutX="467.0" layoutY="74.0" text=" " visible="false" />
+      <Label fx:id="confPass" layoutX="674.0" layoutY="298.0" text=" " />
+      <Button fx:id="backfront" layoutX="650.0" layoutY="458.0" mnemonicParsing="false" onAction="#closeBackButtonOnAction" text="Back To front " />
+   </children>
+</AnchorPane>
