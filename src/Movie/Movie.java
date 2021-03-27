@@ -17,8 +17,19 @@ public class Movie {
     private String name;
     private String Genre;
     private String image;
+    private String trailer;
     private Date rdate;
 
+    public Movie(int id, String name, String Genre, String image, String trailer, Date rdate) {
+        this.id = id;
+        this.name = name;
+        this.Genre = Genre;
+        this.image = image;
+        this.trailer = trailer;
+        this.rdate = rdate;
+    }
+
+    
     public Movie(int id, String name, String Genre, String image, Date rdate) {
         this.id = id;
         this.name = name;
@@ -72,6 +83,15 @@ public class Movie {
     public void setRdate(Date rdate) {
         this.rdate = rdate;
     }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
+    }
+    
 
     
 

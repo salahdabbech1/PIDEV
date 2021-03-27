@@ -5,8 +5,23 @@
  */
 package Movie;
 
+
+
+import javafx.event.ActionEvent;
+import javafx.scene.control.*;
+
+
+import java.util.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -14,6 +29,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,6 +64,10 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.*;
+
 import org.controlsfx.control.Notifications;
 
 /**
@@ -87,10 +107,16 @@ public class FactorController implements Initializable {
     private TableColumn<Factor, String> ColDescription;
     @FXML
     private TableColumn<Factor, String> ColImage;
+    PropertyValueFactory<Factor, String> a ;
     @FXML
     private TableView<Factor> TableActors;
     @FXML
     private ImageView imageFactor;
+    @FXML
+    private Button BtnAdd1;
+    @FXML
+    private Button BtnAdd11;
+    
 
     /**
      * Initializes the controller class.
@@ -126,6 +152,99 @@ public class FactorController implements Initializable {
     private void Film(MouseEvent event) {
         loadPage("Movie");
     }
+
+    @FXML
+    private void sendEmail(ActionEvent event) {
+    }
+
+    @FXML
+    private void Concert(MouseEvent event) {
+        loadPage("Concert");
+    }
+
+    @FXML
+    private void Musician(MouseEvent event) {
+        loadPage("Musician");
+    }
+
+    @FXML
+    private void user(MouseEvent event) {
+         loadPage("user");
+    }
+
+    @FXML
+    private void reservation(MouseEvent event) {
+         loadPage("reservation");
+    }
+
+    @FXML
+    private void Tactor(MouseEvent event) {
+        loadPage("Tactor");
+    }
+
+    @FXML
+    private void Theatre(MouseEvent event) {
+        loadPage("Theatre");
+    }
+    
+    public class Mail {
+        
+        
+        String  username="yosribouzid123@gmail.com"; 
+        char[] password ={ 'a', 'b', 'c', 'd', 'e' };
+        public Label sentBoolValue;
+
+        public void buttonClicked(ActionEvent actionEvent){
+            sendEmail();
+        }
+        
+        public PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password);
+                }
+        
+        public void sendEmail(){
+            String to = "yosri.bouzid@esprit.tn";
+            String from = "yosribouzid123@gmail.com";
+            String host = "smtp.gmail.com";
+            String username="yosribouzid123@gmail.com"; 
+            String password ="Rengar12";
+
+            //setup mail server
+
+            Properties props = System.getProperties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.port", "587");
+            
+            
+            
+            Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {});
+
+            try{
+
+                //create mail
+                MimeMessage m = new MimeMessage(session);
+                m.setFrom(new InternetAddress(from));
+                m.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
+                m.setSubject("subject");
+                m.setText("content");
+
+                //send mail
+
+                Transport.send(m);
+                sentBoolValue.setVisible(true);
+                System.out.println("Message sent!");
+
+            }   catch (MessagingException e){
+                e.printStackTrace();
+            }
+
+        }
+    }
+    
+    
+    
     public Connection getConnection(){ 
         Connection conn; 
         try{ 
@@ -137,6 +256,77 @@ public class FactorController implements Initializable {
         return null;
         }
     }
+    
+    @FXML
+    private void fairepdf(ActionEvent event) {
+
+         Document document = new Document();
+        try {
+
+            PdfWriter.getInstance(document, new FileOutputStream("actors.pdf"));
+            document.open();
+            Paragraph ph1 = new Paragraph("These are ArtLife actors !");
+            Paragraph ph2 = new Paragraph("\n");
+            PdfPTable table = new PdfPTable(3);
+            
+            
+            ObservableList<Factor> factorList = FXCollections.observableArrayList();
+            Connection conn = getConnection();
+            String query = "Select * from factor";
+            Statement st;
+            ResultSet rs;
+            //On créer l'objet cellule.
+            PdfPCell cell;
+
+            //contenu du tableau.
+//            table.addCell("Image : ");
+            table.addCell("Name : ");
+            table.addCell("Born : ");
+            table.addCell("Description : ");
+            
+            
+            st=conn.createStatement();
+            rs=st.executeQuery(query);
+            Factor factors;
+            while(rs.next()){
+//                Image image = new Image(rs.getString("name"));
+                
+//                PdfPCell Image = null;
+//                
+//                Image image = new Image(rs.getString("name"));
+//                table.addCell(Image );
+//                table.addCell(rs.getString("image"));
+                table.addCell(rs.getString("name"));
+                table.addCell(rs.getString("born"));
+                table.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(rs.getString("description"));
+            }
+            
+            document.add(ph1);
+            document.add(ph2);
+            document.add(table);
+            document.addAuthor("ArtLife");
+            PushNotf("Success !","Your PDF was generated in ArtLife/actors.pdf !");
+            doneBox("Added !", "Your PDF was generated in ArtLife/actors.pdf !");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        document.close();
+
+
+
+
+
+
+
+
+
+
+
+    }
+    
+    
+    
     
     
     
@@ -311,17 +501,16 @@ public class FactorController implements Initializable {
     String FileChooser(){
         FileChooser fc = new FileChooser();
         fc.setInitialDirectory(new File("C:\\Users\\bouyo\\Desktop\\Study\\S2\\Project\\JavaFX\\ArtLife\\src\\images\\Factors"));
-        fc.getExtensionFilters().add(new ExtensionFilter("Image Files", "*.jpg"));
-        fc.getExtensionFilters().add(new ExtensionFilter("Image Files", "*.jpeg"));
+        fc.getExtensionFilters().add(new ExtensionFilter("jpg Files", "*.jpg"));
+        fc.getExtensionFilters().add(new ExtensionFilter("jpeg Files", "*.jpeg"));
+        fc.getExtensionFilters().add(new ExtensionFilter("png Files", "*.png"));
         File f = fc.showOpenDialog(null);
         if(f != null)
         {
-            System.out.println(f);
+//            System.out.println(f);
         }
-        
         return f.getName();
     }
-    
     @FXML
     public void SearchActor(){
         String name = TextSearch.getText();
@@ -370,6 +559,7 @@ public class FactorController implements Initializable {
     @FXML
     private void ModifyRow() {
         int id=TableActors.getSelectionModel().getSelectedItem().getId();
+        System.out.println(BtnChoose.getOnMouseClicked());
         String query = "UPDATE `factor` SET `name` = '"+ FieldName.getText() +"',`born` = '"+ FieldBorn.getValue() +"', `description` = '"+FieldDesc.getText() + "', `image` = '/images/Factors/"+FileChooser()+"' WHERE `factor`.`id` = "+ id+";";
         if(executeQuery(query)!=0){
             PushNotf("Success !","Your actor has been modified !");
@@ -395,6 +585,8 @@ public class FactorController implements Initializable {
         ColImage.setCellValueFactory(new PropertyValueFactory<>("image"));
         
         TableActors.setItems(list);
+        
+//        ListActors.setCellFactory(new PropertyValueFactory<>("name"));
     }
     
     public int executeQuery(String query){
@@ -415,7 +607,8 @@ public class FactorController implements Initializable {
     
     @FXML
     public void insertFactor(){
-        String query = "INSERT INTO `factor` (`id`, `name`, `born`, `description`, `image`) VALUES (NULL, '"+FieldName.getText()+"', '"+ FieldBorn.getValue() +"', '"+FieldDesc.getText() +"', '/images/Factor/"+FileChooser()+"');"; 
+        String path = FileChooser();
+        String query = "INSERT INTO `factor` (`id`, `name`, `born`, `description`, `image`) VALUES (NULL, '"+FieldName.getText()+"', '"+ FieldBorn.getValue() +"', '"+FieldDesc.getText() +"', '/images/Factor/"+path+"');"; 
         if(executeQuery(query)!=0){
             PushNotf("Success !","Your actor has been added to the database !");
             doneBox("Added !", "Your actor has been added to the database !");

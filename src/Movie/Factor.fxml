@@ -20,6 +20,12 @@
          <children>
             <Button mnemonicParsing="false" onMouseClicked="#Actor" prefHeight="53.0" prefWidth="193.0" style="-fx-background-color: transparent; -fx-border-color: #696969; -fx-border-width: 0px 0px 2px 0px;" text="Actor" textFill="WHITE" />
             <Button mnemonicParsing="false" onMouseClicked="#Film" prefHeight="54.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #696969; -fx-border-width: 0px 0px 2px 0px;" text="Film" textFill="WHITE" />
+            <Button layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onMouseClicked="#Concert" prefHeight="54.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #696969; -fx-border-width: 0px 0px 2px 0px;" text="Concert" textFill="WHITE" />
+            <Button layoutX="10.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#Musician" prefHeight="54.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #696969; -fx-border-width: 0px 0px 2px 0px;" text="Musician" textFill="WHITE" />
+            <Button layoutX="10.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#user" prefHeight="54.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #696969; -fx-border-width: 0px 0px 2px 0px;" text="User" textFill="WHITE" />
+            <Button layoutX="10.0" layoutY="227.0" mnemonicParsing="false" onMouseClicked="#reservation" prefHeight="54.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #696969; -fx-border-width: 0px 0px 2px 0px;" text="Reservation" textFill="WHITE" />
+            <Button layoutX="10.0" layoutY="279.0" mnemonicParsing="false" onMouseClicked="#Tactor" prefHeight="54.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #696969; -fx-border-width: 0px 0px 2px 0px;" text="Theatre Actor" textFill="WHITE" />
+            <Button layoutX="10.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#Theatre" prefHeight="54.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #696969; -fx-border-width: 0px 0px 2px 0px;" text="Theatre" textFill="WHITE" />
          </children>
       </VBox>
    </left>
@@ -69,6 +75,8 @@
                   <Image url="@../images/Front/theatre-mask.png" />
                </image>
             </ImageView>
+            <Button fx:id="BtnAdd1" layoutX="237.0" layoutY="677.0" mnemonicParsing="false" onAction="#fairepdf" prefHeight="34.0" prefWidth="87.0" style="-fx-border-color: #2A73FF; -fx-background-color: transparent; -fx-border-radius: 20;" text="Pdf" textFill="#e7e5e5" />
+            <Button fx:id="BtnAdd11" layoutX="345.0" layoutY="677.0" mnemonicParsing="false" onAction="#sendEmail" prefHeight="34.0" prefWidth="87.0" style="-fx-border-color: #2A73FF; -fx-background-color: transparent; -fx-border-radius: 20;" text="Send Mail" textFill="#e7e5e5" />
          </children>
       </AnchorPane>
    </center>

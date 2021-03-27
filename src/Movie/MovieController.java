@@ -119,6 +119,10 @@ public class MovieController implements Initializable {
     private TextField TextSearch;
     @FXML
     private Button showstat;
+    @FXML
+    private TextField FieldTrailer;
+    @FXML
+    private TableColumn<?, ?> ColTrailer;
     
     
     
@@ -273,7 +277,7 @@ public class MovieController implements Initializable {
             rs=st.executeQuery(query);
             Movie movies;
             while(rs.next()){
-                movies = new Movie(rs.getInt("id"),rs.getString("name"),rs.getString("genre"),rs.getString("image"),rs.getDate("rdate"));
+                movies = new Movie(rs.getInt("id"),rs.getString("name"),rs.getString("genre"),rs.getString("image"),rs.getString("trailer"),rs.getDate("rdate"));
                 movieList.add(movies);
                 
             }
@@ -468,7 +472,7 @@ public class MovieController implements Initializable {
             rs=st.executeQuery(query);
             Movie movies;
             while(rs.next()){
-                movies = new Movie(rs.getInt("id"),rs.getString("name"),rs.getString("genre"),rs.getString("image"),rs.getDate("rdate"));
+                movies = new Movie(rs.getInt("id"),rs.getString("name"),rs.getString("genre"),rs.getString("image"),rs.getString("trailer"),rs.getDate("rdate"));
                 movieList.add(movies);
                 
             }
@@ -483,6 +487,7 @@ public class MovieController implements Initializable {
 //        ColID.cellFactoryProperty();
         ColName.setCellValueFactory(new PropertyValueFactory("name"));
         ColGenre.setCellValueFactory(new PropertyValueFactory("genre"));
+        ColTrailer.setCellValueFactory(new PropertyValueFactory("trailer"));
         ColRD.setCellValueFactory(new PropertyValueFactory("rdate"));
         ColRD.cellFactoryProperty();
         ColIm.setCellValueFactory(new PropertyValueFactory("image"));
@@ -605,6 +610,7 @@ public class MovieController implements Initializable {
 //        ColID.cellFactoryProperty();
         ColName.setCellValueFactory(new PropertyValueFactory("name"));
         ColGenre.setCellValueFactory(new PropertyValueFactory("genre"));
+        ColTrailer.setCellValueFactory(new PropertyValueFactory("trailer"));
         ColRD.setCellValueFactory(new PropertyValueFactory("rdate"));
         ColRD.cellFactoryProperty();
         ColIm.setCellValueFactory(new PropertyValueFactory("image"));
@@ -696,7 +702,7 @@ public class MovieController implements Initializable {
         
         
         
-        String query = "INSERT INTO `film` (`id`, `name`, `genre`, `rdate`, `image`) VALUES (NULL, '"+ FieldName.getText() +"', '"+ GenreBox.getValue() +"', '"+FieldRelease.getValue() +"', '/images/Films/"+FileChooser()+"');";
+        String query = "INSERT INTO `film` (`id`, `name`, `genre`, `trailer`, `rdate`, `image`) VALUES (NULL, '"+ FieldName.getText() +"', '"+ GenreBox.getValue() +"', '"+ FieldTrailer.getText() +"', '"+FieldRelease.getValue() +"', '/images/Films/"+FileChooser()+"');";
         if(executeQuery(query)!=0)
         {
             int idF= getfilmID(FieldName.getText());
@@ -808,6 +814,7 @@ public class MovieController implements Initializable {
         List<Integer> allActors=new ArrayList<>();
         allActors=getTeeest(id);
         FieldName.setText(TableFilms.getSelectionModel().getSelectedItem().getName());
+        FieldTrailer.setText(TableFilms.getSelectionModel().getSelectedItem().getTrailer());
         GenreBox.setValue(TableFilms.getSelectionModel().getSelectedItem().getGenre());
 //        Boxxx.setValue(getActorName(TableFilms.getSelectionModel().getSelectedItem().getIdactor()));
         FieldRelease.setValue(LocalDate.parse(TableFilms.getSelectionModel().getSelectedItem().getRdate().toString()));
@@ -836,7 +843,7 @@ public class MovieController implements Initializable {
         int id=TableFilms.getSelectionModel().getSelectedItem().getId();
         int nb=Integer.valueOf(FieldNb.getText());
         List<Integer> allActors=new ArrayList<>();
-        String query = "UPDATE `film` SET `name` = '"+ FieldName.getText() +"',`genre` = '"+ GenreBox.getValue() +"', `rdate` = '"+FieldRelease.getValue() + "', `image` = '/images/Films/"+FileChooser()+"' WHERE `film`.`id` = "+ id+";";
+        String query = "UPDATE `film` SET `name` = '"+ FieldName.getText() +"',`genre` = '"+ GenreBox.getValue() +"',`trailer` = '"+ FieldTrailer.getText() +"', `rdate` = '"+FieldRelease.getValue() + "', `image` = '/images/Films/"+FileChooser()+"' WHERE `film`.`id` = "+ id+";";
         if (executeQuery(query)!=0)
         {
             String query2="";

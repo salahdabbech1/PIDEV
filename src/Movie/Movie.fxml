@@ -19,7 +19,7 @@
    <children>
       <AnchorPane id="AnchorPane" prefHeight="842.0" prefWidth="1152.0" style="-fx-background-color: #001935;">
          <children>
-            <VBox layoutX="126.0" layoutY="262.0" prefHeight="273.0" prefWidth="152.0" spacing="25.0">
+            <VBox layoutX="126.0" layoutY="207.0" prefHeight="328.0" prefWidth="152.0" spacing="25.0">
                <children>
                   <Label prefHeight="26.0" prefWidth="61.0" style="-fx-border-color: white; -fx-background-radius: 20; -fx-alignment: center;" stylesheets="@../images/Front/tt.css" text="Name" />
                   <Label prefHeight="25.0" prefWidth="56.0" style="-fx-border-color: white;" text="Genre">
@@ -27,22 +27,25 @@
                         <URL value="@../images/Front/win7.css" />
                         <URL value="@../images/Front/tt.css" />
                      </stylesheets></Label>
+                  <Label layoutX="10.0" layoutY="61.0" prefHeight="25.0" prefWidth="56.0" style="-fx-border-color: white;" text="Trailer">
+                     <stylesheets>
+                        <URL value="@../images/Front/win7.css" />
+                        <URL value="@../images/Front/tt.css" />
+                     </stylesheets>
+                  </Label>
                   <Label prefHeight="31.0" prefWidth="91.0" style="-fx-border-color: white;" stylesheets="@../images/Front/tt.css" text="Release Date" />
                   <Label prefHeight="27.0" prefWidth="79.0" style="-fx-border-color: white;" stylesheets="@../images/Front/tt.css" text="Image" />
                   <Label prefHeight="27.0" prefWidth="120.0" style="-fx-border-color: white;" stylesheets="@../images/Front/tt.css" text="Number Of Actors" />
                   <Label prefHeight="28.0" prefWidth="80.0" style="-fx-border-color: white;" stylesheets="@../images/Front/tt.css" text="Actors" />
                </children>
             </VBox>
-            <VBox layoutX="327.0" layoutY="268.0" prefHeight="569.0" prefWidth="166.0" spacing="16.0">
+            <VBox layoutX="327.0" layoutY="217.0" prefHeight="620.0" prefWidth="196.0" spacing="16.0">
                <children>
-                  <TextField fx:id="FieldName" stylesheets="@../images/Front/tt.css" />
+                  <TextField fx:id="FieldName" prefWidth="166.0" stylesheets="@../images/Front/tt.css" />
                   <ComboBox fx:id="GenreBox" prefHeight="28.0" prefWidth="160.0" stylesheets="@../images/Front/brume.css" />
+                  <TextField fx:id="FieldTrailer" layoutX="10.0" layoutY="10.0" prefWidth="166.0" stylesheets="@../images/Front/tt.css" />
                   <DatePicker fx:id="FieldRelease" stylesheets="@../images/Front/brume.css" />
-                  <Button fx:id="ChooseIma" mnemonicParsing="false" onAction="#FileChooser" prefHeight="32.0" prefWidth="108.0" text="Choose File">
-                     <stylesheets>
-                        <URL value="@../images/Front/win7.css" />
-                        <URL value="@../images/Front/tt.css" />
-                     </stylesheets></Button>
+                  <Button fx:id="ChooseIma" mnemonicParsing="false" onAction="#FileChooser" prefHeight="32.0" prefWidth="108.0" stylesheets="@../images/Front/tt.css" text="Choose File" />
                   <TextField fx:id="FieldNb" onAction="#addField" stylesheets="@../images/Front/tt.css" />
                   <ComboBox fx:id="Boxxx" prefWidth="150.0" style="visibility: shown;" />
                   <ComboBox fx:id="Boxxx1" layoutX="10.0" layoutY="306.0" prefWidth="150.0" style="visibility: hidden;" />
@@ -59,10 +62,11 @@
             </VBox>
             <TableView fx:id="TableFilms" layoutX="648.0" layoutY="253.0" onMouseClicked="#SelectRow" prefHeight="599.0" prefWidth="504.0" stylesheets="@../images/Front/tt.css">
                <columns>
-                  <TableColumn fx:id="ColName" prefWidth="195.0" text="Name" />
-                  <TableColumn fx:id="ColGenre" prefWidth="73.0" text="Genre" />
-                  <TableColumn fx:id="ColRD" prefWidth="124.0" text="Release Date" />
-                  <TableColumn fx:id="ColIm" prefWidth="110.0" text="Image" />
+                  <TableColumn fx:id="ColName" prefWidth="141.0" text="Name" />
+                  <TableColumn fx:id="ColGenre" prefWidth="82.0" text="Genre" />
+                  <TableColumn fx:id="ColTrailer" prefWidth="99.0" text="Trailer" />
+                  <TableColumn fx:id="ColRD" prefWidth="100.0" text="Release Date" />
+                  <TableColumn fx:id="ColIm" prefWidth="153.0" text="Image" />
                </columns>
             </TableView>
             <Button fx:id="BtnAdd" layoutX="17.0" layoutY="581.0" mnemonicParsing="false" onAction="#insertMovie" prefHeight="40.0" prefWidth="70.0" stylesheets="@../images/Front/tt.css" text="Add" />
