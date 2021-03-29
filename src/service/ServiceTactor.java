@@ -5,10 +5,10 @@
  */
 package service;
 
-import gui.TactorController;
+import Movie.TactorController;
 import utils.DatabaseConnection;
-import entité.Tactor;
-import intService.IService;
+import entite.Tactor;
+import Iservice.IServiceTheatre;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -26,13 +26,31 @@ import javafx.collections.ObservableList;
  *
  * @author mateu
  */
-public class ServiceTactor implements IService<Tactor> {
+public class ServiceTactor implements IServiceTheatre<Tactor> {
      Connection cnx ;
     public ServiceTactor() {
          cnx = DatabaseConnection.getInstance().getConn();
      
     }
-
+//    public List<Tactor> actorUsed() throws SQLException{
+//       List<Tactor> ls = new ArrayList<Tactor>();
+//        Statement st = cnx.createStatement();
+//        String req = "select * from tactor,theatre where tactor.id=theatre.idTactor ";
+//        ResultSet rs = st.executeQuery(req);
+//
+//        while(rs.next()){
+//            Long id = rs.getLong("id");
+//            String name = rs.getString("name");
+//            LocalDate born = rs.getDate("born").toLocalDate();
+//            String description = rs.getString("description");
+//            String image = rs.getString("image");
+//            Tactor p = new Tactor(id, name, born,description,image);
+//            ls.add(p);
+//         
+//        }
+//
+//        return ls;
+//    }
     @Override
     public void add(Tactor t) throws SQLException {
         Statement st = cnx.createStatement();

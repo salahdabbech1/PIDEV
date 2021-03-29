@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1156.0" style="-fx-background-color: transparent;" stylesheets="@../images/Front/tt.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.TactorController">
+    <AnchorPane id="ap" prefHeight="724.0" prefWidth="1067.0" style="-fx-background-color: EAC3B8;" stylesheets="@Actor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+             <children>
+            <VBox layoutX="46.0" layoutY="274.0" prefHeight="199.0" prefWidth="184.0" spacing="25.0" stylesheets="@Actor.css">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="117.0" styleClass="lbl-status" stylesheets="" text="Name" textFill="#ca8f42">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font></Label>
+                  <Label prefHeight="21.0" prefWidth="125.0" styleClass="lbl-status" text="Birthay" textFill="#ca8f42">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font></Label>
+               <VBox prefHeight="230.0" prefWidth="134.0" spacing="25.0" stylesheets="@Actor.css">
+                  <children>
+                     <Label prefHeight="23.0" prefWidth="118.0" styleClass="lbl-status" stylesheets="" text="Image" textFill="#ca8f42">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Label>
+                     <Label prefHeight="23.0" prefWidth="153.0" styleClass="lbl-status" text="Description" textFill="#ca8f42">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Label>
+                  </children></VBox>
+               </children>
+            </VBox>
+            <VBox layoutX="282.0" layoutY="274.0" prefHeight="337.0" prefWidth="253.0" spacing="16.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <TextField fx:id="FieldName" prefHeight="26.0" prefWidth="119.0" />
+                  <DatePicker fx:id="FieldBorn" prefHeight="33.0" prefWidth="252.0" styleClass="btn_CRUD" />
+                  <Button id="button" fx:id="BtnChoose" mnemonicParsing="false" onAction="#FileChooser" prefHeight="33.0" prefWidth="252.0" text="Upload File" textFill="#f2f2f2" />
+                  <TextArea fx:id="FieldDesc" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #edf1f2; -fx-border-color: #505354;" />
+               </children>
+            </VBox>
+            <TableView fx:id="TableActors" layoutX="573.0" layoutY="268.0" onMouseClicked="#SelectRow" prefHeight="561.0" prefWidth="565.0" styleClass="login_bg">
+               <columns>
+                  <TableColumn fx:id="ColName" prefWidth="116.0" text="Name" />
+                  <TableColumn fx:id="ColBorn" prefWidth="150.0" text="Born" />
+                  <TableColumn fx:id="ColDescription" prefWidth="159.0" text="Description" />
+                  <TableColumn fx:id="ColImage" prefWidth="139.0" text="Image" />
+               </columns>
+            </TableView>
+            <Button id="button" fx:id="BtnAdd" layoutX="147.0" layoutY="770.0" mnemonicParsing="false" onAction="#insertTactor" prefWidth="80.0" text="Add" textFill="WHITE" />
+            <Button id="button" fx:id="BtnModify" layoutX="236.0" layoutY="770.0" mnemonicParsing="false" onAction="#ModifyRow" prefWidth="80.0" text="Update" textFill="WHITE" />
+         <VBox layoutX="713.0" layoutY="223.0" prefHeight="58.0" prefWidth="424.0" spacing="25.0" stylesheets="@Actor.css">
+            <children>
+               <TextField fx:id="TextSearch" onAction="#actionSearch" onKeyPressed="#actionSearch" onKeyReleased="#actionSearch" prefHeight="33.0" prefWidth="398.0" />
+               <VBox prefHeight="230.0" prefWidth="134.0" spacing="25.0" stylesheets="@Actor.css" />
+            </children>
+         </VBox>
+         <Button fx:id="btnRefresh" layoutX="328.0" layoutY="770.0" mnemonicParsing="false" onAction="#clear" prefWidth="80.0" text="Refresh" textFill="WHITE" />
+            
+                  <Button id="button" fx:id="RemoveRow" layoutX="56.0" layoutY="770.0" mnemonicParsing="false" onAction="#removeRow" prefHeight="33.0" prefWidth="80.0" text="Delete" textFill="WHITE" />
+         <VBox layoutX="601.0" layoutY="230.0" prefHeight="27.0" prefWidth="123.0" spacing="4.0" stylesheets="@Actor.css">
+            <children>
+               <Label prefHeight="33.0" prefWidth="121.0" styleClass="lbl-status" text="Search" textFill="#ca8f42">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font></Label>
+               <VBox prefHeight="230.0" prefWidth="134.0" spacing="25.0" stylesheets="@Actor.css" />
+            </children>
+         </VBox>
+         <VBox layoutX="58.0" layoutY="-82.0" prefHeight="401.0" prefWidth="200.0" spacing="70.0" stylesheets="@Actor.css">
+            <children>
+               <ImageView fx:id="imageTactor" fitHeight="122.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" style="visibility: hidden;" styleClass="img-hover-zoom-profile" />
+               <Circle fx:id="myCircle" fill="#1f93ff00" layoutX="69.0" layoutY="83.0" radius="72.0" stroke="BLACK" strokeType="INSIDE" styleClass="img-hover-zoom-circle" />
+               <VBox prefHeight="230.0" prefWidth="134.0" spacing="25.0" stylesheets="@Actor.css" />
+            </children>
+         </VBox>
+         <VBox layoutX="80.0" layoutY="496.0" prefHeight="192.0" prefWidth="186.0" spacing="25.0" stylesheets="@Actor.css">
+            <children>
+               <ImageView fitHeight="191.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true" styleClass="img-hover-zoom">
+                  <image>
+                     <Image url="@../images/Front/3m15mutni0nbs2dbk2takcka8m.png" />
+                  </image>
+               </ImageView>
+               <VBox prefHeight="230.0" prefWidth="134.0" spacing="25.0" stylesheets="@Actor.css" />
+            </children>
+         </VBox>
+         </children>
+      </AnchorPane>
+   <top>
+      <HBox prefHeight="84.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true" style="-fx-translate-x: 11; -fx-translate-y: 12;">
+               <image>
+                  <Image url="@../images/Front/theatre-mask.png" />
+               </image>
+            </ImageView>
+            <Text fill="#8cd1e8" layoutX="73.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 20; -fx-translate-y: 10;" text="Theatre Actors" wrappingWidth="363.48828125">
+               <font>
+                  <Font name="System Bold" size="42.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+   </top>
+      </BorderPane>

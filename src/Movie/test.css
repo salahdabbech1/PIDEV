@@ -1,0 +1,38 @@
+/* [1] The container */
+.pane{
+    fx-background-color: #f6f8f9;
+}
+.img-hover-zoom:hover {
+  -fx-translate-x: 20;
+  -fx-translate-y: 10;
+  -fx-scale-x: 1.5;
+  -fx-scale-y: 1.5;
+}
+.img-hover-zoom-profile:hover {
+  -fx-translate-x: 20;
+  -fx-translate-y: 10;
+  -fx-scale-x: 2;
+  -fx-scale-y: 2;
+}
+.img-hover-zoom-circle:hover {
+  -fx-translate-x: 20;
+  -fx-translate-y: 10;
+  -fx-translate-z: 10;
+  -fx-scale-x: 1.2;
+  -fx-scale-y: 1.2;
+  -fx-scale-z: 1.2;
+}
+
+.menubuttons:hover{
+    -fx-background-color: #314656;
+    -fx-text-fill:#a2c4dd;
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+    
+}
+.menubuttons:focused{
+   
+    -fx-text-fill:#eff8ff;
+   
+    
+}

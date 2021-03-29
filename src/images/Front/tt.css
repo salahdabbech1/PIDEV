@@ -1,0 +1,117 @@
+.button{
+    -fx-background-color:#7266ba ;
+    -fx-background-radius: 20;
+    -fx-border-color: #ff7f50;
+    -fx-border-radius: 20;
+    -fx-text-fill:white;
+}
+.button:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-background-color: #23cafe;
+}
+.label{
+    
+    -fx-alignment: center;
+    -fx-text-fill:#545254;
+    
+}
+
+.text-field{
+    -fx-background-color: #edf1f2 ;
+    -fx-border-color: #505354;
+
+}
+.table-row-cell {
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    /* 0 */
+    -fx-text-fill: rgb(5, 5, 5);
+    -fx-text-inner-color: rgb(0, 0, 0);
+    -fx-background-color:   #edf1f2;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: black;
+}
+
+.table-row-cell:focused {
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+}
+
+.table-view:focused .table-row-cell:filled:selected .table-cell {
+    -fx-background-color: #7266ba;
+    -fx-text-fill: white;
+}
+
+
+/* When the TableView is _not_ focused, we show alternate selection colors */
+
+.table-row-cell:filled:selected:focused,
+.table-row-cell:filled:selected {
+    -fx-background-color: #5a4ea0;
+}
+
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: #5a4ea0;
+    -fx-background-insets: 0, 0 0 1 0;
+    /*-fx-text-fill: -fx-text-inner-color;*/
+    -fx-text-fill: #fff;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+}
+
+.table-view:row-selection .table-row-cell:filled:focused:hover {
+    -fx-background-color: #5a4ea0;
+    /*-fx-text-fill: -fx-text-inner-color;*/
+    -fx-text-fill: #fff;
+    -fx-table-cell-border-color: #9f9f9f;
+    -fx-table-header-border-color: #9f9f9f;
+}
+
+.table-view:focused .table-row-cell:filled:selected .table-cell:hover {
+    -fx-background-color: #5a4ea0;
+    /*-fx-text-fill: -fx-text-inner-color;*/
+    -fx-text-fill: #fff;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+}
+.linear-grad-to-top-right{
+     -fx-background-color: radial-gradient(focus-angle 30deg , focus-distance 20% , center 25% 25% , radius 50% , reflect, #f58e31, #c67a96 40% , #5a8faf);
+}
+
+.img-hover-zoom:hover {
+  -fx-translate-x: 20;
+  -fx-translate-y: 10;
+  -fx-scale-x: 1.5;
+  -fx-scale-y: 1.5;
+}
+.img-hover-zoom-profile:hover {
+  -fx-translate-x: 20;
+  -fx-translate-y: 10;
+  -fx-scale-x: 2;
+  -fx-scale-y: 2;
+}
+.img-hover-zoom-circle:hover {
+  -fx-translate-x: 20;
+  -fx-translate-y: 10;
+  -fx-translate-z: 10;
+  -fx-scale-x: 1.2;
+  -fx-scale-y: 1.2;
+  -fx-scale-z: 1.2;
+}
+
+.menubuttons:hover{
+    -fx-background-color: #314656;
+    -fx-text-fill:#a2c4dd;
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+    
+}
+.menubuttons:focused{
+   
+    -fx-text-fill:#eff8ff;
+   
+    
+}

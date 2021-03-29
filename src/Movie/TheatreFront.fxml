@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="843.0" styleClass="linear-grad-to-top-right" stylesheets="@../images/Front/tt.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.TheatreFrontController">
+   <children>
+      <AnchorPane prefHeight="610.0" prefWidth="868.0" styleClass="linear-grad-to-top-right" stylesheets="@test.css">
+         <children>
+            <ScrollPane fx:id="scrollPANE" layoutY="62.0" prefHeight="539.0" prefWidth="831.0" styleClass="linear-grad-to-top-right" stylesheets="@test.css">
+               <content>
+                  <AnchorPane prefHeight="536.0" prefWidth="422.0" styleClass="linear-grad-to-top-right" stylesheets="@test.css">
+                     <children>
+                        <AnchorPane fx:id="pane" layoutX="13.0" layoutY="15.0" minHeight="0.0" minWidth="0.0" prefHeight="522.0" prefWidth="822.0" styleClass="linear-grad-to-top-right" stylesheets="@test.css">
+                           <children>
+                              <Label fx:id="LabelNewTh" layoutX="474.0" layoutY="-11.0" prefHeight="44.0" prefWidth="200.0" text="New Theatres" textFill="#ebebeb">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <AnchorPane fx:id="newAP" layoutX="472.0" layoutY="131.0" prefHeight="363.0" prefWidth="313.0" stylesheets="@test.css" />
+            <TextField fx:id="SearchField" layoutX="299.0" layoutY="14.0" onAction="#SearchTheatre" prefHeight="33.0" prefWidth="231.0" style="-fx-background-color: #edf1f2; -fx-border-color: #505354;" />
+            <ComboBox fx:id="cbGenre" layoutX="14.0" layoutY="11.0" onAction="#SelectCat" prefHeight="33.0" prefWidth="199.0" style="-fx-background-color: #edf1f2; -fx-border-color: #505354;" />
+            <ImageView fx:id="Retour" fitHeight="31.0" fitWidth="45.0" layoutX="241.0" layoutY="14.0" onMouseClicked="#Retour" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Front/retour.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

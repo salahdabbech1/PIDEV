@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="dm" prefHeight="842.0" prefWidth="1152.0" styleClass="linear-grad-to-top-right" stylesheets="@../images/Front/tt.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.TheatreController">
+   <children>
+      <VBox layoutX="43.0" layoutY="205.0" prefHeight="272.0" prefWidth="231.0" spacing="32.0">
+         <children>
+            <Label prefHeight="23.0" prefWidth="141.0" styleClass="lbl-status" text="Name" textFill="#ca8f42">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Label layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="162.0" styleClass="lbl-status" text="Category" textFill="#ca8f42">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="58.0" prefHeight="23.0" prefWidth="180.0" styleClass="lbl-status" text="Debut Date" textFill="#ca8f42">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="106.0" prefHeight="23.0" prefWidth="145.0" styleClass="lbl-status" text="Image" textFill="#ca8f42">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="160.0" prefHeight="21.0" prefWidth="181.0" styleClass="lbl-status" text="Description" textFill="#ca8f42">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="154.0" prefHeight="21.0" prefWidth="144.0" styleClass="lbl-status" text="Trailer" textFill="#ca8f42">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="202.0" prefHeight="21.0" prefWidth="143.0" styleClass="lbl-status" text="Poster" textFill="#ca8f42">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="304.0" prefHeight="23.0" prefWidth="232.0" styleClass="lbl-status" text="Number of Actors" textFill="#ca8f42">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="279.0" layoutY="205.0" prefHeight="270.0" prefWidth="251.0" spacing="16.0">
+         <children>
+            <TextField fx:id="FieldName" />
+            <ComboBox fx:id="GenreBox" prefHeight="33.0" prefWidth="252.0" style="-fx-background-color: #edf1f2; -fx-border-color: #505354;" />
+            <DatePicker fx:id="FieldRelease" prefHeight="31.0" prefWidth="249.0" />
+            <Button fx:id="BtnChoose" mnemonicParsing="false" onAction="#FileChooser" prefHeight="33.0" prefWidth="254.0" styleClass="btn_CRUD" text="Upload Image" textFill="WHITE" />
+            <TextArea fx:id="fieldDescript" prefHeight="54.0" prefWidth="251.0" />
+            <TextField fx:id="fieldTrailer" layoutX="10.0" layoutY="206.0" onAction="#addField" />
+            <Button fx:id="BtnChoosePoster" layoutX="10.0" layoutY="157.0" mnemonicParsing="false" onAction="#FileChooser2" prefHeight="33.0" prefWidth="254.0" styleClass="btn_CRUD" text="Upload Image" textFill="WHITE" />
+            <TextField fx:id="fieldNB" onAction="#addField" />
+            <ComboBox fx:id="cb1" prefHeight="31.0" prefWidth="250.0" style="-fx-border-color: #505354; -fx-background-color: #edf1f2; visibility: hidden;" />
+            <ComboBox fx:id="cb2" prefHeight="31.0" prefWidth="250.0" style="-fx-border-color: #505354; -fx-background-color: #edf1f2; visibility: hidden;" />
+            <ComboBox fx:id="cb3" prefHeight="31.0" prefWidth="250.0" style="-fx-border-color: #505354; -fx-background-color: #edf1f2; visibility: hidden;" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <TableView fx:id="TableTheatres" layoutX="573.0" layoutY="268.0" onMouseClicked="#SelectRow" prefHeight="561.0" prefWidth="565.0" styleClass="login_bg">
+         <columns>
+            <TableColumn fx:id="ColName" prefWidth="84.0" text="Name" />
+            <TableColumn fx:id="ColNameTactor" prefWidth="97.0" text="NameTactor" />
+            <TableColumn fx:id="ColGenre" prefWidth="108.0" text="Genre" />
+            <TableColumn fx:id="ColRD" prefWidth="116.0" text="Debut Date" />
+            <TableColumn fx:id="ColImage" minWidth="0.0" prefWidth="68.0" text="Image" />
+            <TableColumn fx:id="ColTrailer" minWidth="0.0" prefWidth="91.0" text="Trailer" />
+         </columns>
+      </TableView>
+      <Button fx:id="BtnAdd" layoutX="56.0" layoutY="770.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="33.0" prefWidth="80.0" styleClass="btn_CRUD" text="Add" textFill="WHITE" />
+      <Button fx:id="BtnModify" layoutX="147.0" layoutY="770.0" mnemonicParsing="false" onAction="#ModifyRow" prefWidth="80.0" styleClass="btn_CRUD" text="Update" textFill="WHITE" />
+      <Button fx:id="RemoveRow" layoutX="236.0" layoutY="770.0" mnemonicParsing="false" onAction="#removeRow" prefWidth="80.0" styleClass="btn_CRUD" text="Delete" textFill="WHITE" />
+      <Button fx:id="btnChart" layoutX="379.0" layoutY="770.0" mnemonicParsing="false" onAction="#Statistic" prefWidth="80.0" styleClass="btn_CRUD" text="Load Pie" textFill="WHITE" />
+      <Button fx:id="btnClear" layoutX="468.0" layoutY="770.0" mnemonicParsing="false" onAction="#clear" prefWidth="80.0" styleClass="btn_CRUD" text="Refresh" textFill="WHITE" />
+      <TextField fx:id="TextSearch" layoutX="693.0" layoutY="223.0" onAction="#actionSearch" onKeyPressed="#actionSearch" onKeyReleased="#actionSearch" prefHeight="33.0" prefWidth="444.0" />
+      <Label layoutX="523.0" layoutY="230.0" prefHeight="23.0" prefWidth="231.0" styleClass="lbl-status" text="Search" textFill="#ca8f42">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="84.0" prefWidth="1157.0">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true" style="-fx-translate-y: 12; -fx-translate-x: 11;">
+               <image>
+                  <Image url="@../images/Front/theatre-mask.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Text fill="#8cd1e8" layoutX="73.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Theater Pieces">
+         <font>
+            <Font name="System Bold" size="42.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="imageTheatre" fitHeight="152.0" fitWidth="144.0" layoutX="54.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" styleClass="img-hover-zoom-circle">
+         <effect>
+            <DropShadow height="0.0" offsetX="8.0" radius="2.0" width="10.0" />
+         </effect></ImageView>
+      <Circle fx:id="myCircle" centerX="54.0" centerY="102.0" fill="#ebebeb00" layoutX="564.0" layoutY="52.0" radius="70.0" stroke="BLACK" strokeType="INSIDE" styleClass="img-hover-zoom-circle" />
+   </children>
+</AnchorPane>
