@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1332.0" styleClass="login_bg" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.TactorController">
+    <AnchorPane id="ap" prefHeight="724.0" prefWidth="1067.0" style="-fx-background-color: EAC3B8;" stylesheets="@Actor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+             <children>
+            <VBox layoutX="144.0" layoutY="188.0" prefHeight="199.0" prefWidth="134.0" spacing="25.0" stylesheets="@Actor.css">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="48.0" styleClass="lbl-status" stylesheets="" text="Name" textFill="#ca8f42" />
+                  <Label styleClass="lbl-status" text="Born" textFill="#ca8f42" />
+                  <Label styleClass="lbl-status" text="Image" textFill="#ca8f42" />
+                  <Label styleClass="lbl-status" text="Description" textFill="#ca8f42" />
+               <VBox prefHeight="230.0" prefWidth="134.0" spacing="25.0" stylesheets="@Actor.css" />
+               </children>
+            </VBox>
+            <VBox layoutX="290.0" layoutY="193.0" prefHeight="337.0" prefWidth="253.0" spacing="16.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <TextField fx:id="FieldName" prefHeight="26.0" prefWidth="119.0" />
+                  <DatePicker fx:id="FieldBorn" prefHeight="33.0" prefWidth="252.0" styleClass="btn_CRUD" />
+                  <Button id="button" fx:id="BtnChoose" mnemonicParsing="false" onAction="#FileChooser" prefHeight="33.0" prefWidth="252.0" styleClass="btn_CRUD" text="Upload File" textFill="#f2f2f2" />
+                  <TextArea fx:id="FieldDesc" prefHeight="200.0" prefWidth="200.0" styleClass="btn_CRUD" />
+               <TextField fx:id="TextSearch" onAction="#actionSearch" onKeyPressed="#actionSearch" onKeyReleased="#actionSearch" prefHeight="37.0" prefWidth="133.0" />
+               </children>
+            </VBox>
+            <TableView fx:id="TableActors" layoutX="645.0" layoutY="141.0" onMouseClicked="#SelectRow" prefHeight="695.0" prefWidth="560.0" styleClass="login_bg">
+               <columns>
+                  <TableColumn fx:id="ColName" prefWidth="116.0" text="Name" />
+                  <TableColumn fx:id="ColBorn" prefWidth="150.0" text="Born" />
+                  <TableColumn fx:id="ColDescription" prefWidth="140.0" text="Description" />
+                  <TableColumn fx:id="ColImage" prefWidth="203.0" text="Image" />
+               </columns>
+            </TableView>
+            <Button id="button" fx:id="BtnAdd" layoutX="233.0" layoutY="594.0" mnemonicParsing="false" onAction="#insertTactor" styleClass="btn_CRUD" text="Add" textFill="WHITE" />
+            <Button id="button" fx:id="BtnModify" layoutX="319.0" layoutY="594.0" mnemonicParsing="false" onAction="#ModifyRow" styleClass="btn_CRUD" text="Modify" textFill="WHITE" />
+            <Text fill="WHITE" layoutX="103.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Theater Actors" wrappingWidth="289.99999645352364">
+               <font>
+                  <Font name="System Bold" size="42.0" />
+               </font>
+            </Text>
+         <VBox layoutX="148.0" layoutY="502.0" prefHeight="50.0" prefWidth="106.0" spacing="25.0" stylesheets="@Actor.css">
+            <children>
+               <Label styleClass="lbl-status" text="Search" textFill="#ca8f42" />
+               <VBox prefHeight="230.0" prefWidth="134.0" spacing="25.0" stylesheets="@Actor.css" />
+            </children>
+         </VBox>
+         <Button fx:id="btnRefresh" layoutX="418.0" layoutY="595.0" mnemonicParsing="false" onAction="#clear" styleClass="btn_CRUD" text="Refresh" textFill="WHITE" />
+            
+                  <Button id="button" fx:id="RemoveRow" layoutX="513.0" layoutY="595.0" mnemonicParsing="false" onAction="#removeRow" prefHeight="33.0" prefWidth="119.0" styleClass="btn_CRUD" text="Remove Row" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   <top>
+      <ImageView fx:id="imageTactor" fitHeight="141.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+   </top>
+   <stylesheets>
+      <URL value="@Actor.css" />
+      <URL value="@Theater.css" />
+   </stylesheets>
+      </BorderPane>

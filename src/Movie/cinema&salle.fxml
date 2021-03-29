@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="842.0" prefWidth="1152.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.csController">
+   <children>
+      <TableView fx:id="tab_cin" editable="true" layoutX="387.0" layoutY="30.0" onMouseClicked="#SelectRow" prefHeight="372.0" prefWidth="437.0">
+         <columns>
+            <TableColumn fx:id="name_cin" prefWidth="75.0" text="name" />
+            <TableColumn fx:id="nb_sc" prefWidth="148.800048828125" text="nombres des salles" />
+            <TableColumn fx:id="adresse_cin" minWidth="1.60003662109375" prefWidth="60.0" text="adresse" />
+            <TableColumn fx:id="img_cin" prefWidth="78.13323974609375" text="image path" />
+         </columns>
+      </TableView>
+      <TextField fx:id="name_field" layoutX="220.0" layoutY="124.0" />
+      <TextField fx:id="nbs_field" layoutX="211.0" layoutY="223.0" />
+      <TextField fx:id="adresse_field" layoutX="211.0" layoutY="331.0" />
+      <TextField fx:id="image_field" layoutX="211.0" layoutY="434.0" />
+      <Label layoutX="88.0" layoutY="128.0" text="name" />
+      <Label layoutX="89.0" layoutY="216.0" text="nb salle" />
+      <Label layoutX="92.0" layoutY="337.0" text="adresse" />
+      <Label layoutX="88.0" layoutY="438.0" text="image path" />
+      <Button fx:id="btn_modif" layoutX="220.0" layoutY="499.0" mnemonicParsing="false" onAction="#Modify_cinema" text="modifier" />
+      <Button fx:id="btn_del" layoutX="308.0" layoutY="499.0" mnemonicParsing="false" onAction="#delete_cinema" text="supprimer" />
+      <Button fx:id="btn_ajout" layoutX="126.0" layoutY="499.0" mnemonicParsing="false" onAction="#ajouter_cinema" text="ajouter" />
+      <Button fx:id="upload_img" layoutX="360.0" layoutY="434.0" mnemonicParsing="false" onAction="#Uploadfile" text="upload" />
+      <TableView fx:id="tabsalle" layoutX="933.0" layoutY="30.0" onMouseClicked="#SelectRowsalle" prefHeight="291.0" prefWidth="152.0">
+         <columns>
+            <TableColumn fx:id="idCin_col" prefWidth="75.0" text="idCin" />
+            <TableColumn fx:id="NumChaise_col" prefWidth="75.0" text="NumChaise" />
+         </columns>
+      </TableView>
+      <Label layoutX="840.0" layoutY="348.0" text="idCin" />
+      <Label layoutX="810.0" layoutY="394.0" text="NumChaise" />
+      <TextField fx:id="idCinField" layoutX="869.0" layoutY="344.0" />
+      <TextField fx:id="numChaiseField" layoutX="869.0" layoutY="382.0" />
+      <Button fx:id="btn_addSalle" layoutX="889.0" layoutY="413.0" mnemonicParsing="false" onAction="#ajouter_salle" text="ajouter" />
+      <Button fx:id="btn_modSalle" layoutX="956.0" layoutY="413.0" mnemonicParsing="false" text="modifier" />
+      <Button fx:id="btn_suppSalle" layoutX="918.0" layoutY="447.0" mnemonicParsing="false" onAction="#delete_salle" text="suppprimer" />
+      <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="432.0" layoutY="424.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
