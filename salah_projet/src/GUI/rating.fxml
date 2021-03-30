@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane id="AnchorPane" prefHeight="125.0" prefWidth="258.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RatingController">
+   <children>
+      <Rating fx:id="star" layoutX="53.0" layoutY="47.0" rating="0.0" updateOnHover="true" />
+      <Button fx:id="rate" layoutX="71.0" layoutY="86.0" mnemonicParsing="false" onAction="#ajouter_rate" text="Rate it" />
+      <Button fx:id="exit" layoutX="156.0" layoutY="86.0" mnemonicParsing="false" text="exit" />
+   </children>
+</AnchorPane>
