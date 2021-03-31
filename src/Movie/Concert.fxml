@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1152.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.ConcertController">
+   <children>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="login_bg" stylesheets="@style.css">
+         <children>
+            <TextField fx:id="nomC" layoutX="124.0" layoutY="38.0" />
+            <TextArea fx:id="Chan" layoutX="126.0" layoutY="145.0" prefHeight="70.0" prefWidth="146.0" />
+            <TableView fx:id="tableCo" layoutX="329.0" layoutY="59.0" onMouseClicked="#SelectRowConcerts" prefHeight="320.0" prefWidth="573.0" stylesheets="@t.css">
+               <columns>
+                  <TableColumn fx:id="Cidnom" prefWidth="104.0" text="Nom du concert" />
+                  <TableColumn fx:id="Cidmu" minWidth="0.0" prefWidth="121.0" text="ID du musicien" />
+                  <TableColumn fx:id="Cchans" prefWidth="163.0" text="Chansons" />
+                  <TableColumn fx:id="Cim" prefWidth="208.0" text="Image" />
+               </columns>
+            </TableView>
+            <Button id="red" fx:id="addC" layoutX="84.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="31.0" prefWidth="39.0" stylesheets="@stylesheet.css" />
+            <Button id="red" fx:id="editC" layoutX="185.0" layoutY="311.0" mnemonicParsing="false" onAction="#ModifierConcert" prefHeight="36.0" prefWidth="38.0" stylesheets="@stylesheet.css" />
+            <Button id="red" fx:id="deleteC" layoutX="284.0" layoutY="312.0" mnemonicParsing="false" onAction="#removeConcert" prefHeight="31.0" prefWidth="35.0" stylesheets="@stylesheet.css" />
+            <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="92.0" layoutY="318.0">
+               <image>
+                  <Image url="@../img/add.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="190.0" layoutY="317.0">
+               <image>
+                  <Image url="@../img/edit.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="291.0" layoutY="314.0">
+               <image>
+                  <Image url="@../img/delete.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="idmu" layoutX="147.0" layoutY="96.0" prefHeight="25.0" prefWidth="99.0" />
+            <Button layoutX="178.0" layoutY="233.0" mnemonicParsing="false" onAction="#FileChooser" styleClass="btn_CRUD" stylesheets="@style.css" text="Joindre" textFill="WHITE" />
+            <TextField fx:id="field1" layoutX="505.0" layoutY="14.0" prefHeight="25.0" prefWidth="112.0" />
+            <Label layoutX="63.0" layoutY="42.0" text="NOM" textFill="#e8e8e8" />
+            <Label layoutX="30.0" layoutY="100.0" text="NOM DU MUSICIEN" textFill="WHITE" />
+            <Label layoutX="50.0" layoutY="163.0" text="CHANSONS" textFill="WHITE" />
+            <ImageView fx:id="imavu" fitHeight="150.0" fitWidth="200.0" layoutX="4.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

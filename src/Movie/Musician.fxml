@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="842.0" prefWidth="1152.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.MusicianController">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="login_bg" stylesheets="@style.css">
+         <children>
+            <TextField fx:id="fxname" layoutX="85.0" layoutY="51.0" prefHeight="25.0" prefWidth="135.0" />
+            <DatePicker fx:id="fxdate" layoutX="72.0" layoutY="156.0" prefHeight="17.0" prefWidth="140.0" />
+            <TextField fx:id="fxdesc" layoutX="92.0" layoutY="203.0" prefHeight="25.0" prefWidth="95.0" />
+            <TextField fx:id="fxpr" layoutX="88.0" layoutY="105.0" prefHeight="27.0" prefWidth="126.0" />
+            <TableView fx:id="TableMusician" layoutX="261.0" layoutY="59.0" onMouseClicked="#SelectRow" prefHeight="386.0" prefWidth="500.0" stylesheets="@t.css">
+               <columns>
+                  <TableColumn fx:id="ColName" prefWidth="85.0" text="Name" />
+                  <TableColumn fx:id="Colpr" prefWidth="78.0" text="Prenom" />
+                  <TableColumn fx:id="ColDate" prefWidth="151.0" text="Date de naissance" />
+                  <TableColumn fx:id="ColDesc" prefWidth="95.0" text="Description" />
+                  <TableColumn fx:id="ColIm" prefWidth="75.0" text="Image" />
+               </columns>
+            </TableView>
+            <Button id="red" fx:id="BtnAdd" layoutX="212.0" layoutY="457.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="31.0" prefWidth="33.0" stylesheets="@stylesheet.css" />
+            <Button id="red" fx:id="RemoveRow" layoutX="421.0" layoutY="458.0" mnemonicParsing="false" onAction="#removeRow" prefHeight="31.0" prefWidth="34.0" stylesheets="@stylesheet.css" />
+            <Button id="red" fx:id="BtnModify" layoutX="312.0" layoutY="456.0" mnemonicParsing="false" onAction="#ModifyRow" prefHeight="30.0" prefWidth="32.0" stylesheets="@stylesheet.css" />
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="217.0" layoutY="460.0">
+               <image>
+                  <Image url="@../img/add.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="318.0" layoutY="462.0">
+               <image>
+                  <Image url="@../img/edit.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="429.0" layoutY="460.0">
+               <image>
+                  <Image url="@../img/delete.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="join" layoutX="124.0" layoutY="244.0" mnemonicParsing="false" onAction="#FileChooser" styleClass="btn_CRUD" stylesheets="@style.css" text="Joindre" textFill="WHITE" />
+            <TextField fx:id="filterField" layoutX="437.0" layoutY="23.0" />
+            <Label fx:id="time" layoutX="573.0" layoutY="523.0" prefHeight="36.0" prefWidth="191.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imv" fitHeight="309.0" fitWidth="197.0" layoutX="774.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="37.0" layoutY="55.0" text="NOM" textFill="WHITE" />
+            <Label layoutX="30.0" layoutY="109.0" text="PRENOM" textFill="WHITE" />
+            <Label layoutX="30.0" layoutY="160.0" text="DATE" textFill="WHITE" />
+            <Label layoutX="8.0" layoutY="207.0" text="DESCRIPTION" textFill="WHITE" />
+            <Label layoutX="30.0" layoutY="248.0" text="IMAGE" textFill="WHITE" />
+            <ImageView fitHeight="149.0" fitWidth="138.0" layoutX="73.0" layoutY="286.0">
+               <image>
+                  <Image url="@../../../../../../../../Downloads/a.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Group />
+    </children>
+</AnchorPane>
