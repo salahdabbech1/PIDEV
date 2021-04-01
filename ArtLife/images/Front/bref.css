@@ -1,0 +1,13 @@
+.test1{
+    -fx-background-color: black ;
+    -fx-border-color: #2A73FF;
+}
+
+.test2{
+    -fx-background-color: white ;
+    -fx-border-color: black;
+    -fx-text-fill:white;
+}
+.linear-grad-to-top-right{
+     -fx-background-color: radial-gradient(focus-angle 30deg , focus-distance 20% , center 25% 25% , radius 50% , reflect, #f58e31, #c67a96 40% , #5a8faf);
+}
