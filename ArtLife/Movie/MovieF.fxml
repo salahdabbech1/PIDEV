@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.MovieFController">
+   <children>
+      <AnchorPane prefHeight="610.0" prefWidth="868.0" styleClass="linear-grad-to-top-right" stylesheets="@tt.css">
+         <children>
+            <ScrollPane fx:id="scrollp" layoutX="82.0" layoutY="43.0" prefHeight="560.0" prefWidth="759.0" style="-fx-background-color: #001935;">
+               <content>
+                  <AnchorPane prefHeight="558.0" prefWidth="744.0" styleClass="linear-grad-to-top-right">
+                     <children>
+                      <AnchorPane fx:id="pane" minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="398.0" styleClass="linear-grad-to-top-right" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <TextField fx:id="searchF" layoutX="372.0" layoutY="14.0" onAction="#SearchFilm" onKeyPressed="#SearchFilm" onKeyReleased="#SearchFilm" prefHeight="25.0" prefWidth="179.0" />
+            <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="527.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Front/icons8_Search_52px.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="comboB" layoutX="20.0" layoutY="14.0" onAction="#SelectCat" prefWidth="150.0" />
+            <ImageView fitHeight="32.0" fitWidth="38.0" layoutX="202.0" layoutY="8.0" onMouseClicked="#ShowMovie" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Front/Movies-512.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="newflabel" layoutX="597.0" layoutY="39.0" prefHeight="32.0" prefWidth="155.0" text="Newest Films :" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="newpane" layoutX="538.0" layoutY="82.0" prefHeight="375.0" prefWidth="290.0" />
+            <ImageView fitHeight="39.0" fitWidth="44.0" layoutX="287.0" layoutY="5.0" onMouseClicked="#ShowActors" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Front/theatre-mask.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

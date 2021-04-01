@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.EventFController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="853.0">
+               <children>
+                  <AnchorPane prefHeight="607.0" prefWidth="835.0" styleClass="linear-grad-to-top-right" stylesheets="@tt.css">
+                     <children>
+                        <ScrollPane fx:id="scrollp" layoutX="69.0" layoutY="48.0" prefHeight="555.0" prefWidth="475.0" style="-fx-background-color: #001935;">
+                           <content>
+                              <AnchorPane prefHeight="552.0" prefWidth="468.0" styleClass="linear-grad-to-top-right">
+                                 <children>
+                                    <AnchorPane fx:id="pane" layoutX="5.0" layoutY="3.0" minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="441.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                        <TextField fx:id="searchF" layoutX="340.0" layoutY="14.0" onAction="#SearchEvent" onKeyPressed="#SearchEvent" prefHeight="25.0" prefWidth="179.0" />
+                        <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="496.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="597.0" layoutY="39.0" prefHeight="32.0" prefWidth="155.0" text="Location  :" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboB" layoutX="35.0" layoutY="14.0" onAction="#SelectCat" prefWidth="150.0" />
+                        <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="246.0" layoutY="11.0" onMouseClicked="#ShowEvents" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Front/icons8_Home_32px.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane id="AnchorPane" layoutX="519.0" layoutY="90.0" prefHeight="456.0" prefWidth="320.0">
+                           <children>
+                              <HBox fx:id="itemC" alignment="CENTER_LEFT" layoutX="26.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="320.0" spacing="80.0">
+                                 <children>
+                                    <Pane prefHeight="460.0" prefWidth="310.0" style="-fx-background-color: FFF; -fx-background-radius: 15;">
+                                       <children>
+                                          <Label layoutX="34.0" layoutY="240.0" text="Lieu">
+                                             <font>
+                                                <Font name="Montserrat Medium" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lieu" layoutX="116.0" layoutY="238.0" prefHeight="32.0" prefWidth="155.0" text="Lieu">
+                                             <font>
+                                                <Font name="Montserrat Medium" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="btn_Google_Map" layoutX="98.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="35.0" prefWidth="128.0" styleClass="button4" text="GOOGLE MAP" textFill="WHITE">
+                                             <font>
+                                                <Font name="Montserrat ExtraBold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="libelle" layoutX="103.0" layoutY="25.0" text="LIBELLE" textFill="#0d0303">
+                                             <font>
+                                                <Font name="Montserrat ExtraBold" size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="125.0" fitWidth="108.0" layoutX="97.0" layoutY="81.0">
+                                             <image>
+                                                <Image url="@../images/Front/Location.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                                 <effect>
+                                    <DropShadow blurType="GAUSSIAN" height="5.0" radius="2.0" width="5.0" />
+                                 </effect>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="connL" layoutX="786.0" layoutY="18.0" prefHeight="17.0" prefWidth="60.0" text="rrrr" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

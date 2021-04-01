@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="848.0" styleClass="linear-grad-to-top-right" stylesheets="@tt.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Movie.CinemaFrontController">
+   <children>
+      <ScrollPane fx:id="Scrollp" layoutX="32.0" layoutY="50.0" prefHeight="527.0" prefWidth="653.0" styleClass="linear-grad-to-top-right">
+         <content>
+            <AnchorPane id="AnchorPane" fx:id="pane" prefHeight="502.0" prefWidth="649.0" styleClass="linear-grad-to-top-right" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
