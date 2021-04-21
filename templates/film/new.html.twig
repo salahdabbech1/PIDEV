@@ -1,0 +1,22 @@
+{% extends 'film/indexAdmin.html.twig' %}
+
+{% block title %}New Film{% endblock %}
+
+{% block body %}
+    <h1>Create new Film</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.trailer) }}
+    {{ form_row(form.genre) }}
+    {{ form_row(form.rdate) }}
+    {{ form_row(form.image) }}
+    {{ form_row(form.director) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.imageb) }}
+    {{ form_row(form.filmActors) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('film_index') }}">back to list</a>
+{% endblock %}

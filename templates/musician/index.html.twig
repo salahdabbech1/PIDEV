@@ -1,0 +1,88 @@
+{% extends 'film/indexAdmin.html.twig' %}
+
+{% block title %}Musician index{% endblock %}
+
+{% block body %}
+<section class="main-content">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-default">
+                    Musicians
+                </div>
+                <a href="stat" class="btn btn-primary btn-rounded box-shadow col-md-1" style="
+					position: center;
+					left: 900px;
+				"><i class="fa fa-bar-chart"></i></a>
+                <div class="card-body">
+                <a href="new" class="btn btn-primary btn-rounded box-shadow col-md-1" style="
+					position: relative;
+					left: 900px;
+				"><i class="fa fa-plus"></i></a>
+                <div class="card-body">
+
+
+    <input type="text" class="form-control margin-b-10 input-sm col-md-4" id="filter"
+           placeholder="Search in table">
+
+    <table class="footable table table-hover" data-page-size="5" data-filter=#filter>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Prenom</th>
+                <th>Born</th>
+                <th>Description</th>
+                <th>Image</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for musician in musicians %}
+            <tr>
+                <td>{{ musician.name }}</td>
+                <td>{{ musician.prenom }}</td>
+                <td>{{ musician.born ? musician.born|date('Y-m-d') : '' }}</td>
+                <td>{{ musician.description }}</td>
+                <td>
+                    <img width="100" class="media-box-object rounded-circle mr-2" src="../../wp-content/{{ musician.image }}" style="max-height: 75px;" width="30">
+                </td>
+
+                <td class="text-center">
+                    <a href="{{ path('musician_show', {'id': musician.id}) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('musician_edit', {'id': musician.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil-square"></i></a>
+                    <a href="{{ path('deleteM', {'id': musician.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5">
+                <ul class="pagination float-right"></ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="footer">
+        <span>Copyright &copy; 2018 FixedPlus</span>
+    </footer>
+
+
+</section>
+
+{% endblock %}
