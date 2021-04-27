@@ -1,0 +1,20 @@
+{% extends 'film/new.html.twig' %}
+{% block body %}
+
+    <center>
+        <a href="{{ path('musician_index') }}"class="btn btn-primary"><i class="fa fa-arrow-left"></i></a>
+    <div class="app-content">
+        <div class="side-app">
+            <div class="page-header">
+
+            </div>
+            <div id="div_chart"></div>
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                {{ gc_draw(piechart, 'div_chart') }}
+            </script>
+        </div>
+    </div>
+    </center>
+{% endblock %}
