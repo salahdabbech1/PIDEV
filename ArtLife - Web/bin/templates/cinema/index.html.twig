@@ -1,0 +1,88 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row page-header"><div class="col-lg-6 align-self-center ">
+            <h2>tickets Tables</h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                <li class="breadcrumb-item active">tickets Tables</li>
+            </ol></div></div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-default">
+                    cinemas
+                </div>
+                <a   href="{{ path('cinema_new') }}" class="btn btn-primary btn-rounded box-shadow col-md-3" style="
+					position: relative;
+					left: 900px;
+				">Add cinema</a>
+                <div class="card-body">
+                    <input type="text" class="form-control margin-b-10 input-sm col-md-4" id="filter"
+                           placeholder="Search in table">
+
+                    <table class="footable table table-hover" data-page-size="12" data-filter=#filter>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th data-hide="phone,tablet">Nbsalle</th>
+                            <th data-hide="phone,tablet">Adresse</th>
+                            <th data-hide="phone,tablet">Image</th>
+                            <th data-hide="phone,tablet">Description</th>
+                            <th data-hide="phone,tablet">Rate</th>
+
+                            <th data-hide="phone,tablet">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for cinema in cinemas %}
+                            <tr>
+                                <td>{{ cinema.id }}</td>
+                                <td>{{ cinema.name }}</td>
+                                <td>{{ cinema.nbsalle }}</td>
+                                <td>{{ cinema.adresse }}</td>
+                                <td>
+                                    <img alt="ticket" width="50" class="media-box-object rounded-circle mr-2" src="../../wp-content/{{cinema.image}}" style="max-height: 50px;" width="30">
+
+                                </td>
+                                <td>{{ cinema.description }}</td>
+                                <td>{{ cinema.rate }}</td>
+
+
+                                <td class="text-center">
+                                    <a href="{{ path('cinema_edit', {'id': cinema.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil-square"></i></a>
+
+                                    {{ include('cinema/_delete_form.html.twig') }}
+
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <a href ="{{ path('statitaaaas') }}" class="btn btn-primary" >Statistics   <i class="fa fa-bar-chart"></i></a>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+

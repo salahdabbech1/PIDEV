@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row page-header" style="margin-left: 0px;">
+    <div class="col-lg-6 align-self-center ">
+        <h2>Add Actor</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Actor</a></li>
+            <li class="breadcrumb-item active">New</li>
+        </ol>
+    </div>
+</div>
+<section class="main-content" style="margin-left: 0px;">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header card-default">
+                    Form elements
+                </div>
+                <div class="card-body">
+
+                        {{ form_start(form) }}
+
+
+                        <div class="form-group col-md-6">
+                            {{ form_errors(form.name) }}
+                            {{ form_label(form.name) }}
+                            {{ form_widget(form.name, {'attr': {'class': ''}}) }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Birthday</label>
+                            <div class="input-group m-b">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                <div>
+                                    {{ form_widget(form.born, {'attr': {'class': ''}}) }}
+                                    <!--
+                                    <input type="date" id="factor_born" name="form[born]" />
+                                     -->
+                                    {% do form.born.setRendered %}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label>Description</label>
+                            <textarea type="text" class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 253px;" id="{{ form.description.vars.id }}" name="{{ form.description.vars.full_name }}" value="{{ form.description.vars.value }}"> </textarea>
+                            {% do form.description.setRendered %}
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label>Select</label>
+                            <select name="account" class="form-control m-b">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                                <option>Option 4</option>
+                            </select>
+                        </div>
+                        -->
+
+
+                        <div class="form-group col-md-6">
+
+
+                            <label for="{{ form.image.vars.id }}">{{ form_label(form.image) }}</label>
+                            <div class="fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-preview" data-trigger="fileinput" style="width: 200px; height:150px;"></div>
+                                <span class="btn btn-primary  btn-file">
+												<span class="fileinput-new">Select</span>
+												<span class="fileinput-exists">Change</span>
+												<input type="file" id="{{ form.image.vars.id }}" name="{{ form.image.vars.full_name }}" value="{{ form.image.vars.value }}">
+											</span>
+                                <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                {{ form_errors(form.imageb) }}
+                                {% do form.image.setRendered %}
+                            </div>
+                        </div>
+
+                    <div class="form-group col-md-6">
+
+
+                        <label for="{{ form.imageb.vars.id }}">{{ form_label(form.imageb) }}</label>
+                        <div class="fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-preview" data-trigger="fileinput" style="width: 200px; height:150px;"></div>
+                            <span class="btn btn-primary  btn-file">
+												<span class="fileinput-new">Select</span>
+												<span class="fileinput-exists">Change</span>
+												<input type="file" id="{{ form.imageb.vars.id }}" name="{{ form.imageb.vars.full_name }}" value="{{ form.imageb.vars.value }}">
+											</span>
+                            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            {{ form_errors(form.imageb) }}
+                            {% do form.imageb.setRendered %}
+                        </div>
+                    </div>
+
+
+                        <div class="d-flex w-100 justify-content-end mr-2" >
+                            <button class="btn btn-success btn-rounded box-shadow ml-5">Insert</button>
+                        </div>
+                        {{ form_end(form) }}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <span>Copyright &copy; 2018 FixedPlus</span>
+    </footer>
+
+
+</section>
+{% endblock %}

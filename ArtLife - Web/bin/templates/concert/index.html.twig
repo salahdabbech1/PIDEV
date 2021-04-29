@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Concert index{% endblock %}
+
+{% block body %}
+
+    <section class="main-content" style="    margin-left: 0px;">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-default">
+                    Concert
+                </div>
+                <a href="new" class="btn btn-primary btn-rounded box-shadow col-md-1" style="
+					position: relative;
+					left: 900px;
+				"><i class="fa fa-plus"></i></a>
+                <div class="card-body">
+
+
+                    <input type="text" class="form-control margin-b-10 input-sm col-md-4" id="filter"
+                           placeholder="Search in table">
+
+
+    <table class="footable table table-hover" data-page-size="5" data-filter=#filter>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Idmusician</th>
+                <th>Musics</th>
+                <th>Image</th>
+                <th>Trailer</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for concert in concerts %}
+            <tr>
+                <td>{{ concert.name }}</td>
+                <td>{{ concert.idmusician }}</td>
+                <td>{{ concert.musics }}</td>
+                <td>
+                    <img width="100" class="media-box-object rounded-circle mr-2" src="../../wp-content/{{ concert.image }}" style="max-height: 75px;" width="30">
+                </td>
+                <td>{{ concert.trailer }}</td>
+                <td>
+
+                    <a href="{{ path('concert_edit', {'id': concert.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil-square"></i></a>
+                    <a href="{{ path('deleteC', {'id': concert.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                    <a href="{{ path('concert_show', {'id': concert.id}) }}"class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        <a href ="{{ path('export') }}" class="btn btn-primary" >Export Table As Excel  <i class="fa fa-file"></i></a>
+        <a href ="{{ path('videochat') }}" class="btn btn-primary" >Video Live Streaming  <i class="fa fa-file-video-o"></i></a>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5">
+                <ul class="pagination float-right"></ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="footer">
+        <span>Copyright &copy; 2021 ArtLife</span>
+    </footer>
+
+
+</section>
+{% endblock %}

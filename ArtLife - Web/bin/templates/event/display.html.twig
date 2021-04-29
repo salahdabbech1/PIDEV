@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row page-header" style="margin-left: 0px;"><div class="col-lg-6 align-self-center ">
+        <h2>Foo Tables</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Tables</a></li>
+            <li class="breadcrumb-item active">Foo Tables</li>
+        </ol></div></div>
+
+<section class="main-content" style="margin-left: 0px;">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-default">
+                    Simple table with sorting, pagination and filter
+                </div>
+                <a href="{{ path('add_event') }}" class="btn btn-primary btn-rounded box-shadow col-md-3" style="
+					position: relative;
+					left: 900px;
+				">Add event</a>
+                <div class="card-body">
+
+
+                    {% if events %}
+
+                        <table class="table" id="mytable" >
+                            <thead>
+                            <div class="container my-2">
+                        <input class="col-10" type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Search in table" id="myInput">
+                            </div>
+
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Content</th>
+                                <th>Cinema</th>
+                                <th>DateDebut</th>
+                                <th>Type</th>
+                                <th>DateFin</th>
+                                <th>Adresse</th>
+                                <th>image</th>
+                                <!-- <th>image</th> -->
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for events in events %}
+                                <tr>
+                                    <td>{{ events.name }}</td>
+                                    <td>{{ events.idcontent }}</td>
+                                    <td>{{ events.idcinema }}</td>
+                                    <td>{{ events.datedeb|date("m/d/Y") }}</td>
+                                    <td>{{ events.type }}</td>
+                                    <td>{{ events.datefin|date("m/d/Y") }}</td>
+                                    <td>{{ events.adresse }}</td>
+                                    <td>
+                                        <img alt="user" width="50" class="media-box-object rounded-circle mr-2" src="../../wp-content/{{ events.image }}" style="max-height: 50px;" width="30">
+
+                    </td>
+                                    <!-- <td>{{ events.imageQr }}</td> -->
+                                    <td>
+
+                                        <a href="{{ path('event_edit', {'id': events.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil-square"></i></a>
+                                        <a href="{{ path('deleteE', {'id': events.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+
+                                    </td>
+
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            <p>Aucun produit n'a été trouvé</p>
+                        {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="footer">
+        <span>Copyright &copy; 2018 FixedPlus</span>
+    </footer>
+
+
+</section>
+
+{% endblock %}
