@@ -1,0 +1,40 @@
+{% block body %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <div class="app-content">
+        <div class="side-app">
+            <div class="page-header">
+
+            </div>
+            <div id="div_chart"></div>
+        </div>
+    </div>
+
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Sci-Fi', 'Hours per Day'],
+                ['Sci-Fi', {{ piechart['Sci-Fi'] }}],
+                ['Action', {{ piechart['Action'] }}],
+                ['Horror', {{ piechart['Horror'] }}],
+                ['Cartoon', {{ piechart['Cartoon'] }}],
+                ['Drama', {{ piechart['Drama'] }}]
+            ]);
+
+            var options = {
+                title: 'Films By Category',
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+    </script>
+
+
+{% endblock %}
