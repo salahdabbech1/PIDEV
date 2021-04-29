@@ -1,0 +1,86 @@
+{% extends 'film/new.html.twig' %}
+
+{% block title %}New Musician{% endblock %}
+
+{% block body %}
+    <section class="main-content" style="    margin-left: 0px;">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-default">
+                    Musicians
+                </div>
+                <div class="card-body">
+    <h1>Create new Musician</h1>
+
+
+                    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name,{'attr' : {'placeholder' : 'Saisir le nom' }}) }}
+                    <div class="alert alert-danger" role="alert">
+                        {{form_errors(form.name)}}
+                    </div>
+                    {{ form_label(form.prenom) }}
+                    {{ form_widget(form.prenom,{'attr' : {'placeholder' : 'Saisir le prenom' }}) }}
+                    <div class="alert alert-danger" role="alert">
+                        {{form_errors(form.prenom)}}
+                    </div>
+
+                    {{ form_label(form.born) }}
+                    {{ form_widget(form.born) }}
+
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description,{'attr' : {'placeholder' : 'Saisir la description' }}) }}
+                    <div class="alert alert-danger" role="alert">
+                        {{form_errors(form.description)}}
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+
+
+
+                        <label for="{{ form.image.vars.id }}">{{ form_label(form.image) }}</label>
+                        <div class="fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-preview" data-trigger="fileinput" style="width: 200px; height:150px;"></div>
+                            <span class="btn btn-primary  btn-file">
+												<span class="fileinput-new">Select</span>
+												<span class="fileinput-exists">Change</span>
+												<input type="file" id="{{ form.image.vars.id }}" name="{{ form.image.vars.full_name }}" value="{{ form.image.vars.value }}">
+											</span>
+                            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            {% do form.image.setRendered %}
+                        </div>
+                    </div>
+                    <a href="{{ path('musician_index') }}"class="btn btn-primary"><i class="fa fa-arrow-left"></i></a>
+                    <button class="btn btn-success btn-rounded box-shadow ml-5"><i class="fa fa-save"></i></button>
+
+                    {{ form_end(form) }}
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="footer">
+        <span>Copyright &copy; 2018 FixedPlus</span>
+    </footer>
+
+
+</section>
+{% endblock %}

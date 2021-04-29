@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salle index{% endblock %}
+
+{% block body %}
+    <div class="row page-header"><div class="col-lg-6 align-self-center ">
+            <h2>tickets Tables</h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                <li class="breadcrumb-item active">tickets Tables</li>
+            </ol></div></div>
+    <h1>Salle index</h1>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-default">
+                    cinemas
+                </div>
+                <a   href="{{ path('cinema_new') }}" class="btn btn-primary btn-rounded box-shadow col-md-3" style="
+					position: relative;
+					left: 900px;
+				">Add salle</a>
+                <div class="card-body">
+                    <input type="text" class="form-control margin-b-10 input-sm col-md-4" id="filter"
+                           placeholder="Search in table">
+
+                    <table class="footable table table-hover" data-page-size="12" data-filter=#filter>
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>numchaise</th>
+
+
+                            <th data-hide="phone,tablet">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for salle in salles %}
+                            <tr>
+                                <td>{{ salle.id }}</td>
+                                <td>{{ salle.numchaise }}</td>
+                                <td>
+                                    <a href="{{ path('salle_show', {'id': salle.id}) }}">show</a>
+                                    <a href="{{ path('salle_edit', {'id': salle.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
