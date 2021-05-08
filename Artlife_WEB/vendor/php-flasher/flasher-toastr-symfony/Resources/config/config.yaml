@@ -1,0 +1,8 @@
+services:
+    flasher.toastr:
+        parent: 'flasher.notification_factory'
+        class: Flasher\Toastr\Prime\ToastrFactory
+        tags:
+            - { name: 'flasher.factory', alias: 'toastr' }
+
+    Flasher\Toastr\Prime\ToastrFactory: '@flasher.toastr'
