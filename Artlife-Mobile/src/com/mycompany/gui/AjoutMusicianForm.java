@@ -135,16 +135,16 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     
       TextField prenom =new TextField("", "entrer prenom");
     prenom.setUIID("TextFieldBlack");
-    addStringValue("name", prenom);
+    addStringValue("prenom", prenom);
     
     
     TextField born =new TextField("", "entrer brithdate");
     born.setUIID("TextFieldBlack");
-    addStringValue("birthdate", born);
+    addStringValue("born", born);
     
     TextField description =new TextField("", "entrer description");
     description.setUIID("TextFieldBlack");
-    addStringValue("objet", description);
+    addStringValue("description", description);
     
     TextField image =new TextField("", "entrer image");
     image.setUIID("TextFieldBlack");
@@ -153,6 +153,11 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     Button buttonAjt=new Button("Ajouter Musician");
     addStringValue("", buttonAjt);
     
+//     this.getToolbar().addCommandToOverflowMenu("Stat", null, (evt)
+//                -> {
+//            new StatMusician().createPieChartForm("Musician", new ServiceMusician().getStat());
+//
+//        });
     //onlick event button
     buttonAjt.addActionListener((e)->{
         try{
@@ -173,10 +178,6 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     refreshTheme();
 
     
-    
-    
-    
-    
     }
         }
         catch (Exception ex) {
@@ -194,7 +195,6 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     
         private void addTab (Tabs swipe, Label spacer,  Image image, String string, String text, Resources res) {
 int size = Math.min(Display.getInstance().getDisplayWidth(), Display.getInstance().getDisplayHeight());
-  System.out.println("size howa = "+size);
 if (image.getHeight() < size) {
 image = image.scaledHeight (size);
  }

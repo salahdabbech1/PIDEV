@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.gui;
+
 import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
@@ -11,6 +12,10 @@ import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
+import static com.codename1.ui.Component.BOTTOM;
+import static com.codename1.ui.Component.CENTER;
+import static com.codename1.ui.Component.LEFT;
+import static com.codename1.ui.Component.RIGHT;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
@@ -31,8 +36,9 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import com.mycompany.entities.Concert;
 import com.mycompany.entities.Musician;
-import com.mycompany.services.ServiceMusician;
+import com.mycompany.services.ServiceConcert;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -40,18 +46,18 @@ import java.util.ArrayList;
  *
  * @author HP
  */
-public class ListMusicianForm extends BaseForm{
-    Form current;
+public class ListConcertForm extends BaseForm {
+      Form current;
     private EncodedImage placeHolder;
 
-    public ListMusicianForm(Resources res) {
+    public ListConcertForm(Resources res) {
         //   super("musician", BoxLayout.x());
    
     Toolbar tb=new Toolbar(true);
     current=this;
     setToolbar(tb);
     getTitleArea().setUIID("Container");
-    setTitle("ajouter tactor");
+    setTitle("ajouter concert");
     getContentPane().setScrollVisible(true);
    
     tb.addSearchCommand(e -> {
@@ -127,9 +133,9 @@ addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
 
-        ArrayList<Musician> list = ServiceMusician.getInstance().AffichageMusician();
+        ArrayList<Concert> list = ServiceConcert.getInstance().AffichageConcert();
        
-        for (Musician u : list) {
+        for (Concert u : list) {
             addButton(u,res);
         }
         
@@ -147,14 +153,15 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
         return img;
     }
 
-    private void addButton(Musician u,Resources res) {
+    private void addButton(Concert u,Resources res) {
 
         Container cnt=new Container();
         Form f =  new Form("Form", BoxLayout.y()); 
-        Label tt = new Label("******Musician******");
-        Label ta = new Label("Votre nom :"+u.getName());
-        Label ta2 = new Label("Votre prenom :"+u.getPrenom());
-        Label ta3 = new Label("Votre description :"+u.getDescription());
+        Label tt = new Label("******Concert******");
+        Label ta = new Label("nom :"+u.getName());
+        Label ta2 = new Label("musics :"+u.getMusics());
+        Label ta3 = new Label("idmusician :"+u.getIdmusician());
+    //    Label ta4 = new Label(u.getTrailer());
       //  Label ta4 = new Label("Votre status :"+u.getImage());
         ImageViewer imavu;
         try {
@@ -184,7 +191,7 @@ supprimer.addPointerPressedListener(l-> {
     {
         dig.dispose();
    try{
-       if(ServiceMusician.getInstance().deleteMusician(u.getId()))
+       if(ServiceConcert.getInstance().deleteConcert(u.getId()))
     {
         System.out.println("success");
        
@@ -195,7 +202,7 @@ supprimer.addPointerPressedListener(l-> {
                 System.out.println("NON");
            }
    
-       new ListMusicianForm(res).show();
+       new ListConcertForm(res).show();
    }
 
 });
@@ -209,7 +216,7 @@ lModifier.setTextPosition(LEFT);
 
 lModifier.addPointerPressedListener(l->{
 
-   new ModifierMusicianForm(res,u).show();
+   new ModifierConcertForm(res,u).show();
 
 });
 
@@ -256,4 +263,5 @@ private void updateArrowposition (Button btn, Label l){
 l.getUnselectedStyle().setMargin (LEFT, btn.getX() + btn.getWidth()  / 2 - l.getWidth() );
 l.getParent().repaint();
 }  
+    
 }

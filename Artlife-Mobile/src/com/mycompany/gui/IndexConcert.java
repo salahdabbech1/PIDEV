@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.gui;
+
 import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
@@ -11,6 +12,10 @@ import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
+import static com.codename1.ui.Component.BOTTOM;
+import static com.codename1.ui.Component.CENTER;
+import static com.codename1.ui.Component.LEFT;
+import static com.codename1.ui.Component.RIGHT;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
@@ -31,8 +36,8 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
-import com.mycompany.entities.Musician;
-import com.mycompany.services.ServiceMusician;
+import com.mycompany.entities.Concert;
+import com.mycompany.services.ServiceConcert;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -40,18 +45,18 @@ import java.util.ArrayList;
  *
  * @author HP
  */
-public class ListMusicianForm extends BaseForm{
-    Form current;
+public class IndexConcert extends BaseForm {
+      Form current;
     private EncodedImage placeHolder;
 
-    public ListMusicianForm(Resources res) {
+    public IndexConcert(Resources res) {
         //   super("musician", BoxLayout.x());
    
     Toolbar tb=new Toolbar(true);
     current=this;
     setToolbar(tb);
     getTitleArea().setUIID("Container");
-    setTitle("ajouter tactor");
+    setTitle("ajouter concert");
     getContentPane().setScrollVisible(true);
    
     tb.addSearchCommand(e -> {
@@ -60,8 +65,7 @@ Tabs swipe = new Tabs();
 Label s1 = new Label();
 Label s2 = new Label();
 addTab (swipe,s1,res.getImage("back-logo.jpeg"),"","",res);
-    //CODE DE DECORATION
-   
+    
     swipe.setUIID("Container");
 swipe.getContentPane().setUIID("Container");
 swipe.hideTabs();
@@ -94,7 +98,7 @@ rbs[0].setSelected (true);
 swipe.addSelectionListener((i, ii) -> {
 if (!rbs [ii].isSelected()) {
 rbs[ii].setSelected (true); } });
-Component.setSameSize (radioContainer, s1, s2);
+Component.setSameSize (radioContainer);
 add (LayeredLayout.encloseIn(swipe,radioContainer));
 ButtonGroup barGroup = new ButtonGroup();
 RadioButton mesListes = RadioButton.createToggle("Mes Reclamations", barGroup);
@@ -127,9 +131,9 @@ addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
 
-        ArrayList<Musician> list = ServiceMusician.getInstance().AffichageMusician();
+        ArrayList<Concert> list = ServiceConcert.getInstance().AffichageConcert();
        
-        for (Musician u : list) {
+        for (Concert u : list) {
             addButton(u,res);
         }
         
@@ -147,15 +151,14 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
         return img;
     }
 
-    private void addButton(Musician u,Resources res) {
+    private void addButton(Concert u,Resources res) {
 
         Container cnt=new Container();
         Form f =  new Form("Form", BoxLayout.y()); 
         Label tt = new Label("******Musician******");
-        Label ta = new Label("Votre nom :"+u.getName());
-        Label ta2 = new Label("Votre prenom :"+u.getPrenom());
-        Label ta3 = new Label("Votre description :"+u.getDescription());
-      //  Label ta4 = new Label("Votre status :"+u.getImage());
+        Label ta = new Label("Nom :"+u.getName());
+        Label ta2 = new Label("Musics :"+u.getMusics());
+        Label ta3 = new Label("Idmusician :"+u.getIdmusician());
         ImageViewer imavu;
         try {
         imavu = new ImageViewer(getImageFromServer(u.getImage()));
@@ -164,57 +167,21 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
         System.out.println(u.getImage());
         imavu = new ImageViewer(res.getImage("s.png"));
         }
-       
-          Label supprimer = new Label(" ");
-          supprimer.setUIID("NewsTopLine");
-          Style supprimerstyle=new Style(supprimer.getUnselectedStyle());
-          supprimerstyle.setFgColor(0xf21f1f);
-          FontImage supprimerImage=FontImage.createMaterial(FontImage.MATERIAL_DELETE, supprimerstyle);
-supprimer.setIcon(supprimerImage);
-supprimer.setTextPosition(RIGHT);
 
-supprimer.addPointerPressedListener(l-> {
-
-    Dialog dig=new Dialog("supprimer");
-    if(dig.show("supprimer","are you sure ? ","NOOOO","yep"))
-    {
-        dig.dispose();
-    }
-    else
-    {
-        dig.dispose();
-   try{
-       if(ServiceMusician.getInstance().deleteMusician(u.getId()))
-    {
-        System.out.println("success");
-       
-    }
-    }
-    catch (Exception e)
-           {
-                System.out.println("NON");
-           }
-   
-       new ListMusicianForm(res).show();
-   }
-
-});
- Label lModifier = new Label(" ");
-lModifier.setUIID ("exstopline");
-Style modifierstyle= new Style(lModifier.getUnselectedStyle());
+ Label details = new Label("details");
+details .setUIID ("exstopline");
+Style modifierstyle= new Style(details .getUnselectedStyle());
 modifierstyle.setFgColor(0xf7ad02);
- FontImage modifierImage=FontImage.createMaterial(FontImage.MATERIAL_EDIT, modifierstyle);
-lModifier.setIcon(modifierImage);
-lModifier.setTextPosition(LEFT);
+details.setTextPosition(LEFT);
 
-lModifier.addPointerPressedListener(l->{
+details.addPointerPressedListener(l->{
 
-   new ModifierMusicianForm(res,u).show();
+   new DetailsConcMu(res,u).show();
 
 });
 
 
-        f.addAll(tt,imavu,ta,ta2,ta3,supprimer,lModifier);
+        f.addAll(tt,imavu,ta,ta2,ta3,details);
         add(f);
 
     }

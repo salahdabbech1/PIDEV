@@ -4,43 +4,27 @@
  * and open the template in the editor.
  */
 package com.mycompany.gui;
+
 import com.codename1.components.FloatingHint;
-import com.codename1.components.InfiniteProgress;
-import com.codename1.components.ScaleImageLabel;
-import com.codename1.components.SpanLabel;
-import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
-import com.codename1.ui.ButtonGroup;
-import com.codename1.ui.Component;
 import com.codename1.ui.Container;
-import com.codename1.ui.Dialog;
-import com.codename1.ui.Display;
 import com.codename1.ui.Form;
-import com.codename1.ui.Graphics;
-import com.codename1.ui.Image;
 import com.codename1.ui.Label;
-import com.codename1.ui.RadioButton;
-import com.codename1.ui.Tabs;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
-import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.layouts.FlowLayout;
-import com.codename1.ui.layouts.GridLayout;
-import com.codename1.ui.layouts.LayeredLayout;
-import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import com.mycompany.entities.Concert;
 import com.mycompany.entities.Musician;
-import com.mycompany.services.ServiceMusician;
-import java.util.Date;
+import com.mycompany.services.ServiceConcert;
 
 /**
  *
  * @author HP
  */
-public class ModifierMusicianForm extends BaseForm {
-    Form current;
-    public ModifierMusicianForm(Resources res,Musician m){
+public class ModifierConcertForm extends BaseForm{
+     Form current;
+    public ModifierConcertForm(Resources res,Concert m){
          Toolbar tb=new Toolbar(true);
     current=this;
         setToolbar(tb);
@@ -50,19 +34,22 @@ public class ModifierMusicianForm extends BaseForm {
     super.addSideMenu(res);
     
     TextField name = new TextField((m.getName()), "Objec", 20, TextField.ANY);
-    TextField prenom = new TextField((m.getPrenom()), "Objec", 20, TextField.ANY);
-TextField description = new TextField((m.getDescription()), "Objec", 20, TextField.ANY);
+     TextField idmusician = new TextField((m.getIdmusician()), "Objec", 20, TextField.ANY);
+    TextField musics = new TextField((m.getMusics()), "Objec", 20, TextField.ANY);
+TextField trailer = new TextField((m.getTrailer()), "Objec", 20, TextField.ANY);
 TextField image = new TextField((m.getImage()), "Image", 20, TextField.ANY);
 
 
 name.setUIID("NewsTopLine");
-prenom.setUIID("NewsTopLine");
-description.setUIID("NewsTopLine");
+idmusician.setUIID("NewsTopLine");
+musics.setUIID("NewsTopLine");
+trailer.setUIID("NewsTopLine");
 image.setUIID("NewsTopLine");
 
 name.setSingleLineTextArea(true);
-prenom.setSingleLineTextArea(true);
-description.setSingleLineTextArea(true);
+idmusician.setSingleLineTextArea(true);
+musics.setSingleLineTextArea(true);
+trailer.setSingleLineTextArea(true);
 image.setSingleLineTextArea(true);
 
 Button btnNodifier = new Button("Modidier");
@@ -71,11 +58,12 @@ Button btnNodifier = new Button("Modidier");
 //Eventonctiek botter
 btnNodifier.addPointerPressedListener(l -> {
 m.setName(name.getText());
-m.setPrenom(prenom.getText());
-m.setDescription(description.getText());
+m.setIdmusician(idmusician.getText());
+m.setMusics(musics.getText());
+m.setTrailer(trailer.getText());
 m.setImage(image.getText());
  try{
-       if(ServiceMusician.getInstance().modifierMusician(m)){
+       if(ServiceConcert.getInstance().modifierConcert(m)){
            System.out.println("edited!");
 
      }
@@ -84,12 +72,12 @@ m.setImage(image.getText());
            {
                 System.out.println("NON");
            }
- new ListMusicianForm(res).show();
+ new ListConcertForm(res).show();
    
        });
 Button btnAnnuler =new Button ("Annuler");
 btnAnnuler.addActionListener(c -> {
-new ListMusicianForm(res).show();
+new ListConcertForm(res).show();
 });
 
 
@@ -101,8 +89,9 @@ Label e = new Label ();
 
 Container content = BoxLayout.encloseY(
 e,a,new FloatingHint (name),
-        createLineSeparator(),new FloatingHint (prenom),
-        createLineSeparator(),new FloatingHint (description),
+        createLineSeparator(),new FloatingHint (idmusician),
+        createLineSeparator(),new FloatingHint (musics),
+        createLineSeparator(),new FloatingHint (trailer),
         createLineSeparator(),new FloatingHint (image),
         createLineSeparator(),btnNodifier,btnAnnuler
 );
@@ -113,4 +102,5 @@ show();
 
 
 }
+    
 }
