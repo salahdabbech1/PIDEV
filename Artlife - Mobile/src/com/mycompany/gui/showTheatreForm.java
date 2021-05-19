@@ -7,9 +7,13 @@ package com.mycompany.gui;
 import com.codename1.components.FloatingHint;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
+import com.codename1.components.MediaPlayer;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
 import com.codename1.l10n.SimpleDateFormat;
+import com.codename1.media.Media;
+import com.codename1.media.MediaManager;
+import com.codename1.ui.BrowserComponent;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
@@ -28,6 +32,7 @@ import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BorderLayout;
+import static com.codename1.ui.layouts.BorderLayout.CENTER_BEHAVIOR_CENTER;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
@@ -41,6 +46,7 @@ import com.mycompany.services.ServiceTactor;
 import java.io.IOException;
 import java.util.Date;
 
+
 /**
  *
  * @author HP
@@ -48,7 +54,7 @@ import java.util.Date;
 public class showTheatreForm extends BaseForm {
     Form current;
     private EncodedImage placeHolder;
-    public showTheatreForm(Resources res,Theatre t){
+    public showTheatreForm(Resources res,Theatre t) throws IOException{
         
                 Toolbar tb=new Toolbar(true);
            current=this;
@@ -65,7 +71,9 @@ public class showTheatreForm extends BaseForm {
                  String datestring=(new SimpleDateFormat("yyyy-MM-dd")).format(datePicker.getDate());
                   Label date = new Label((datestring));
                 TextField description = new TextField((t.getDescription()));
-                TextField actors = new TextField((t.getTactor()));
+               // TextField actors = new TextField((t.getTactor()));
+     
+        
                 //Label image = new Label((t.getImage()), "Image");
                      ImageViewer imavu;
         try {
@@ -75,32 +83,33 @@ public class showTheatreForm extends BaseForm {
         System.out.println(t.getImage());
         imavu = new ImageViewer(res.getImage("s.png"));
         }
+        
+            Media video = MediaManager.createMedia("http://www.youtube.com/watch?v=fxs-VEeAmk0", true);
+            video.play();
+
+
             description.setSingleLineTextArea(false);
-             actors.setSingleLineTextArea(false);
+            
                 name.setUIID("NewsCenterLine");
                 date.setUIID("NewsCenterLine");
                 description.setUIID("NewsCenterLine");
                 imavu.setUIID("NewsCenterLine");
-                actors.setUIID("NewsCenterLine");
+              Button btnt = new Button("TRAILER");
+             btnt.addActionListener(e -> new trailerForm(current,t).show());
+             
                 
-               
-               // datePicker.setType(Display.PICKER_TYPE_DATE);
- 
-                
-
-               
-
-
                 Label a = new Label("");
                 
                 Label e = new Label ();
 
                 Container content = BoxLayout.encloseY(
                 e,a,  (name),
-                         createLineSeparator(),  (actors),
+                         
                         createLineSeparator(),date,
                         createLineSeparator(),  (description),
-                        createLineSeparator(),  (imavu)
+                        createLineSeparator(),  (imavu),
+                        createLineSeparator(),  (btnt)
+                        
                        
                 );
 

@@ -36,6 +36,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
+import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 
@@ -139,9 +140,15 @@ public class ListTheatreForm extends BaseForm{
             addOrientationListener(e -> {
             updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
             });
+          
+                     Container cnt=new Container(new BoxLayout(BoxLayout.Y_AXIS));  
+            Button stat = new Button("Stat");
+               stat.addActionListener((evt) -> {   new StatForm(current); });
+               
 
-            
-
+                   cnt.addAll(stat);
+           add(cnt);
+ 
                     ArrayList<Theatre> list = ServiceTheatre.getInstance().AffichageTheatre();
 
                     for (Theatre u : list) {
@@ -164,8 +171,8 @@ public class ListTheatreForm extends BaseForm{
 
     private void addButton(Theatre u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y());      
+        Container cnt=new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Form f =  new Form();      
        // Label tt = new Label("**********************Apprenant************** ");
         Label ta = new Label("Votre nom :"+u.getName());
 //        Label ta2 = new Label("Votre Date :"+u.getRdate());
@@ -241,8 +248,8 @@ public class ListTheatreForm extends BaseForm{
         });
 
 
-        f.addAll(imavu,ta,ta7,supprimer,lModifier);
-        add(f);
+        cnt.addAll(imavu,ta,ta7,supprimer,lModifier);
+        add(cnt);
 
     }
    

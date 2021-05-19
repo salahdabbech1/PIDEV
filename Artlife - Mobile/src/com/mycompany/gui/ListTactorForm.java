@@ -150,6 +150,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
             ImageViewer imavu;
         try {
         imavu = new ImageViewer(getImageFromServer(u.getImage()));
+        System.out.println(u.getImage());
         }
         catch(Exception e) {
         System.out.println(u.getImage());

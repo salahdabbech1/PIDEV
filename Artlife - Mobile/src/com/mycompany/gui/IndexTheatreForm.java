@@ -6,6 +6,7 @@
 package com.mycompany.gui;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
+import com.codename1.components.MultiButton;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
 import com.codename1.l10n.SimpleDateFormat;
@@ -46,10 +47,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author HP
- */
+
 public class IndexTheatreForm extends BaseForm{
     Form current;
     private EncodedImage placeHolder;
@@ -62,9 +60,32 @@ public class IndexTheatreForm extends BaseForm{
     getTitleArea().setUIID("Container");
     setTitle("List actor");
     getContentPane().setScrollVisible(false);
-   
-    tb.addSearchCommand(e -> {
-});
+   Form hi = new Form("alo");
+    hi.getToolbar().addSearchCommand(e -> {
+    String text = (String)e.getSource();
+    if(text == null || text.length() == 0) {
+        // clear search
+        for(Component cmp : hi.getContentPane()) {
+            cmp.setHidden(false);
+            cmp.setVisible(true);
+        }
+        hi.getContentPane().animateLayout(150);
+    } else {
+        text = text.toLowerCase();
+        for(Component cmp : hi.getContentPane()) {
+            MultiButton mb = (MultiButton)cmp;
+            String line1 = mb.getTextLine1();
+            String line2 = mb.getTextLine2();
+            boolean show = line1 != null && line1.toLowerCase().indexOf(text) > -1 ||
+                    line2 != null && line2.toLowerCase().indexOf(text) > -1;
+            mb.setHidden(!show);
+            mb.setVisible(show);
+        }
+        hi.getContentPane().animateLayout(150);
+    }
+}, 4);
+    hi.addAll();
+
 Tabs swipe = new Tabs();
 Label s1 = new Label();
 Label s2 = new Label();
@@ -172,7 +193,11 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
         showDetails.addPointerPressedListener(l->{
 
-           new showTheatreForm(res,u).show();
+            try {
+                new showTheatreForm(res,u).show();
+            } catch (IOException ex) {
+               
+            }
           
         });
 
