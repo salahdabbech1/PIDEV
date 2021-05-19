@@ -9,6 +9,7 @@ import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.Display;
 
 import static com.codename1.ui.Display.getInstance;
 import com.codename1.ui.Toolbar;
@@ -16,6 +17,7 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
 import com.mycompany.entities.Tactor;
 import com.mycompany.services.ServiceTactor;
@@ -48,10 +50,11 @@ public class AjoutTactorForm extends BaseForm {
     name.setUIID("TextFieldBlack");
     addStringValue("Name", name);
     
-    
-    TextField born =new TextField("", "entrer brithdate");
-    born.setUIID("TextFieldBlack");
-    addStringValue("Birthdate", born);
+      Picker datePicker = new Picker();
+    datePicker.setType(Display.PICKER_TYPE_DATE);
+      addStringValue("datePicker", datePicker);    
+      datePicker.setUIID("TextFieldBlack");
+
     
     TextField description =new TextField("", "entrer description");
     description.setUIID("TextFieldBlack");
@@ -73,15 +76,15 @@ public class AjoutTactorForm extends BaseForm {
          else {
     InfiniteProgress ip = new InfiniteProgress(); 
     final Dialog iDialog = ip.showInfiniteBlocking();
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    
     String d="";
     Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(d);
     
-    
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     
     
-    Tactor t = new Tactor(String.valueOf(name.getText()).toString(),date1,String.valueOf(description.getText()).toString(),String.valueOf(image.getText()).toString());
+    Tactor t = new Tactor(String.valueOf(name.getText()).toString(),datePicker.getDate(),String.valueOf(description.getText()).toString(),String.valueOf(image.getText()).toString());
     System.out.println("data tactor = "+t);
     ServiceTactor.getInstance().addTactor(t);
     iDialog.dispose(); 

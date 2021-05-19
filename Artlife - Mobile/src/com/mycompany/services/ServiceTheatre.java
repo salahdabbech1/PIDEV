@@ -19,6 +19,7 @@ import com.mycompany.entities.Theatre;
 import com.mycompany.utils.Statics;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class ServiceTheatre {
     }
        
         public boolean addTheatre(Theatre th) {
-        String url = Statics.BASE_URL + "/theatre/addTheatre?name=" + th.getName()  +"&genre=" +  th.getGenre()   + "&rdate=" +  th.getRdate()   +  "&image=" + th.getImage() +"&trailer=" +  th.getTrailer()  +"&description=" +  th.getDescription()  +"&poster=" +  th.getPoster()   ; //création de l'URL
+        String url = Statics.BASE_URL + "/theatre/addTheatre?name=" + th.getName()  +"&genre=" +  th.getGenre()   + "&rdate=" +  th.getRdate()   +  "&image=" + th.getImage() +"&trailer=" +  th.getTrailer()  +"&description=" +  th.getDescription()  +"&poster=" +  th.getPoster() ; //création de l'URL
         req.setUrl(url);// Insertion de l'URL de notre demande de connexion
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -72,10 +73,17 @@ public class ServiceTheatre {
                     List<Map<String,Object>> listofMaps = (List<Map<String,Object>>) mapTheatre.get("root");
                     
                     
+                    
                     for(Map<String,Object> obj : listofMaps)
                     {
+                       
+                        
+                       
+                            
+                      
                         Theatre th=new Theatre();
                         
+                         
                         float id=Float.parseFloat(obj.get("id").toString());
                         String name=obj.get("name").toString();
                         String genre=obj.get("genre").toString();
@@ -83,10 +91,25 @@ public class ServiceTheatre {
                         String image=obj.get("image").toString();
                         String trailer=obj.get("trailer").toString();
                         String poster=obj.get("poster").toString();
+                        String get=obj.get("theatreActors").toString();
+                        
+                        
+
+//                            for (String s : splitString) {
+//                                System.out.println(s);
+//                            }
+                 
+          
+//string result = aux[aux.length-1];
+//           System.out.println("");
+//
+//          
+
                         
                         th.setId((long)id);
                         th.setName(name);
-                        
+                        th.setTactor(get);
+                       // System.out.println(get);
                         th.setDescription(description);
                         th.setImage(image);
                         th.setTrailer(trailer);
@@ -203,6 +226,102 @@ req.removeResponseListener(this);
 NetworkManager.getInstance().addToQueueAndWait(req);//execution tal request sinon yet Sada chy dima nalawa
 return resultOK;
     }
+    
+//    
+//     public ArrayList<Theatre> Stat (){
+//         
+//        ArrayList<Theatre> result=new ArrayList<>();
+//        String url=Statics.BASE_URL+"/theatre/statMobile";
+//        req.setUrl(url);
+//        req.addResponseListener(new ActionListener<NetworkEvent>() {
+//            @Override
+//            public void actionPerformed(NetworkEvent evt) {
+//                JSONParser Jsonp;
+//                Jsonp=new JSONParser();
+//                try{
+//                    Map<String,Object>mapTheatre= Jsonp.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+//                    List<Map<String,Object>> listofMaps = (List<Map<String,Object>>) mapTheatre.get("root");
+//                    
+// 
+//                    
+//                    for(Map<String,Object> obj : listofMaps)
+//                    {
+// 
+//                        Theatre th=new Theatre();
+//        
+//                        String genre=obj.get("genre").toString();
+//     
+//                        th.setGenre(genre);
+//
+//                    
+//                result.add(th);
+//            }
+//                        
+//                        
+//                   
+//                    
+//                    
+//                    
+//                    
+//                } catch (IOException ex) {
+//                    System.out.println(
+//                            "good");
+//                    
+//                }
+//            }
+//        });
+//                    NetworkManager.getInstance().addToQueueAndWait(req); 
+//                    return result;
+//
+//        
+//    }
+//     
+//           public ArrayList<Theatre> parseStat (String jsonText)throws Exception{
+//        ArrayList<Theatre> listR = new ArrayList<>();
+//              try {
+//               JSONParser j = new JSONParser();
+//            Map<String,Object> tasksListJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
+//            
+//            List<Map<String,Object>> list = (List<Map<String,Object>>)tasksListJson.get("root");
+//            System.out.print("size :"+list.size());
+//            for(Map<String,Object> obj : list){
+//                Theatre t = new Theatre();
+//                String genre=obj.get("genre").toString();
+//               // float lieu= Float.parseFloat(obj.get("lieu").toString());
+//                t.setGenre(genre);
+//             
+//               // t.setLieu((int)lieu);
+//               
+//                
+//                
+//                listR.add(t);
+//            }}
+//         catch (IOException ex) {
+//            System.out.println(ex);
+//        }
+//        return listR;
+//           } 
+//  public ArrayList<Theatre>  Cat() {
+// ArrayList<Theatre> listR=new ArrayList<>();
+//       String url ="/theatre/statMobile";
+//        req.setUrl(url);
+//        req.addResponseListener(new ActionListener<NetworkEvent>() {
+//            @Override
+//            public void actionPerformed(NetworkEvent evt) {
+//                      try {
+//                          ArrayList<Theatre> listR = parseStat(new String(req.getResponseData()));
+//                   
+//                    req.removeResponseListener(this);
+//                } catch (Exception ex) {
+//                    System.out.println(ex.getMessage());
+//                }
+//            }
+//        });
+//        NetworkManager.getInstance().addToQueueAndWait(req);
+//        return listR;
+//    }  
+         }
+  
+    
 
 
-}

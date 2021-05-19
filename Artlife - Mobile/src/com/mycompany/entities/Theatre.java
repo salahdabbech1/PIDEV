@@ -23,6 +23,7 @@ public class Theatre {
    private String description;
    private String poster;
   
+  
 
     public Theatre(Long id, String name, String tactor, String Genre, Date rdate,String image, String trailer,String description,String poster) {
         this.id = id;
@@ -150,6 +151,7 @@ public String getDescription() {
   
 
     
+
     
     
     

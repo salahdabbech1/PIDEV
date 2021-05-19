@@ -64,7 +64,14 @@ public class ModifTheatreForm extends BaseForm {
                 TextField image = new TextField((th.getImage()), "Image", 20, TextField.ANY);
                 TextField trailer = new TextField((th.getTrailer()), "Trailer", 20, TextField.ANY);
                 TextField poster = new TextField((th.getPoster()), "Poster", 20, TextField.ANY);
-                TextField genre = new TextField((th.getGenre()), "Genre", 20, TextField.ANY);
+                 
+    Picker genre = new Picker();
+
+genre.setStrings("Reality", "Comedy", "Historical");
+    
+      genre.setUIID("TextFieldBlack");
+       genre.setUIID("TextFieldBlack");
+   genre.setSelectedString(th.getGenre());
                  ComboBox Tactor = new ComboBox();
         for (Tactor c : new ServiceTactor().AffichageTactor()) {
                 Tactor.addItem(c.getName());
@@ -85,7 +92,7 @@ public class ModifTheatreForm extends BaseForm {
                 
                 trailer.setSingleLineTextArea(true);
                 poster.setSingleLineTextArea(true);
-                genre.setSingleLineTextArea(true);
+                //genre.setSingleLineTextArea(true);
                 
                 description.setSingleLineTextArea(true);
                 image.setSingleLineTextArea(true);
@@ -98,6 +105,7 @@ public class ModifTheatreForm extends BaseForm {
                 th.setName(name.getText());
                   
                 th.setRdate(datePicker.getDate());
+                th.setGenre(genre.getText());
                 th.setTrailer(trailer.getText());
                 th.setPoster(poster.getText());
                 th.setDescription(description.getText());
@@ -134,7 +142,7 @@ public class ModifTheatreForm extends BaseForm {
                 e,a,new FloatingHint (name),
                         
                         createLineSeparator(),datePicker,
-                        createLineSeparator(),new FloatingHint (genre),
+                        createLineSeparator(),(genre),
                         createLineSeparator(),new FloatingHint (image),
                         createLineSeparator(),new FloatingHint (trailer),
                         createLineSeparator(),new FloatingHint (description),

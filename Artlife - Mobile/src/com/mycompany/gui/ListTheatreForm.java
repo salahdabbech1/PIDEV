@@ -40,8 +40,10 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 
 import com.mycompany.entities.Theatre;
+import com.mycompany.myapp.MyApplication;
 
 import com.mycompany.services.ServiceTheatre;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,6 +67,8 @@ public class ListTheatreForm extends BaseForm{
 
                 tb.addSearchCommand(e -> {
             });
+//                 ArrayList<Theatre> a = ServiceTheatre.getInstance().Stat();
+//        
             Tabs swipe = new Tabs();
             Label s1 = new Label();
             Label s2 = new Label();
@@ -136,6 +140,7 @@ public class ListTheatreForm extends BaseForm{
             updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
             });
 
+            
 
                     ArrayList<Theatre> list = ServiceTheatre.getInstance().AffichageTheatre();
 
@@ -144,6 +149,7 @@ public class ListTheatreForm extends BaseForm{
                     }
 
     }
+  
     private Image getImageFromServer(String image) {
         try {
              placeHolder = EncodedImage.create("/s.png");
@@ -182,7 +188,8 @@ public class ListTheatreForm extends BaseForm{
 //        poster = new ImageViewer(res.getImage("s.png"));
 //        }
         Label ta7 = new Label("Votre Genre :"+u.getGenre());
-        Label ta8 = new Label("Votre Actor :"+u.getTactor());
+        //Label ta8 = new Label("Votre Actor :"+u.getTactor());
+       
           Label supprimer = new Label(" ");
           supprimer.setUIID("NewsTopLine");
           Style supprimerstyle=new Style(supprimer.getUnselectedStyle());
@@ -234,7 +241,7 @@ public class ListTheatreForm extends BaseForm{
         });
 
 
-        f.addAll(imavu,ta,ta7,ta8,supprimer,lModifier);
+        f.addAll(imavu,ta,ta7,supprimer,lModifier);
         add(f);
 
     }
