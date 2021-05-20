@@ -45,26 +45,27 @@ import java.util.ArrayList;
  *
  * @author HP
  */
-public class IndexConcert extends BaseForm {
+public class IndexConcert extends BaseFront {
       Form current;
     private EncodedImage placeHolder;
 
     public IndexConcert(Resources res) {
         //   super("musician", BoxLayout.x());
    
-    Toolbar tb=new Toolbar(true);
+     Toolbar tb=new Toolbar(true);
     current=this;
-    setToolbar(tb);
+        setToolbar(tb);
     getTitleArea().setUIID("Container");
-    setTitle("ajouter concert");
-    getContentPane().setScrollVisible(true);
+    setTitle("details concert");
+    getContentPane().setScrollVisible(false);
+    super.addSideMenu(res);
    
     tb.addSearchCommand(e -> {
 });
 Tabs swipe = new Tabs();
-Label s1 = new Label();
-Label s2 = new Label();
-addTab (swipe,s1,res.getImage("back-logo.jpeg"),"","",res);
+Label s1 = new Label("Bienvenue A Artlife!");
+Label s2 = new Label("Evenements à venir:");
+addTab (swipe,s1,res.getImage("c.jpg"),"","",res);
     
     swipe.setUIID("Container");
 swipe.getContentPane().setUIID("Container");
@@ -103,9 +104,9 @@ add (LayeredLayout.encloseIn(swipe,radioContainer));
 ButtonGroup barGroup = new ButtonGroup();
 RadioButton mesListes = RadioButton.createToggle("Mes Reclamations", barGroup);
 mesListes.setUIID("SelectBar");
-RadioButton liste = RadioButton.createToggle("Autres", barGroup);
+RadioButton liste = RadioButton.createToggle("BIENVENUE A ARTLIFE", barGroup);
 liste.setUIID("SelectBar");
-RadioButton partage = RadioButton.createToggle ("Reclamer", barGroup);
+RadioButton partage = RadioButton.createToggle ("", barGroup);
 partage.setUIID("SelectBar");
 Label arrow = new Label (res.getImage ("news-tab-down-arrow.png"), "Container");
  
@@ -130,6 +131,73 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
+ Form f1 =  new Form("Form", BoxLayout.x());
+   Button concert=new Button("Concerts");
+   Button play=new Button("Plays");
+   Button movie=new Button("Movies");
+   Button cinema=new Button("Cinemas");
+   f1.addAll(concert,play,movie,cinema);
+        add(f1);
+        
+         Form f2 =  new Form("Form", BoxLayout.x());
+   Button excel=new Button("Excel");
+   Button record=new Button("Enregistrement Vocal");
+   f2.addAll(excel,record);
+        add(f2);
+        
+        
+        //API
+            excel.addActionListener((e)->{
+        try{
+    InfiniteProgress ip = new InfiniteProgress(); 
+    final Dialog iDialog = ip.showInfiniteBlocking();
+    iDialog.dispose(); 
+         new Excel(res);
+    refreshTheme();
+
+        }
+        catch (Exception ex) {
+         ex.printStackTrace();
+}
+        });
+            
+               record.addActionListener((e)->{
+        try{
+    InfiniteProgress ip = new InfiniteProgress(); 
+    final Dialog iDialog = ip.showInfiniteBlocking();
+    iDialog.dispose(); 
+         new VoiceRecorder(res);
+    refreshTheme();
+
+        }
+        catch (Exception ex) {
+         ex.printStackTrace();
+}
+        });  
+            
+            
+            
+       
+    //ON CLICK CONCERT
+    concert.addActionListener((e)->{
+        try{
+    InfiniteProgress ip = new InfiniteProgress(); 
+    final Dialog iDialog = ip.showInfiniteBlocking();
+    iDialog.dispose(); 
+         new IndexConcert(res).show();
+    refreshTheme();
+
+        }
+        catch (Exception ex) {
+         ex.printStackTrace();
+}
+        });   
+        
+           //ON CLICK CINEMA
+        
+        //ON CLICK FILMS
+        
+        //ON CLICK THEATRE
 
         ArrayList<Concert> list = ServiceConcert.getInstance().AffichageConcert();
        
@@ -155,7 +223,6 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
         Container cnt=new Container();
         Form f =  new Form("Form", BoxLayout.y()); 
-        Label tt = new Label("******Musician******");
         Label ta = new Label("Nom :"+u.getName());
         Label ta2 = new Label("Musics :"+u.getMusics());
         Label ta3 = new Label("Idmusician :"+u.getIdmusician());
@@ -168,20 +235,16 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
         imavu = new ImageViewer(res.getImage("s.png"));
         }
 
- Label details = new Label("details");
-details .setUIID ("exstopline");
-Style modifierstyle= new Style(details .getUnselectedStyle());
-modifierstyle.setFgColor(0xf7ad02);
-details.setTextPosition(LEFT);
+Button details=new Button("Détails");
 
 details.addPointerPressedListener(l->{
 
    new DetailsConcMu(res,u).show();
 
 });
+ Button Reserver=new Button("Réserver");
 
-
-        f.addAll(tt,imavu,ta,ta2,ta3,details);
+        f.addAll(imavu,ta,ta2,ta3,details,Reserver);
         add(f);
 
     }

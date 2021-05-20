@@ -18,6 +18,8 @@ import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Image;
+
+
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
@@ -38,20 +40,20 @@ import java.util.Date;
  *
  * @author HP
  */
-public class ModifierMusicianForm extends BaseForm {
+public class ModifierMusicianForm extends BaseBack {
     Form current;
     public ModifierMusicianForm(Resources res,Musician m){
          Toolbar tb=new Toolbar(true);
     current=this;
         setToolbar(tb);
     getTitleArea().setUIID("Container");
-    setTitle("ajouter musician");
+ //   setTitle("ajouter musician");
     getContentPane().setScrollVisible(false);
     super.addSideMenu(res);
     
-    TextField name = new TextField((m.getName()), "Objec", 20, TextField.ANY);
-    TextField prenom = new TextField((m.getPrenom()), "Objec", 20, TextField.ANY);
-TextField description = new TextField((m.getDescription()), "Objec", 20, TextField.ANY);
+    TextField name = new TextField((m.getName()), "Nom", 20, TextField.ANY);
+    TextField prenom = new TextField((m.getPrenom()), "Prenom", 20, TextField.ANY);
+TextField description = new TextField((m.getDescription()), "Description", 20, TextField.ANY);
 TextField image = new TextField((m.getImage()), "Image", 20, TextField.ANY);
 
 

@@ -36,14 +36,7 @@ private void addStringValue(String s, Component v) {
         add(createLineSeparator(0xeeeeee));}
         
     public DetailsConcMu(Resources res,Concert c)
-    {Button ret=new Button("Return");
-    addStringValue("", ret);
-    
-    ret.addPointerPressedListener(l->{
-
-   new IndexConcert(res).show();
-
-});
+    {
            Toolbar tb=new Toolbar(true);
     current=this;
         setToolbar(tb);
@@ -52,7 +45,14 @@ private void addStringValue(String s, Component v) {
     getContentPane().setScrollVisible(false);
     super.addSideMenu(res);
       
+    Button ret=new Button("Return");
+    addStringValue("", ret);
     
+    ret.addPointerPressedListener(l->{
+
+   new IndexConcert(res).show();
+
+});
     ImageViewer imavu;
         try {
         imavu = new ImageViewer(getImageFromServerThenya(c.getImage()));
@@ -61,17 +61,18 @@ private void addStringValue(String s, Component v) {
         System.out.println(c.getImage());
         imavu = new ImageViewer(res.getImage("b.jpg"));
         }
-    Label name = new Label("Nom du concert : "+c.getName());
-     Label idmusician = new Label("Id musician:"+c.getIdmusician());
+    Label name = new Label("Nom: "+c.getName());
+     Label idmusician = new Label("Msician:"+c.getIdmusician());
       Label musics = new Label("Musics:"+c.getMusics());
-       Label trailer = new Label("Trailer:"+c.getTrailer());
+       //Label trailer = new Label("Trailer:"+c.getTrailer());
        Label espace = new Label("                   ");
+        Label espaced = new Label("                   ");
        Label espace1 = new Label("                   ");
         Label espace2 = new Label("                   ");
          Label espace3= new Label("                   ");
             Label espace4= new Label("                   ");
              Label espace5= new Label("                   ");
-       addAll(name,espace,idmusician,espace1,espace2,musics,espace3,espace4,trailer,imavu);
+       addAll(espace,idmusician,musics,espace3,espace4,imavu);
        //Musician mu = new Musician();
        //mu =new ServiceMusician().getInstance().DetailMusician(c.getIdmusician(),mu);
 ArrayList<Musician> list = ServiceMusician.getInstance().Affich(c.getIdmusician());
