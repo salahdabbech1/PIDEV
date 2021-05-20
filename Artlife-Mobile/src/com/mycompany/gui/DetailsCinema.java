@@ -39,7 +39,7 @@ import java.util.ArrayList;
  * @author HP
  */
 
-public class DetailsCinema extends BaseForm{
+public class DetailsCinema extends BaseFront{
        Form current;
            private EncodedImage placeHolder;
            static int nb_rate;
@@ -142,12 +142,14 @@ public DetailsCinema(Resources res,cinema c)
        if(Servicecinema.getInstance().modifiercinema(c))
     {
         System.out.println("success");
+         new IndexCinema(res).show();
        
     }
     }
     catch (Exception e)
            {
                 System.out.println("NON");
+                 new IndexCinema(res).show();
            }
    
         star.setProgress((int) c.getRate()); 

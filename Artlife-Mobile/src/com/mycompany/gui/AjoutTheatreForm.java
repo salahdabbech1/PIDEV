@@ -259,7 +259,7 @@ genre.setStrings("Reality", "Comedy", "Historical");
                             String ext = hi.toString().substring(lastIndexPeriod);
                             String hmore = hi.toString().substring(0, lastIndexPeriod - 1);
                             try {
-                                String namePic ="images/theatres/"+ saveFileToDevice(file, ext);
+                                String namePic ="/images/theatres/"+ saveFileToDevice(file, ext);
                                 System.out.println("test theleth"+namePic);
                                 
                                 //AJOUT
@@ -277,14 +277,21 @@ genre.setStrings("Reality", "Comedy", "Historical");
     Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(d);
     
     Date date2=new SimpleDateFormat("yyyy-MM-dd").parse(d);
+    try{
+        
+    
 Theatre t = new Theatre(String.valueOf(name.getText()).toString(),String.valueOf(Tactor.getSelectedItem()).toString(),String.valueOf(genre.getText()).toString(),datePicker.getDate(),namePic,String.valueOf(trailer.getText()).toString(),String.valueOf(description.getText()).toString(),String.valueOf(poster.getText()).toString());
 System.out.println("data evenement = "+t);
     ServiceTheatre.getInstance().addTheatre(t);
      iDialog.dispose(); 
          new ListTheatreForm(res).show();
     refreshTheme();
+    }
    
-
+       catch (Exception ex) {
+         ex.printStackTrace();
+         new ListTheatreForm(res).show();
+} 
     
     }
         }

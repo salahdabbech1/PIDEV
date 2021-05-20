@@ -140,7 +140,7 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
-Form f=new Form("Form");
+Container f=new Container();
 
  
     Button ret=new Button("Return");
@@ -182,8 +182,7 @@ Form f=new Form("Form");
 
     private void addButton(cinema u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+  Container cnt =  new Container(BoxLayout.y()); 
         
         Label ta = new Label("nom :"+u.getName());
         Label ta2 = new Label("nombre salle :"+u.getNb_salle());
@@ -249,8 +248,8 @@ lModifier.addPointerPressedListener(l->{
 });
 
 
-        f.addAll(imavu,ta,ta2,ta3,supprimer,lModifier);
-        add(f);
+        cnt.addAll(imavu,ta,ta2,ta3,supprimer,lModifier);
+        add(cnt);
 
     }
    

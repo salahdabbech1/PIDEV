@@ -261,12 +261,19 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(d);
     
     Date date2=new SimpleDateFormat("yyyy-MM-dd").parse(d);
+    try{
+        
     Evenement t = new Evenement(String.valueOf(Name.getText()).toString(),String.valueOf(idContent.getText()).toString(),String.valueOf(idCinema.getText()).toString(),date1,String.valueOf(idCinema.getText()).toString(),date2,String.valueOf(Adresse.getText()).toString(),namePic);
     System.out.println("data evenement = "+t);
     ServiceEvenement.getInstance().addEvenement(t);
      iDialog.dispose(); 
          new ListEvenementForm(res).show();
     refreshTheme();
+    }
+        catch (Exception ex) {
+         ex.printStackTrace();
+          new ListEvenementForm(res).show();
+}  
    
 
     

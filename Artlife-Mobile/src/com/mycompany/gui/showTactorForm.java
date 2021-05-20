@@ -43,7 +43,7 @@ import java.util.Date;
  *
  * @author HP
  */
-public class showTactorForm extends BaseForm {
+public class showTactorForm extends BaseFront {
     Form current;
     private EncodedImage placeHolder;
     public showTactorForm(Resources res,Tactor t){

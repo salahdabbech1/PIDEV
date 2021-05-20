@@ -45,7 +45,7 @@ import java.util.ArrayList;
  *
  * @author PersoPc
  */
-public class IndexEvenement  extends BaseForm {
+public class IndexEvenement  extends BaseFront {
       Form current;
     private EncodedImage placeHolder;
 
@@ -132,7 +132,7 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
- Form f=new Form("Form");
+Container f=new Container();
 
  
     Button ret=new Button("Return");
@@ -169,8 +169,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
     private void addButton(Evenement u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+  Container f =  new Container(BoxLayout.y()); 
         Label tt = new Label("******Events******");
         Label ta = new Label("Nom :"+u.getName());
         Label ta2 = new Label("Type :"+u.getType());
@@ -184,29 +183,25 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
         imavu = new ImageViewer(res.getImage("s.png"));
         }
 
- Label details = new Label("details");
-details .setUIID ("exstopline");
-Style modifierstyle= new Style(details .getUnselectedStyle());
-modifierstyle.setFgColor(0xf7ad02);
-details.setTextPosition(LEFT);
+
+
+Button details=new Button("Détails");
 
 details.addPointerPressedListener(l->{
-
-   new DetailsEvenements(res,u).show();
-
-});
- Label reserver = new Label("reserver");
-reserver .setUIID ("exstopline");
-Style reserverstyle= new Style(reserver.getUnselectedStyle());
-reserverstyle.setFgColor(0xf7ad02);
-reserver.setTextPosition(LEFT);
-
-reserver.addPointerPressedListener(l->{
-
-   new DetailsEvenements(res,u).show();
+  new DetailsEvenements(res,u).show();
 
 });
 
+
+
+
+
+Button reserver=new Button("Détails");
+
+details.addPointerPressedListener(l->{
+  new DetailsEvenements(res,u).show();
+
+});
 
 
         f.addAll(tt,imavu,ta,ta2,ta3,details,reserver);

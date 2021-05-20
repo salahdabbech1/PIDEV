@@ -156,13 +156,19 @@ public class AjoutTactorForm extends BaseForm {
     final Dialog iDialog = ip.showInfiniteBlocking();
     String d="1978-11-11";
     Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(d);
+    try{
+        
     Tactor t = new Tactor(String.valueOf(name.getText()).toString(),datePicker.getDate(),String.valueOf(description.getText()).toString(),namePic);
    ServiceTactor.getInstance().addTactor(t);
      iDialog.dispose(); 
          new ListTactorForm(res).show();
     refreshTheme();
+    }
    
-
+      catch (Exception ex) {
+         ex.printStackTrace();
+          new ListTactorForm(res).show();
+}
     
     }
         }

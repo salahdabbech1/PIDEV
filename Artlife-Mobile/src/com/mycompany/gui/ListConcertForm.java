@@ -144,7 +144,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
      //END CODE DE DECORATION
  
- Form f=new Form("Form");
+ Container f=new Container();
 
  
     Button ret=new Button("Return");
@@ -186,8 +186,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
     private void addButton(Concert u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+      Container cnt =  new Container(BoxLayout.y());  
         Label ta = new Label("Nom :"+u.getName());
         Label ta2 = new Label("Musics :"+u.getMusics());
         Label ta3 = new Label("Musician :"+u.getIdmusician());
@@ -249,8 +248,8 @@ lModifier.addPointerPressedListener(l->{
 });
 
 
-        f.addAll(imavu,ta,ta2,ta3,supprimer,lModifier);
-        add(f);
+        cnt.addAll(imavu,ta,ta2,ta3,supprimer,lModifier);
+        add(cnt);
 
     }
    

@@ -43,7 +43,7 @@ import com.mycompany.services.ServiceUser;
  *
  * @author Shai Almog
  */
-public class SignInForm extends BaseForm {
+public class SignInForm extends BaseFront {
 
     public SignInForm(Resources res) {
         super(new BorderLayout());
@@ -56,7 +56,7 @@ public class SignInForm extends BaseForm {
         getTitleArea().setUIID("Container");
         setUIID("SignIn");
         
-        add(BorderLayout.NORTH, new Label(res.getImage("Logo.png"), "LogoLabel"));
+    //    add(BorderLayout.NORTH, new Label(res.getImage("Logo.png"), "LogoLabel"));
         
         TextField name = new TextField("", "Username", 20, TextField.ANY);
         TextField password = new TextField("", "Password", 20, TextField.PASSWORD);

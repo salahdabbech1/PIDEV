@@ -138,7 +138,7 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
- Form f=new Form("Form");
+ Container f=new Container();
 
  
     Button ret=new Button("Return");
@@ -168,8 +168,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
     private void addButton(Tactor u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y());      
+       Container cnt =  new Container(BoxLayout.y());     
    
         Label ta = new Label("Nom :"+u.getName());
 //        Label ta2 = new Label("Votre Date :"+u.getBorn());
@@ -234,8 +233,8 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
         });
 
 
-        f.addAll(imavu,ta,supprimer,lModifier);
-        add(f);
+        cnt.addAll(imavu,ta,supprimer,lModifier);
+        add(cnt);
 
     }
        private Image getImageFromServer(String image) {

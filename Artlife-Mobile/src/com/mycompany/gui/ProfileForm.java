@@ -19,9 +19,17 @@
 
 package com.mycompany.gui;
 
+import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
+import com.codename1.ext.filechooser.FileChooser;
+import com.codename1.io.FileSystemStorage;
+import com.codename1.io.Log;
+import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
+import com.codename1.ui.CN;
+import com.codename1.ui.CheckBox;
 import com.codename1.ui.Component;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
@@ -30,23 +38,29 @@ import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
+import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
+import com.codename1.ui.util.ImageIO;
 import com.codename1.ui.util.Resources;
 import com.mycompany.entities.User;
 import com.mycompany.services.ServiceUser;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Date;
 
 /**
  * The user profile form
  *
  * @author Shai Almog
  */
-public class ProfileForm extends BaseForm {
+public class ProfileForm extends BaseFront {
     private EncodedImage placeHolder;
     public ProfileForm(Resources res) {
         super("Newsfeed", BoxLayout.y());
@@ -101,38 +115,169 @@ public class ProfileForm extends BaseForm {
         TextField password = new TextField(SessionManager.getPassowrd(),"Password", 20, TextField.PASSWORD);
         password.setUIID("TextFieldBlack");
         addStringValue("Password", password);
-         TextField image = new TextField(SessionManager.getImage(),"image", 20, TextField.NON_PREDICTIVE);
-        image.setUIID("TextFieldBlack");
-        addStringValue("image", image);
+        CheckBox multiSelect = new CheckBox("Multi-select");
           //    Form hi = new Form("Hi", new BorderLayout());
               Button update = new Button("Update");
                  addStringValue("update", update);
-         User t = new User(Integer.parseInt(id.getText()),String.valueOf(username.getText()).toString(),String.valueOf(email.getText()).toString(),String.valueOf(password.getText()).toString());
-update.addPointerPressedListener(l -> {
-t.setId(Integer.parseInt(id.getText()));
+      
+              //FILECHOOSER KARIM
+              
+                update.addActionListener((ActionEvent e) -> {
+            if (FileChooser.isAvailable()) {
+                FileChooser.setOpenFilesInPlace(true);
+                FileChooser.showOpenDialog( ".jpg, .jpeg, .png/plain", (ActionEvent e2) -> {
+                    if (e2 == null || e2.getSource() == null) {
+                        add("No file was selected");
+                        revalidate();
+                        return;
+                    }
+                  if (multiSelect.isSelected()) {
+                        String[] paths = (String[]) e2.getSource();
+                        for (String path : paths) {
+                            System.out.println("test llowel"+path);
+                            CN.execute(path);
+                        }
+                        return;
+                    }
+
+                    String file = (String) e2.getSource();
+                    if (file == null) {
+                        add("No file was selected");
+                        revalidate();
+                    } else {
+                        String hh="C:/Users/bouyo/Desktop/Study/S2/Project/Mobile/Final/src";
+                        Image logo;
+
+                        try {
+                            logo = Image.createImage(file).scaledHeight(500);;
+                            add(logo);
+                            String imageFile = FileSystemStorage.getInstance().getAppHomePath() + "s.png";
+
+                            try (OutputStream os = FileSystemStorage.getInstance().openOutputStream(imageFile)) {
+                                System.out.println("test theny"+imageFile);
+                                ImageIO.getImageIO().save(logo, os, ImageIO.FORMAT_PNG, 1);
+                            } catch (IOException err) {
+                            }
+                        } catch (IOException ex) {
+                        }
+
+                        String extension = null;
+                        if (file.lastIndexOf(".") > 0) {
+                            extension = file.substring(file.lastIndexOf(".") + 1);
+                            StringBuilder hi = new StringBuilder(file);
+                            if (file.startsWith("file://")) {
+                                hi.delete(0, 7);
+                            }
+                            int lastIndexPeriod = hi.toString().lastIndexOf(".");
+                            Log.p(hi.toString());
+                            String ext = hi.toString().substring(lastIndexPeriod);
+                            String hmore = hi.toString().substring(0, lastIndexPeriod - 1);
+                            try {
+                                String namePic ="C:/Users/bouyo/Desktop/Study/S2/Project/Mobile/Final/src/images/"+ saveFileToDevice(file, ext);
+                                System.out.println("test theleth"+namePic);
+                                
+                                //AJOUT
+    
+   
+    
+     try{
+             if(username.getText()=="" || email.getText()==""|| password.getText()==""){
+            Dialog.show("veulliez verifier les donnÃ©es","","annuler","OK");
+    }
+         else {
+    InfiniteProgress ip = new InfiniteProgress(); 
+    final Dialog iDialog = ip.showInfiniteBlocking();
+ User t = new User(Integer.parseInt(id.getText()),String.valueOf(username.getText()).toString(),String.valueOf(email.getText()).toString(),String.valueOf(password.getText()).toString(),namePic); 
+ t.setId(Integer.parseInt(id.getText()));
 t.setName(username.getText());
 t.setEmail(email.getText());
 t.setPassword(password.getText());
-t.setImage(image.getText());
-
- 
- try{
+t.setImage(namePic);
+     iDialog.dispose(); 
+      try{
        if(ServiceUser.getInstance().myacount(t)){
            System.out.println("edited!");
 
      }
  } 
-     catch (Exception e)
+     catch (Exception d)
            {
                 System.out.println("NON");
            }
-  new WalkthruForm(res).show();
- //new ListConcertForm(res).show();
+         new SignInForm(res).show();
+    refreshTheme();
+   
 
-       });
-// hi.add(BorderLayout.NORTH, update);
- //hi.show();
-         
+    
+    }
+        }
+        catch (Exception ex) {
+         ex.printStackTrace();
+}       } catch (IOException ex) {
+                            }
+
+                            revalidate();
+
+                        
+                    }
+                    }
+                        });
+            }
+                });
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
     }
 
    /* public ProfileForm(Resources rs) {
@@ -143,6 +288,18 @@ t.setImage(image.getText());
         add(BorderLayout.west(new Label(s, "PaddedLabel")).
                 add(BorderLayout.CENTER, v));
         add(createLineSeparator(0xeeeeee));
+    }
+     protected String saveFileToDevice(String hi, String ext) throws IOException {
+        URI uri;
+        try {
+            uri = new URI(hi);
+            String path = uri.getPath();
+            int index = hi.lastIndexOf("/");
+            hi = hi.substring(index + 1);
+            return hi;
+        } catch (URISyntaxException ex) {
+        }
+        return "hh";
     }
      private Image getImageFromServer(String images) {
         try {

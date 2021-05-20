@@ -54,7 +54,7 @@ import java.util.Vector;
  *
  * @author Shai Almog
  */
-public class SignUpForm extends BaseForm {
+public class SignUpForm extends BaseFront{
 
     public SignUpForm(Resources res) {
         super(new BorderLayout());

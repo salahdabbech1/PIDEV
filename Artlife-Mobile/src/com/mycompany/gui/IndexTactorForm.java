@@ -48,7 +48,7 @@ import java.util.Date;
  *
  * @author HP
  */
-public class IndexTactorForm extends BaseForm{
+public class IndexTactorForm extends BaseFront{
     Form current;
     private EncodedImage placeHolder;
     public IndexTactorForm(Resources res) {
@@ -134,7 +134,7 @@ addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
  
- Form f=new Form("Form");
+ Container f=new Container();
 
  
     Button ret=new Button("Return");
@@ -158,8 +158,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
     private void addButton(Tactor u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y());      
+        Container cnt =  new Container(BoxLayout.y()); 
    
         Label ta = new Label("Nom :"+u.getName());
 //        Label ta2 = new Label("Votre Date :"+u.getBorn());
@@ -173,23 +172,20 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
         imavu = new ImageViewer(res.getImage("s.png"));
         }
          
-         Label showDetails = new Label("Details");
-        showDetails.setUIID ("exstopline");
-        Style modifierstyle= new Style(showDetails.getUnselectedStyle());
-        modifierstyle.setFgColor(0xf7ad02);
-         FontImage modifierImage=FontImage.createMaterial(FontImage.MATERIAL_DETAILS, modifierstyle);
-        showDetails.setIcon(modifierImage);
-        showDetails.setTextPosition(LEFT);
+         
+        
+        Button showDetails=new Button("Détails");
 
-        showDetails.addPointerPressedListener(l->{
+showDetails.addPointerPressedListener(l->{
 
-           new showTactorForm(res,u).show();
-          
-        });
+            new showTactorForm(res,u).show();
 
 
-        f.addAll(imavu,ta,showDetails);
-        add(f);
+});
+
+
+      cnt.addAll(imavu,ta,showDetails);
+        add(cnt);
 
     }
        private Image getImageFromServer(String image) {

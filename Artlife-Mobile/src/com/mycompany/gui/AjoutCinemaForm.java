@@ -243,12 +243,19 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     final Dialog iDialog = ip.showInfiniteBlocking();
     String d="1978-11-11";
     Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(d);
+    try{
+        
 cinema t=new cinema(String.valueOf(name.getText()).toString(),Integer.parseInt(musics.getText()),String.valueOf(trailer.getText()).toString(),namePic,String.valueOf(desc.getText()).toString(),0);
 Servicecinema.getInstance().addcinema(t);
      iDialog.dispose(); 
          new ListCinemaForm(res).show();
     refreshTheme();
-   
+    }
+         catch (Exception ex) {
+         ex.printStackTrace();
+         
+                  new ListCinemaForm(res).show();
+} 
 
     
     }

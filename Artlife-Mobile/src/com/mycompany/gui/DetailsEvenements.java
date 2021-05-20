@@ -26,7 +26,7 @@ import java.util.ArrayList;
  *
  * @author PersoPc
  */
-public class DetailsEvenements extends BaseForm{
+public class DetailsEvenements extends BaseFront{
        Form current;
            private EncodedImage placeHolder;
 private void addStringValue(String s, Component v) {

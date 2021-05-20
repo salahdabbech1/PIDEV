@@ -143,7 +143,7 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
-Form f=new Form("Form");
+Container f=new Container();
 
  
     Button ret=new Button("Return");
@@ -184,10 +184,9 @@ Form f=new Form("Form");
 
     private void addButton(Evenement u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y());      
+        Container cnt =  new Container(BoxLayout.y());             
        // Label tt = new Label("**********************Apprenant************** ");
-        Label ta = new Label("Votre nom :"+u.getName());
+        Label ta = new Label("Nom :"+u.getName());
 //        Label ta2 = new Label("Votre Date :"+u.getRdate());
 //        Label ta3 = new Label("Votre description :"+u.getDescription());
            ImageViewer imavu;
@@ -261,8 +260,8 @@ Form f=new Form("Form");
         });
 
 
-        f.addAll(imavu,ta,ta7,ta8,supprimer,lModifier);
-        add(f);
+        cnt.addAll(imavu,ta,ta7,ta8,supprimer,lModifier);
+        add(cnt);
 
     }
    

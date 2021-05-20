@@ -27,6 +27,7 @@ import com.codename1.ui.plaf.Style;
 import com.mycompany.gui.AjoutCinemaForm;
 import com.mycompany.gui.AjoutConcertForm;
 import com.mycompany.gui.AjoutEvenementForm;
+import com.mycompany.gui.AjoutFactorForm;
 import com.mycompany.gui.AjoutFilmForm;
 import com.mycompany.gui.AjoutMusicianForm;
 import com.mycompany.gui.AjoutReclamationForm;
@@ -37,17 +38,23 @@ import com.mycompany.gui.HomeBack;
 import com.mycompany.gui.HomeFront;
 import com.mycompany.gui.IndexCinema;
 import com.mycompany.gui.IndexConcert;
+import com.mycompany.gui.IndexEvenement;
+import com.mycompany.gui.IndexFactorForm;
+import com.mycompany.gui.IndexMovieForm;
 import com.mycompany.gui.IndexTactorForm;
 import com.mycompany.gui.IndexTheatreForm;
 import com.mycompany.gui.ListCinemaForm;
 import com.mycompany.gui.ListConcertForm;
 import com.mycompany.gui.ListEvenementForm;
+import com.mycompany.gui.ListFactorForm;
 import com.mycompany.gui.ListMovieForm;
 import com.mycompany.gui.ListMusicianForm;
+import com.mycompany.gui.ListReclamationForm;
 import com.mycompany.gui.ListTactorForm;
 import com.mycompany.gui.ListTheatreForm;
 import com.mycompany.gui.SignInForm;
 import com.mycompany.gui.SignUpForm;
+import com.mycompany.gui.StatForm;
 import com.mycompany.gui.VoiceRecorder;
 import com.mycompany.gui.welcomeForm;
 import java.util.Date;
@@ -90,8 +97,8 @@ public class MyApplication {
             current.show();
             return;
         }
-        new AjoutTheatreForm(theme).show(); 
-    //   new welcomeForm(theme).show();
+//        new AjoutTheatreForm(theme).show(); 
+//  new welcomeForm(theme).show();
 //        try {
 //            new Excel();
 //               new AjoutMusicianForm(theme).show();
@@ -103,7 +110,7 @@ public class MyApplication {
 //        }
         
         
-//       new ListMovieForm(theme).show();
+       new HomeBack(theme).show();/*yosri*/
         
         
         

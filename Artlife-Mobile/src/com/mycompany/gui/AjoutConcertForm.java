@@ -246,12 +246,20 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     InfiniteProgress ip = new InfiniteProgress(); 
     final Dialog iDialog = ip.showInfiniteBlocking();
   
-    Concert t = new Concert(String.valueOf(name.getText()).toString(),String.valueOf(idmusician.getSelectedItem()).toString(),String.valueOf(musics.getText()).toString(),namePic,String.valueOf(trailer.getText()).toString());
+ 
+    try{
+           Concert t = new Concert(String.valueOf(name.getText()).toString(),String.valueOf(idmusician.getSelectedItem()).toString(),String.valueOf(musics.getText()).toString(),namePic,String.valueOf(trailer.getText()).toString());
     System.out.println("data concert = "+t);
+    
    ServiceConcert.getInstance().addConcert(t);
      iDialog.dispose(); 
          new ListConcertForm(res).show();
     refreshTheme();
+    }
+     catch (Exception ex) {
+         ex.printStackTrace();
+          new ListConcertForm(res).show();
+}
    
 
     

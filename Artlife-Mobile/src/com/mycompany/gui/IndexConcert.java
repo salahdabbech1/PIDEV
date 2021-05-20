@@ -131,9 +131,10 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
+Container f =  new Container(BoxLayout.y()); 
 
         
-         Form f2 =  new Form("Form", BoxLayout.x());
+         Container f2 =  new Container(BoxLayout.x());
    Button excel=new Button("Excel");
    Button record=new Button("Enregistrement Vocal");
     Button r =new Button("Return");
@@ -203,8 +204,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
     private void addButton(Concert u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+        Container f =  new Container(BoxLayout.y()); 
         Label ta = new Label("Nom :"+u.getName());
         Label ta2 = new Label("Musics :"+u.getMusics());
         Label ta3 = new Label("Idmusician :"+u.getIdmusician());
@@ -224,9 +224,8 @@ details.addPointerPressedListener(l->{
    new DetailsConcMu(res,u).show();
 
 });
- Button Reserver=new Button("Réserver");
 
-        f.addAll(imavu,ta,ta2,ta3,details,Reserver);
+        f.addAll(imavu,ta,ta2,ta3,details);
         add(f);
 
     }

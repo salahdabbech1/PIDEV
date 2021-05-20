@@ -8,6 +8,7 @@ import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
+import com.codename1.io.URL;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
@@ -41,6 +42,7 @@ import com.mycompany.services.ServiceMovie;
 import com.mycompany.services.ServiceMusician;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.codename1.io.URL.URLConnection;
 
 /**
  *
@@ -60,6 +62,7 @@ public class ListMovieForm extends BaseForm{
    // setTitle("ajouter concert");
     getContentPane().setScrollVisible(false);
   //  super.addSideMenu(res);
+  
     
    
     tb.addSearchCommand(e -> {
@@ -141,7 +144,7 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
-        Form f=new Form("Form");
+        Container f=new Container();
 
  
     Button ret=new Button("Return");
@@ -183,8 +186,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
     private void addButton(Movie u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+        Container cnt =  new Container(BoxLayout.y());        
         Label ta = new Label("Votre nom :"+u.getName());
       //  Label ta3 = new Label("Votre description :"+u.getDescription());
       //  Label ta4 = new Label("Votre status :"+u.getImage());
@@ -246,8 +248,8 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
             });
 
 
-        f.addAll(imavu,ta,supprimer,lModifier);
-        add(f);
+        cnt.addAll(imavu,ta,supprimer,lModifier);
+        add(cnt);
 
     }
    

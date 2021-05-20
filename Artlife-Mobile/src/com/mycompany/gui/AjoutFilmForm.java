@@ -62,7 +62,7 @@ public class AjoutFilmForm extends BaseForm{
     current=this;
     setToolbar(tb);
     getTitleArea().setUIID("Container");
-    setTitle("ajouter tactor");
+    setTitle("ajouter movie");
     getContentPane().setScrollVisible(false);
     
     tb.addSearchCommand(e -> {
@@ -184,7 +184,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
                 new ListMovieForm(res).show();
                 });
                 CheckBox multiSelect = new CheckBox("Multi-select");
-                     Button buttonAjt=new Button("Ajouter Tactor");
+                     Button buttonAjt=new Button("Ajouter Movie");
                 //CODE ABAY
                   
    
@@ -259,11 +259,18 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     final Dialog iDialog = ip.showInfiniteBlocking();
     String d="1978-11-11";
     Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(d);
+    try {
+        
 Movie t = new Movie(name.getText(),p.getValue().toString(),namePic,imageb.getText(),trailer.getText(),description.getText(),director.getText(),dateR.getDate());
 ServiceMovie.getInstance().addMovie(t);
      iDialog.dispose(); 
          new ListMovieForm(res).show();
     refreshTheme();
+    }
+      catch (Exception ex) {
+         ex.printStackTrace();
+                  new ListMovieForm(res).show();
+}    
    
 
     

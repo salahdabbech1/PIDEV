@@ -165,18 +165,22 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
          else {
     InfiniteProgress ip = new InfiniteProgress(); 
     final Dialog iDialog = ip.showInfiniteBlocking();
-    //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    try {
+        
        Reclamation t = new Reclamation();
        t.setDescription(Description.getText());
        t.setTitre(Titre.getText());
-     //Reclamation t = new Reclamation(String.valueOf(Titre.getText()).toString(),String.valueOf(Description.getText()).toString(),date1,String.valueOf(datere.getText()).toString());
     System.out.println("data reclamation = "+t);
     ServiceReclamation.getInstance().addReclamation(t);
     iDialog.dispose(); 
          new ListReclamationForm(res).show();
     refreshTheme();
+    }
 
-    
+     catch (Exception ex) {
+         ex.printStackTrace();
+             new ListReclamationForm(res).show();
+}
     
     
     

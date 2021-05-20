@@ -45,7 +45,7 @@ import java.util.Date;
  *
  * @author HP
  */
-public class showTheatreForm extends BaseForm {
+public class showTheatreForm extends BaseFront {
     Form current;
     private EncodedImage placeHolder;
     public showTheatreForm(Resources res,Theatre t){
@@ -75,6 +75,8 @@ public class showTheatreForm extends BaseForm {
         System.out.println(t.getImage());
         imavu = new ImageViewer(res.getImage("s.png"));
         }
+              Button btnt = new Button("TRAILER");
+             btnt.addActionListener(e -> new trailerTheatre(current,t).show());
             description.setSingleLineTextArea(false);
 //             actors.setSingleLineTextArea(false);
                 name.setUIID("NewsCenterLine");
@@ -105,7 +107,8 @@ Button btnAnnuler =new Button ("Return");
                         createLineSeparator(),date,
                         createLineSeparator(),  (description),
                         createLineSeparator(),  (imavu),
-                        createLineSeparator(),  (btnAnnuler)
+                        createLineSeparator(),  (btnAnnuler),
+                        createLineSeparator(),  (btnt)
                        
                 );
 

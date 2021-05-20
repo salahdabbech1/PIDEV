@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resource majorVersion="1" minorVersion="11" useXmlUI="false">
+    <image name="a.jpg"  />
     <image name="activation-background.jpg"  />
-    <image name="artlife.png"  />
     <image name="b.jpg"  />
     <image name="back-logo.jpeg"  />
     <image name="c.jpg"  />
@@ -23,6 +23,7 @@
     <image name="on-off-on.png" type="multi"  />
     <image name="profile-background.jpg"  />
     <image name="profile-pic.jpg" type="multi"  />
+    <image name="rrrr.jpg"  />
     <image name="s.png"  />
     <image name="signin-background.jpg"  />
     <image name="signup-background.jpg"  />
@@ -30,7 +31,7 @@
     <theme name="Theme">
         <val key="@includeNativeBool" value="true" />
         <val key="@tabPlacementInt" value="0" />
-        <val key="Activate.bgImage" value="activation-background.jpg" />
+        <val key="Activate.bgImage" value="rrrr.jpg" />
         <val key="Activate.bgType" value="33" />
         <val key="Activate.margin" value="0.0,0.0,0.0,0.0" />
         <val key="Activate.padUnit" value="0,0,2,0" />
@@ -105,12 +106,12 @@
         <font key="FloatingHint.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.5" />
         <val key="FloatingHint.transparency" value="0" />
         <val key="Form.bgColor" value="ffffff" />
-        <gradient key="Form.bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
-        <val key="Form.bgType" value="0" />
+        <val key="Form.bgImage" value="a.jpg" />
+        <val key="Form.bgType" value="27" />
         <val key="Form.transparency" value="255" />
         <val key="ImageOverlay.bgColor" value="14134b" />
         <val key="ImageOverlay.transparency" value="60" />
-        <val key="Label.fgColor" value="a2a1b8" />
+        <val key="Label.fgColor" value="ffffff" />
         <font key="Label.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.5" />
         <val key="Label.transparency" value="0" />
         <val key="LargeWhiteText.align" value="1" />
@@ -155,7 +156,7 @@
         <font key="NewsBottomLine.sel#font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="1.5" />
         <val key="NewsBottomLine.sel#transparency" value="0" />
         <val key="NewsBottomLine.transparency" value="0" />
-        <val key="NewsTopLine.fgColor" value="0" />
+        <val key="NewsTopLine.fgColor" value="ffffff" />
         <font key="NewsTopLine.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.0" />
         <val key="NewsTopLine.press#fgColor" value="0" />
         <font key="NewsTopLine.press#font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.0" />
@@ -164,7 +165,7 @@
         <font key="NewsTopLine.sel#font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.0" />
         <val key="NewsTopLine.sel#transparency" value="0" />
         <val key="NewsTopLine.transparency" value="0" />
-        <val key="PaddedLabel.fgColor" value="a2a1b8" />
+        <val key="PaddedLabel.fgColor" value="ffffff" />
         <font key="PaddedLabel.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.5" />
         <val key="PaddedLabel.padUnit" value="2,2,2,2" />
         <val key="PaddedLabel.padding" value="2.0,2.0,2.0,2.0" />
@@ -232,7 +233,7 @@
         <val key="SideCommand.transparency" value="0" />
         <val key="SideNavigationPanel.bgColor" value="ffffff" />
         <val key="SideNavigationPanel.transparency" value="255" />
-        <val key="SignIn.bgImage" value="signin-background.jpg" />
+        <val key="SignIn.bgImage" value="rrrr.jpg" />
         <val key="SignIn.bgType" value="33" />
         <val key="SignIn.margin" value="0.0,0.0,0.0,0.0" />
         <val key="SignIn.padUnit" value="0,0,2,0" />
@@ -311,7 +312,7 @@
         <val key="Toolbar.bgType" value="0" />
         <border key="Toolbar.border" type="empty" />
         <val key="Toolbar.transparency" value="0" />
-        <val key="Welcome.bgImage" value="welcome-background.jpg" />
+        <val key="Welcome.bgImage" value="rrrr.jpg" />
         <val key="Welcome.bgType" value="33" />
         <val key="Welcome.margin" value="0.0,0.0,0.0,0.0" />
         <val key="Welcome.padUnit" value="0,0,2,0" />

@@ -143,7 +143,7 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
-Form f=new Form("Form");
+Container f=new Container();
 
  
     Button ret=new Button("Return");
@@ -160,7 +160,15 @@ Form f=new Form("Form");
    new AjoutTheatreForm(res).show();
 
 });
- f.addAll(ret,ajt);
+    
+       
+            Button stat = new Button("Statistiques");
+               stat.addActionListener((evt) -> {   new StatForm(current); });
+               
+
+                   
+ 
+ f.addAll(ret,ajt,stat);
  add(f);
 
                     ArrayList<Theatre> list = ServiceTheatre.getInstance().AffichageTheatre();
@@ -184,8 +192,7 @@ Form f=new Form("Form");
 
     private void addButton(Theatre u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y());      
+       Container cnt =  new Container(BoxLayout.y()); 
        // Label tt = new Label("**********************Apprenant************** ");
         Label ta = new Label("Votre nom :"+u.getName());
 //        Label ta2 = new Label("Votre Date :"+u.getRdate());
@@ -261,8 +268,8 @@ Form f=new Form("Form");
         });
 
 
-        f.addAll(imavu,ta,ta7,supprimer,lModifier);
-        add(f);
+        cnt.addAll(imavu,ta,ta7,supprimer,lModifier);
+        add(cnt);
 
     }
    

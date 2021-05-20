@@ -242,13 +242,19 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     final Dialog iDialog = ip.showInfiniteBlocking();
     String d="1978-11-11";
     Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(d);
+    try {
+        
   Musician t = new Musician(String.valueOf(name.getText()).toString(),String.valueOf(prenom.getText()).toString(),date1,String.valueOf(description.getText()).toString(),namePic);   
    ServiceMusician.getInstance().addMusician(t);
      iDialog.dispose(); 
          new ListMusicianForm(res).show();
     refreshTheme();
+    }
    
-
+      catch (Exception ex) {
+         ex.printStackTrace();
+          new ListMusicianForm(res).show();
+}  
     
     }
         }

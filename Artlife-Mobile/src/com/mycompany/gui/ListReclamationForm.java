@@ -137,7 +137,54 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
-Form f=new Form("Form");
+Container f=new Container();
+ Button pdf = new Button("pdf");
+
+
+pdf.addPointerPressedListener(l->{
+     String urlab = "http://localhost/pdf/ex.php";
+        for (Reclamation q :  new ServiceReclamation().findAll()) {
+          
+               data+="<tr> "+
+                                "<td>"+
+                                
+                                q.getTitre()
+                                
+                                +"</td>"
+                       +
+                                "<td>"+
+                                
+                                q.getDescription()
+                                
+                                +"</td>"
+                                +
+                                "<td>"+
+                                
+                                q.getTraiter()
+                                
+                                +"</td>"
+                                + "</tr>";
+        }
+
+                                ConnectionRequest cnreq = new ConnectionRequest();
+                                cnreq.setPost(false);
+                             
+                                cnreq.addArgument("data", data);
+                                cnreq.setUrl(urlab);
+
+                                cnreq.addResponseListener(evx
+                                        -> {
+                                    String dataw = new String(cnreq.getResponseData());
+                              Dialog dig=new Dialog("PDF");
+  dig.show("PDF","PDF",null,"yep");
+                                }
+                                );
+                                NetworkManager.getInstance().addToQueueAndWait(cnreq);
+    
+    
+
+
+});
 
  
     Button ret=new Button("Return");
@@ -154,7 +201,7 @@ Form f=new Form("Form");
    new AjoutReclamationForm(res).show();
 
 });
- f.addAll(ret,ajt);
+ f.addAll(ret,ajt,pdf);
  add(f);
        
        
@@ -185,8 +232,7 @@ Form f=new Form("Form");
     
 private void addButton(Reclamation u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y());      
+   Container cnt =  new Container(BoxLayout.y());        
      //   Label tt = new Label("**********************Apprenant************** ");
         Label ta = new Label("Votre Titre :"+u.getTitre());
         Label ta2 = new Label("Votre Description :"+u.getDescription());
@@ -254,63 +300,13 @@ traite.addPointerPressedListener(l->{
     new ListReclamationForm(res).show();
 
 });
- Label pdf = new Label("pdf");
-pdf .setUIID ("exstopline");
-Style pdfstyle= new Style(pdf .getUnselectedStyle());
-pdfstyle.setFgColor(0xf7ad02);
-pdf.setTextPosition(LEFT);
-
-pdf.addPointerPressedListener(l->{
-     String urlab = "http://localhost/pdf/ex.php";
-        for (Reclamation q :  new ServiceReclamation().findAll()) {
-          
-               data+="<tr> "+
-                                "<td>"+
-                                
-                                q.getTitre()
-                                
-                                +"</td>"
-                       +
-                                "<td>"+
-                                
-                                q.getDescription()
-                                
-                                +"</td>"
-                                +
-                                "<td>"+
-                                
-                                q.getTraiter()
-                                
-                                +"</td>"
-                                + "</tr>";
-        }
-
-                                ConnectionRequest cnreq = new ConnectionRequest();
-                                cnreq.setPost(false);
-                             
-                                cnreq.addArgument("data", data);
-                                cnreq.setUrl(urlab);
-
-                                cnreq.addResponseListener(evx
-                                        -> {
-                                    String dataw = new String(cnreq.getResponseData());
-                              Dialog dig=new Dialog("PDF");
-  dig.show("PDF","PDF",null,"yep");
-                                }
-                                );
-                                NetworkManager.getInstance().addToQueueAndWait(cnreq);
-    
-    
-   new ListReclamationForm(res).show();
-
-});
 
 
 
 
 
-        f.addAll(ta,ta2,ta4,supprimer,lModifier,traite,pdf);
-        add(f);
+        cnt.addAll(ta,ta2,ta4,supprimer,lModifier,traite);
+        add(cnt);
 
     }
    

@@ -1,6 +1,7 @@
 package com.mycompany.gui;
 
 import static com.codename1.charts.util.ColorUtil.red;
+import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
@@ -127,7 +128,7 @@ updateArrowposition (partage, arrow);
 
 
  //  Container cnt=new Container();
-         Form f1 =  new Form("Form", BoxLayout.y());
+        Container f1 =  new Container(BoxLayout.y()); 
 
    Button concert=new Button("Concerts");
 
@@ -137,15 +138,33 @@ updateArrowposition (partage, arrow);
     Button musicien=new Button("Musiciens");
      Button tactor=new Button("Theatre Actor");
       Button factor=new Button("Movie Actor");
-   f1.addAll(concert,play,movie,cinema,musicien,tactor,factor);
+       Button event=new Button("Event");
+        Button users=new Button("Users");
+         Button logout=new Button("Logout");
+   f1.addAll(concert,play,movie,cinema,musicien,tactor,factor,event,users,logout);
+   
         add(f1);
-  
+        Form f2 = new Form(new BorderLayout(BorderLayout.CENTER_BEHAVIOR_CENTER_ABSOLUTE));
+        ImageViewer imavu1 = new ImageViewer(res.getImage("z.jpeg"));
+  f2.add(BorderLayout.CENTER, imavu1);
+   
+        add(f2);
 
        
     //ON CLICK CONCERT
  concert.addPointerPressedListener(l->{
 
            new ListConcertForm(res).show();
+          
+        });
+ event.addPointerPressedListener(l->{
+
+           new ListEvenementForm(res).show();
+          
+        });
+ users.addPointerPressedListener(l->{
+
+           new ListUsers(res).show();
           
         });
  
@@ -175,11 +194,23 @@ updateArrowposition (partage, arrow);
            new ListTactorForm(res).show();
           
         });
-//      factor.addPointerPressedListener(l->{
-//
-//           new ListFactorForm(res).show();
-//          
-//        });
+     
+      logout.addPointerPressedListener(l->{
+
+           new SignInForm(res).show();
+          
+        });
+      factor.addPointerPressedListener(l->{
+
+           new ListFactorForm(res).show();
+          
+        });
+      
+      movie.addPointerPressedListener(l->{
+
+           new ListMovieForm(res).show();
+          
+        });
     
 
 

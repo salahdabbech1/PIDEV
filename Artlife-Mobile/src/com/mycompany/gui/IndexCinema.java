@@ -49,7 +49,7 @@ import com.codename1.ui.plaf.Border;
  * @author HP
  */
 
-public class IndexCinema extends BaseForm {
+public class IndexCinema extends BaseFront {
       Form current;
     private EncodedImage placeHolder;
 
@@ -136,7 +136,7 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
- Form f=new Form("Form");
+Container f=new Container();
 
  
     Button ret=new Button("Return");
@@ -172,8 +172,7 @@ ArrayList<cinema> list = Servicecinema.getInstance().Affichagecinema();
 
    private void addButton(cinema u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+       Container f =  new Container(BoxLayout.y()); 
         
         Label ta = new Label("nom :"+u.getName());
         
@@ -188,19 +187,14 @@ ArrayList<cinema> list = Servicecinema.getInstance().Affichagecinema();
         imavu = new ImageViewer(res.getImage("s.png"));
         }
  
- Label details = new Label("details");
-details .setUIID ("exstopline");
-Style modifierstyle= new Style(details .getUnselectedStyle());
-modifierstyle.setFgColor(0xf7ad02);
-details.setTextPosition(LEFT);
+
+
+Button details=new Button("Détails");
 
 details.addPointerPressedListener(l->{
-
-      new DetailsCinema(res,u).show();
+new DetailsCinema(res,u).show();
 
 });
-
-
         f.addAll(imavu,ta,details);
         add(f);
 
