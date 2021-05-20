@@ -56,6 +56,10 @@ Label l=new Label("Liste Des Concerts");
     hi.add(BorderLayout.CENTER, new Table(tm));
 hi.show();
   }
+
+    public Excel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
     private void addStringValue(String s, Component v) {
         add(BorderLayout.west(new Label(s,"PaddedLabel"))

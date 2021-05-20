@@ -67,7 +67,7 @@ swipe.addTab("",res.getImage("z.jpeg"), pagel);
     getTitleArea().setUIID("Container");
     setTitle("Modifier Concert");
     getContentPane().setScrollVisible(false);
-    super.addSideMenu(res);
+  //  super.addSideMenu(res);
     addTab (swipe,s1,res.getImage("z.jpeg"),"","",res);
     TextField name = new TextField((m.getName()), "Nom", 20, TextField.ANY);
      TextField idmusician = new TextField((m.getIdmusician()), "Musician", 20, TextField.ANY);

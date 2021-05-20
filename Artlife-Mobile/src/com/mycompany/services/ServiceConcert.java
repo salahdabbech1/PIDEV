@@ -12,6 +12,7 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.entities.Concert;
+import static com.mycompany.services.ServiceMusician.resulatok;
 import com.mycompany.utils.Statics;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -116,9 +117,6 @@ public class ServiceConcert {
         
     }
     
-    
-    
-    
     public Concert DetailConcert(int id,Concert concerts)
     {
         
@@ -179,8 +177,10 @@ public class ServiceConcert {
     }
     
     public boolean modifierConcert (Concert t){
-String url = Statics.BASE_URL+"/concert/updateConcert?id="+ t.getId() + "&name=" + t.getName() + "&idmusician=" + t.getIdmusician() + "&musics=" +  t.getMusics()  + "&trailer=" +  t.getTrailer()  + "&image=" + t.getImage(); 
+        //http://127.0.0.1:8000/concert/updateConcert?id=777777839&name=barra&idmusician=test&musics=alo&trailer=selfa&image=lmao
+String url = Statics.BASE_URL+"/concert/updateConcert?id="+ t.getId() + "&name=" + t.getName() + "&idmusician=" + t.getIdmusician() + "&musics=" +  t.getMusics()  + "&trailer=" +  t.getTrailer()  + "&image=" + t.getImage(); //création de l'URL
 req.setUrl(url);
+System.out.println(t.getName());
 req.addResponseListener(new ActionListener<NetworkEvent>() {
 public void actionPerformed (NetworkEvent evt) {
 resulatok = req.getResponseCode() == 200 ; // Code response Http 200 ok
@@ -189,6 +189,5 @@ req.removeResponseListener(this);
 NetworkManager.getInstance().addToQueueAndWait(req);//execution tal request sinon yet Sada chy dima nalawa
 return resulatok;
     }
-
     
 }

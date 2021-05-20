@@ -68,7 +68,7 @@ public class BaseForm extends Form {
 
     protected void addSideMenu(Resources res) {
         Toolbar tb = getToolbar();
-        Image img = res.getImage("profile-background.jpg");
+        Image img = res.getImage("rrrr.jpg");
         if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
             img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
         }
@@ -79,11 +79,14 @@ public class BaseForm extends Form {
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
                 sl,
                 FlowLayout.encloseCenterBottom(
-                        new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
+                        new Label(res.getImage(SessionManager.getImage()), "PictureWhiteBackgrond"))
+               
+                
         ));
-        
+        System.err.println(SessionManager.getImage());
         tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, e -> new NewsfeedForm(res).show());
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
+        tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
     }
 }

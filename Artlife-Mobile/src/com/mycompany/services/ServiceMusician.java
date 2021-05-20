@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.mycompany.utils.DataSource;
 /**
  *
  * @author HP
@@ -26,6 +27,8 @@ public class ServiceMusician {
     public static ServiceMusician instance=null;
     public static boolean resulatok=true;
     private ConnectionRequest req;
+       public ArrayList<Musician> Musicians;
+            private ConnectionRequest request;
     
     
     public static ServiceMusician getInstance()
@@ -44,7 +47,7 @@ public class ServiceMusician {
     
     public boolean  addMusician(Musician t)
     {
-        String url=Statics.BASE_URL+"/musician/addMusician?name=" + t.getName() + "&prenom=" + t.getPrenom() + "&description=" +  t.getDescription()  + "&born=" +  t.getBorn()  + "&image=" + t.getImage() + "&born=" + t.getBorn() ; //création de l'URL
+        String url=Statics.BASE_URL+"/musician/addMusician?name=" + t.getName() + "&prenom=" + t.getPrenom() + "&description=" +  t.getDescription()  + "&born=" +  t.getBorn()  + "&image=" + t.getImage() ; //création de l'URL
         req.setUrl(url);
         req.addResponseListener((e)->{
         
@@ -112,14 +115,12 @@ public class ServiceMusician {
         
     }
     
-    
-    
-    
-    public Musician DetailMusician(int id,Musician musicians)
+    /*
+    public Musician DetailMusician(String id,Musician musicians)
     {
-        
-        String url=Statics.BASE_URL+"/musician/detailMusician?"+id;
+        String url=Statics.BASE_URL+"/musician/displayMusiciansParConcert/"+id;
         req.setUrl(url);
+        System.out.println(req.getResponseData());
          String sr=new String(req.getResponseData());
         
         req.addResponseListener((evt)->{
@@ -148,7 +149,7 @@ public class ServiceMusician {
                   NetworkManager.getInstance().addToQueueAndWait(req); 
                   return musicians;
 
-    }
+    }*/
     
     
     public boolean deleteMusician(int id)
@@ -168,7 +169,7 @@ public class ServiceMusician {
     }
     
     public boolean modifierMusician (Musician t){
-String url = Statics.BASE_URL+"/musician/updateMusician?id="+ t.getId() +"&name=" + t.getName() + "&prenom=" + t.getPrenom() + "&description=" +  t.getDescription()  + "&born=" +  t.getBorn()  + "&image=" + t.getImage() + "&born=" + t.getBorn() ;
+String url = Statics.BASE_URL+"/musician/updateMusician?id="+ t.getId() +"&name=" + t.getName() + "&prenom=" + t.getPrenom() + "&description=" +  t.getDescription()  + "&born=" +  t.getBorn()  + "&image=" + t.getImage();
 req.setUrl(url);
 req.addResponseListener(new ActionListener<NetworkEvent>() {
 public void actionPerformed (NetworkEvent evt) {
@@ -178,6 +179,47 @@ req.removeResponseListener(this);
 NetworkManager.getInstance().addToQueueAndWait(req);//execution tal request sinon yet Sada chy dima nalawa
 return resulatok;
     }
-
+    
+    public ArrayList<Musician>Affich(String id)
+    {
+        ArrayList<Musician> result=new ArrayList<>();
+        String url=Statics.BASE_URL+"/musician/displayMusiciansParConcert/"+id;
+        req.setUrl(url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                JSONParser Jsonp;
+                Jsonp=new JSONParser();
+                try{
+                    Map<String,Object>mapMusician= Jsonp.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+                    List<Map<String,Object>> listofMaps = (List<Map<String,Object>>) mapMusician.get("root");
+                    
+                    
+                    for(Map<String,Object> obj : listofMaps)
+                    {
+                        Musician re=new Musician();
+                        
+                        float id=Float.parseFloat(obj.get("id").toString());
+                        String name=obj.get("name").toString();
+                        String prenom=obj.get("prenom").toString();
+                          String description=obj.get("description").toString();
+                        String image=obj.get("image").toString();
+                        re.setId((int) id);
+                        re.setName(name);
+                        re.setPrenom(prenom);
+                        re.setDescription(description);
+                        re.setImage(image);
+                        result.add(re);
+                    }
+                } catch (IOException ex) {
+                    System.out.println(
+                            "good");
+                    
+                }
+            }
+        });
+                    NetworkManager.getInstance().addToQueueAndWait(req); 
+                    return result;
+    }
 
 }

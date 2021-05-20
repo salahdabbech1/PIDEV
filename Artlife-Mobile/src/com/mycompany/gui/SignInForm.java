@@ -29,13 +29,21 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import com.mycompany.services.ServiceUser;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 /**
  * Sign in UI
  *
  * @author Shai Almog
  */
-public class SignInForm extends BaseForm {
+public class SignInForm extends BaseFront {
 
     public SignInForm(Resources res) {
         super(new BorderLayout());
@@ -48,20 +56,31 @@ public class SignInForm extends BaseForm {
         getTitleArea().setUIID("Container");
         setUIID("SignIn");
         
-        add(BorderLayout.NORTH, new Label(res.getImage("Logo.png"), "LogoLabel"));
+    //    add(BorderLayout.NORTH, new Label(res.getImage("Logo.png"), "LogoLabel"));
         
-        TextField username = new TextField("", "Username", 20, TextField.ANY);
+        TextField name = new TextField("", "Username", 20, TextField.ANY);
         TextField password = new TextField("", "Password", 20, TextField.PASSWORD);
-        username.setSingleLineTextArea(false);
+        name.setSingleLineTextArea(false);
         password.setSingleLineTextArea(false);
         Button signIn = new Button("Sign In");
         Button signUp = new Button("Sign Up");
-        signUp.addActionListener(e -> new SignUpForm(res).show());
+        signUp.addActionListener(e -> {
+           
+           
+             
+    
+                new SignUpForm(res).show();
+             
+         
+            
+         
+          
+        });
         signUp.setUIID("Link");
         Label doneHaveAnAccount = new Label("Don't have an account?");
         
         Container content = BoxLayout.encloseY(
-                new FloatingHint(username),
+                new FloatingHint(name),
                 createLineSeparator(),
                 new FloatingHint(password),
                 createLineSeparator(),
@@ -71,7 +90,9 @@ public class SignInForm extends BaseForm {
         content.setScrollableY(true);
         add(BorderLayout.SOUTH, content);
         signIn.requestFocus();
-        signIn.addActionListener(e -> new NewsfeedForm(res).show());
+        signIn.addActionListener(e ->{
+        ServiceUser.getInstance().signin(name, password, res);
+        });
     }
     
 }

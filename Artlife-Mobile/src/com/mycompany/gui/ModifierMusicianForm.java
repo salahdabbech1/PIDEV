@@ -49,7 +49,7 @@ public class ModifierMusicianForm extends BaseBack {
     getTitleArea().setUIID("Container");
  //   setTitle("ajouter musician");
     getContentPane().setScrollVisible(false);
-    super.addSideMenu(res);
+ //   super.addSideMenu(res);
     
     TextField name = new TextField((m.getName()), "Nom", 20, TextField.ANY);
     TextField prenom = new TextField((m.getPrenom()), "Prenom", 20, TextField.ANY);
