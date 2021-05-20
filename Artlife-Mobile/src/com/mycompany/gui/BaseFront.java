@@ -53,30 +53,27 @@ public class BaseFront extends Form {
 
     protected void addSideMenu(Resources res) {
         Toolbar tb = getToolbar();
-        Image img = res.getImage("ev.jpg");
-        if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
-            img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
-        }
-        ScaleImageLabel sl = new ScaleImageLabel(img);
-        sl.setUIID("BottomPad");
-        sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+     //   Image img = res.getImage("ev.jpg");
         
+       
         //KARIM RECUPERI EL TASWIRA 
         //KARIM LEZEMHA BEL SESSIONNNNNNNNNNN
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
-                sl,
+               
                 FlowLayout.encloseCenterBottom(
-                        new Label(res.getImage("artlife.png"), "PictureWhiteBackgrond"))
+                        new Label(res.getImage(SessionManager.getImage()), "PictureWhiteBackgrond"))
         ));
-        
+        System.err.println(SessionManager.getImage());
         // ba7dha el bienvenue tzid u.getUser or somth haja besh trecuperi biha
         
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
                 FlowLayout.encloseCenterBottom(new Label("Bienvenue! "))
         ));
-        tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, e -> new NewsfeedForm(res).show());
+        tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_UPDATE, e -> new HomeFront(res).show());
+                tb.addMaterialCommandToSideMenu("Tickets", FontImage.MATERIAL_EXIT_TO_APP, e -> new MyTicketForm(res).show());
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
+
 
         
         

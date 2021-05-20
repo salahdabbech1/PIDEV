@@ -159,6 +159,9 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     trailer.setUIID("TextFieldBlack");
     addStringValue("Trailer", trailer);
     
+    TextField image =new TextField("", "Entrer image");
+    image.setUIID("TextFieldBlack");
+    addStringValue("Image", image);
     
     
     ComboBox idmusician = new ComboBox();
@@ -200,7 +203,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
                         add("No file was selected");
                         revalidate();
                     } else {
-                        String hh="C:/Users/HP/Documents/NetBeansProjects/Final/src";
+                        String hh="C:/Users/bouyo/Desktop/Study/S2/Project/obile/Final/src";
                         Image logo;
 
                         try {
@@ -243,12 +246,20 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
     InfiniteProgress ip = new InfiniteProgress(); 
     final Dialog iDialog = ip.showInfiniteBlocking();
   
-    Concert t = new Concert(String.valueOf(name.getText()).toString(),String.valueOf(idmusician.getSelectedItem()).toString(),String.valueOf(musics.getText()).toString(),namePic,String.valueOf(trailer.getText()).toString());
+ 
+    try{
+           Concert t = new Concert(String.valueOf(name.getText()).toString(),String.valueOf(idmusician.getSelectedItem()).toString(),String.valueOf(musics.getText()).toString(),namePic,String.valueOf(trailer.getText()).toString());
     System.out.println("data concert = "+t);
+    
    ServiceConcert.getInstance().addConcert(t);
      iDialog.dispose(); 
          new ListConcertForm(res).show();
     refreshTheme();
+    }
+     catch (Exception ex) {
+         ex.printStackTrace();
+          new ListConcertForm(res).show();
+}
    
 
     

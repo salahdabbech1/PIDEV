@@ -27,7 +27,6 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
-import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BorderLayout;
@@ -38,6 +37,7 @@ import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 import com.mycompany.entities.Concert;
+import com.mycompany.entities.Musician;
 import com.mycompany.services.ServiceConcert;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class ListConcertForm extends BaseBack {
     getTitleArea().setUIID("Container");
    // setTitle("ajouter concert");
     getContentPane().setScrollVisible(false);
-    super.addSideMenu(res);
+  //  super.addSideMenu(res);
     
    
     tb.addSearchCommand(e -> {
@@ -120,7 +120,9 @@ InfiniteProgress ipp = new InfiniteProgress();
 final Dialog ipDlg = ipp.showInifiniteBlocking();
 refreshTheme(); });
  
- 
+
+   
+//FROM HERE ISSUE STARTS
  add(LayeredLayout.encloseIn(
 GridLayout.encloseIn(3, mesListes, liste, partage),
 FlowLayout.encloseBottom (arrow) ));
@@ -141,43 +143,30 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 });
 
      //END CODE DE DECORATION
-//search tbadel 3onwen tool bar
-//prepare field
-//tebda houni
-TextField searchField;
-searchField = new TextField("", "Articles' List");
-searchField.getHintLabel().setUIID("Title");
-searchField.setUIID("TextFieldBlack");
-    addStringValue("searchField", searchField);
-//getToolbar().setTitleComponent(searchField);
-//if field content changed
-searchField.addDataChangeListener((i1, i2) -> {
-String t = searchField.getText();
-if(t.length() < 1) {
-for(Component cmp : getContentPane()) {
-cmp.setHidden(false);
-cmp.setVisible(true);
-}
-} else {
-t = t.toLowerCase();
-for(Component cmp: getContentPane()) {
-//tekhou el val ta3 el champ : champ li 3malt 3lih el recherche type span label (emplacement : container->container->spanlabel )
-String val = ((SpanLabel) ((Container)((Container) cmp).getComponentAt(0)).getComponentAt(0)).getText();
-System.out.println( val );
-boolean show = val != null && val.toLowerCase().indexOf(t) > -1;
-cmp.setHidden(!show);
-cmp.setVisible(show);
-}
-}
-getContentPane().animateLayout(250);
+ 
+ Container f=new Container();
+
+ 
+    Button ret=new Button("Return");
+    
+    ret.addPointerPressedListener(l->{
+
+   new HomeBack(res).show();
+
 });
+        Button ajt=new Button("Ajouter");
+    
+    ajt.addPointerPressedListener(l->{
 
+   new AjoutConcertForm(res).show();
 
-
-//TOUFA HOUNI
+});
+ f.addAll(ret,ajt);
+ add(f);
         ArrayList<Concert> list = ServiceConcert.getInstance().AffichageConcert();
        
         for (Concert u : list) {
+            
             addButton(u,res);
         }
         
@@ -194,16 +183,10 @@ getContentPane().animateLayout(250);
 
         return img;
     }
-   private void addStringValue(String s, Component v) {
-        add(BorderLayout.west(new Label(s,"PaddedLabel"))
-        .add(BorderLayout.CENTER,v));
-        add(createLineSeparator(0xeeeeee));
-        
-    }
+
     private void addButton(Concert u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+      Container cnt =  new Container(BoxLayout.y());  
         Label ta = new Label("Nom :"+u.getName());
         Label ta2 = new Label("Musics :"+u.getMusics());
         Label ta3 = new Label("Musician :"+u.getIdmusician());
@@ -265,12 +248,12 @@ lModifier.addPointerPressedListener(l->{
 });
 
 
-        f.addAll(imavu,ta,ta2,ta3,supprimer,lModifier);
-        add(f);
+        cnt.addAll(imavu,ta,ta2,ta3,supprimer,lModifier);
+        add(cnt);
 
     }
    
-   
+
       private void addTab (Tabs swipe, Label spacer,  Image image, String string, String text, Resources res) {
 int size = Math.min(Display.getInstance().getDisplayWidth(), Display.getInstance().getDisplayHeight());
   System.out.println("size howa = "+size);

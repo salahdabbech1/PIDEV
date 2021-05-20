@@ -55,7 +55,7 @@ public class HomeBack extends BaseBack{
     getTitleArea().setUIID("Container");
    // setTitle("ajouter concert");
     getContentPane().setScrollVisible(false);
-    super.addSideMenu(res);
+//    super.addSideMenu(res);
    
     tb.addSearchCommand(e -> {
 });
@@ -124,6 +124,101 @@ addShowListener(e -> {
 arrow.setVisible (true);
 updateArrowposition (partage, arrow);
 });
+
+
+ //  Container cnt=new Container();
+        Container f1 =  new Container(BoxLayout.y()); 
+
+   Button concert=new Button("Concerts");
+
+   Button play=new Button("Theatres");
+   Button movie=new Button("Movies");
+   Button cinema=new Button("Cinemas");
+    Button musicien=new Button("Musiciens");
+     Button tactor=new Button("Theatre Actor");
+      Button factor=new Button("Movie Actor");
+       Button event=new Button("Event");
+        Button users=new Button("Users");
+         Button logout=new Button("Logout");
+   f1.addAll(concert,play,movie,cinema,musicien,tactor,factor,event,users,logout);
+        add(f1);
+  
+
+       
+    //ON CLICK CONCERT
+ concert.addPointerPressedListener(l->{
+
+           new ListConcertForm(res).show();
+          
+        });
+ event.addPointerPressedListener(l->{
+
+           new ListEvenementForm(res).show();
+          
+        });
+ users.addPointerPressedListener(l->{
+
+           new ListUsers(res).show();
+          
+        });
+ 
+     //ON CLICK CONCERT
+ play.addPointerPressedListener(l->{
+
+           new ListTheatreForm(res).show();
+          
+        });
+  movie.addPointerPressedListener(l->{
+
+           new ListMovieForm(res).show();
+          
+        });
+   cinema.addPointerPressedListener(l->{
+
+           new ListCinemaForm(res).show();
+          
+        });
+    musicien.addPointerPressedListener(l->{
+
+           new ListMusicianForm(res).show();
+          
+        });
+     tactor.addPointerPressedListener(l->{
+
+           new ListTactorForm(res).show();
+          
+        });
+     
+      logout.addPointerPressedListener(l->{
+
+           new SignInForm(res).show();
+          
+        });
+      factor.addPointerPressedListener(l->{
+
+           new ListFactorForm(res).show();
+          
+        });
+      
+      movie.addPointerPressedListener(l->{
+
+           new ListMovieForm(res).show();
+          
+        });
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
  bindButtonSelection (mesListes, arrow);
 bindButtonSelection (liste, arrow);
 bindButtonSelection (partage, arrow);

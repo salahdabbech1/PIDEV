@@ -9,6 +9,8 @@ import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
+import com.codename1.l10n.ParseException;
+import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
@@ -27,8 +29,10 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
+import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
+import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
@@ -36,17 +40,21 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
-import com.mycompany.entities.Concert;
-import com.mycompany.services.ServiceConcert;
+import com.mycompany.entities.Evenement;
+import com.mycompany.entities.Ticket;
+import com.mycompany.services.ServiceEvenement;
+import com.mycompany.services.ServiceTicket;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Date;
+ 
 /**
  *
  * @author HP
  */
 public class HomeFront extends BaseFront{
      Form current;
+      
     private EncodedImage placeHolder;
     public HomeFront(Resources res){
          //   super("musician", BoxLayout.x());
@@ -127,47 +135,71 @@ arrow.setVisible (true);
 updateArrowposition (partage, arrow);
 });
  //  Container cnt=new Container();
-         Form f1 =  new Form("Form", BoxLayout.x());
+         Container f1 =  new Container();
+           Container f2 =  new Container();
+      
+
    Button concert=new Button("Concerts");
-   Button play=new Button("Plays");
+
+   Button play=new Button("Theatres");
    Button movie=new Button("Movies");
    Button cinema=new Button("Cinemas");
-   f1.addAll(concert,play,movie,cinema);
+     Button tactor=new Button("Theatre Actor");
+      Button factor=new Button("Movie Actor");
+   f1.addAll(concert,play,movie);
         add(f1);
+    f2.addAll(tactor,factor,cinema);
+        add(f2);
         
         
+        //ON CLICK CONCERT
+ movie.addPointerPressedListener(l->{
+
+           new IndexMovieForm(res).show();
+          
+        });
        
     //ON CLICK CONCERT
-    concert.addActionListener((e)->{
-        try{
-    InfiniteProgress ip = new InfiniteProgress(); 
-    final Dialog iDialog = ip.showInfiniteBlocking();
-    iDialog.dispose(); 
-         new IndexConcert(res).show();
-    refreshTheme();
+ concert.addPointerPressedListener(l->{
 
-        }
-        catch (Exception ex) {
-         ex.printStackTrace();
-}
-        });   
-        
+           new IndexConcert(res).show();
+          
+        });
+ 
+     //ON CLICK CONCERT
+ play.addPointerPressedListener(l->{
+
+           new IndexTheatreForm(res).show();
+          
+        });
+//  movie.addPointerPressedListener(l->{
+//
+//           new IndexMovieForm(res).show();
+//          
+//        });
+   cinema.addPointerPressedListener(l->{
+
+           new IndexCinema(res).show();
+          
+        });
+
+     tactor.addPointerPressedListener(l->{
+
+           new IndexTactorForm(res).show();
+          
+        });
+      factor.addPointerPressedListener(l->{
+
+           new IndexFactorForm(res).show();
+          
+        });
+    
+
            //ON CLICK CINEMA
         
         //ON CLICK FILMS
         
         //ON CLICK THEATRE
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
  bindButtonSelection (mesListes, arrow);
@@ -179,10 +211,12 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
  
        
-     ArrayList<Concert> list = ServiceConcert.getInstance().AffichageConcert();
+     ArrayList<Evenement> list = ServiceEvenement.getInstance().AffichageEvenement();
+     int s=SessionManager.getId();
        
-        for (Concert u : list) {
+        for (Evenement u : list) {
             addButton(u,res);
+            
         }
      
   
@@ -198,12 +232,13 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
         return img;
     }
- private void addButton(Concert u,Resources res) {
+ private void addButton(Evenement u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+        Container f =  new Container(BoxLayout.y()); 
      
-        Label ta = new Label("nom :"+u.getName());
+        Label ta = new Label("Name:"+u.getName());
+      Date d= new Date();
+      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         ImageViewer imavu;
         try {
         imavu = new ImageViewer(getImageFromServer(u.getImage()));
@@ -212,9 +247,25 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
         System.out.println(u.getImage());
         imavu = new ImageViewer(res.getImage("s.png"));
         }
-       
-           Button Reserver=new Button("Réserver");
-
+            
+           Button Reserver=new Button("Réserver Votre Billet");
+     
+         
+           Reserver.addPointerPressedListener((ActionEvent l)->{
+               try{
+                   
+              
+          Ticket t=new Ticket(SessionManager.getName(),"colise", 20,"validation",55,d,"B21");
+          ServiceTicket.getInstance().addTicketn(t);
+          new MyTicketForm(res).show();
+               }
+                catch (Exception ex) {
+         ex.printStackTrace();
+       new MyTicketForm(res).show();
+} 
+             
+        });
+ System.out.println(u.getName());
         f.addAll(imavu,ta,Reserver);
         add(f);
 

@@ -53,7 +53,7 @@ public class ListMusicianForm extends BaseBack{
     getTitleArea().setUIID("Container");
    // setTitle("ajouter concert");
     getContentPane().setScrollVisible(false);
-    super.addSideMenu(res);
+   // super.addSideMenu(res);
    
     tb.addSearchCommand(e -> {
 });
@@ -127,13 +127,25 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
- Form f1 =  new Form("Form");
-   Button Ajouter=new Button("Ajouter");
-   Ajouter.addActionListener(c -> {
-new AjoutMusicianForm(res).show();
+Container f=new Container();
+
+ 
+    Button ret=new Button("Return");
+    
+    ret.addPointerPressedListener(l->{
+
+   new HomeBack(res).show();
+
 });
-   f1.addAll(Ajouter);
-        add(f1);
+        Button ajt=new Button("Ajouter");
+    
+    ajt.addPointerPressedListener(l->{
+
+   new AjoutMusicianForm(res).show();
+
+});
+ f.addAll(ret,ajt);
+ add(f);
  
     
     
@@ -161,8 +173,7 @@ new AjoutMusicianForm(res).show();
 
     private void addButton(Musician u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+         Container cnt =  new Container(BoxLayout.y());         
         Label tt = new Label("Musician");
         Label ta = new Label("Nom :"+u.getName());
         Label ta2 = new Label("Prenom :"+u.getPrenom());
@@ -226,8 +237,8 @@ lModifier.addPointerPressedListener(l->{
 });
 
 
-        f.addAll(tt,imavu,ta,ta2,ta3,supprimer,lModifier);
-        add(f);
+        cnt.addAll(tt,imavu,ta,ta2,ta3,supprimer,lModifier);
+        add(cnt);
 
     }
    

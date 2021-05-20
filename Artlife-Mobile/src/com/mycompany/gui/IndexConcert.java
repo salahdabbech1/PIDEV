@@ -102,7 +102,7 @@ rbs[ii].setSelected (true); } });
 Component.setSameSize (radioContainer);
 add (LayeredLayout.encloseIn(swipe,radioContainer));
 ButtonGroup barGroup = new ButtonGroup();
-RadioButton mesListes = RadioButton.createToggle("Mes Reclamations", barGroup);
+RadioButton mesListes = RadioButton.createToggle(" ", barGroup);
 mesListes.setUIID("SelectBar");
 RadioButton liste = RadioButton.createToggle("BIENVENUE A ARTLIFE", barGroup);
 liste.setUIID("SelectBar");
@@ -131,18 +131,20 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
- Form f1 =  new Form("Form", BoxLayout.x());
-   Button concert=new Button("Concerts");
-   Button play=new Button("Plays");
-   Button movie=new Button("Movies");
-   Button cinema=new Button("Cinemas");
-   f1.addAll(concert,play,movie,cinema);
-        add(f1);
+Container f =  new Container(BoxLayout.y()); 
+
         
-         Form f2 =  new Form("Form", BoxLayout.x());
+         Container f2 =  new Container(BoxLayout.x());
    Button excel=new Button("Excel");
    Button record=new Button("Enregistrement Vocal");
-   f2.addAll(excel,record);
+    Button r =new Button("Return");
+   
+                 r.addActionListener(c -> {
+                new HomeFront(res).show();
+                });
+    
+   
+   f2.addAll(excel,record,r);
         add(f2);
         
         
@@ -179,26 +181,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
             
        
     //ON CLICK CONCERT
-    concert.addActionListener((e)->{
-        try{
-    InfiniteProgress ip = new InfiniteProgress(); 
-    final Dialog iDialog = ip.showInfiniteBlocking();
-    iDialog.dispose(); 
-         new IndexConcert(res).show();
-    refreshTheme();
-
-        }
-        catch (Exception ex) {
-         ex.printStackTrace();
-}
-        });   
-        
-           //ON CLICK CINEMA
-        
-        //ON CLICK FILMS
-        
-        //ON CLICK THEATRE
-
+   
         ArrayList<Concert> list = ServiceConcert.getInstance().AffichageConcert();
        
         for (Concert u : list) {
@@ -221,8 +204,7 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
     private void addButton(Concert u,Resources res) {
 
-        Container cnt=new Container();
-        Form f =  new Form("Form", BoxLayout.y()); 
+        Container f =  new Container(BoxLayout.y()); 
         Label ta = new Label("Nom :"+u.getName());
         Label ta2 = new Label("Musics :"+u.getMusics());
         Label ta3 = new Label("Idmusician :"+u.getIdmusician());
@@ -242,9 +224,8 @@ details.addPointerPressedListener(l->{
    new DetailsConcMu(res,u).show();
 
 });
- Button Reserver=new Button("Réserver");
 
-        f.addAll(imavu,ta,ta2,ta3,details,Reserver);
+        f.addAll(imavu,ta,ta2,ta3,details);
         add(f);
 
     }
