@@ -40,28 +40,29 @@ import java.util.ArrayList;
  *
  * @author HP
  */
-public class ListMusicianForm extends BaseForm{
+public class ListMusicianForm extends BaseBack{
     Form current;
     private EncodedImage placeHolder;
 
     public ListMusicianForm(Resources res) {
         //   super("musician", BoxLayout.x());
    
-    Toolbar tb=new Toolbar(true);
+   Toolbar tb=new Toolbar(true);
     current=this;
     setToolbar(tb);
     getTitleArea().setUIID("Container");
-    setTitle("ajouter tactor");
-    getContentPane().setScrollVisible(true);
+   // setTitle("ajouter concert");
+    getContentPane().setScrollVisible(false);
+    super.addSideMenu(res);
    
     tb.addSearchCommand(e -> {
 });
 Tabs swipe = new Tabs();
 Label s1 = new Label();
 Label s2 = new Label();
-addTab (swipe,s1,res.getImage("back-logo.jpeg"),"","",res);
-    //CODE DE DECORATION
-   
+addTab (swipe,s1,res.getImage("m.jpg"),"","",res);
+      //CODE DE DECORATION
+    
     swipe.setUIID("Container");
 swipe.getContentPane().setUIID("Container");
 swipe.hideTabs();
@@ -97,11 +98,11 @@ rbs[ii].setSelected (true); } });
 Component.setSameSize (radioContainer, s1, s2);
 add (LayeredLayout.encloseIn(swipe,radioContainer));
 ButtonGroup barGroup = new ButtonGroup();
-RadioButton mesListes = RadioButton.createToggle("Mes Reclamations", barGroup);
+RadioButton mesListes = RadioButton.createToggle("                  ", barGroup);
 mesListes.setUIID("SelectBar");
-RadioButton liste = RadioButton.createToggle("Autres", barGroup);
+RadioButton liste = RadioButton.createToggle("         LISTE DES MUSICIANS", barGroup);
 liste.setUIID("SelectBar");
-RadioButton partage = RadioButton.createToggle ("Reclamer", barGroup);
+RadioButton partage = RadioButton.createToggle ("                     ", barGroup);
 partage.setUIID("SelectBar");
 Label arrow = new Label (res.getImage ("news-tab-down-arrow.png"), "Container");
  
@@ -126,7 +127,18 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
-
+ Form f1 =  new Form("Form");
+   Button Ajouter=new Button("Ajouter");
+   Ajouter.addActionListener(c -> {
+new AjoutMusicianForm(res).show();
+});
+   f1.addAll(Ajouter);
+        add(f1);
+ 
+    
+    
+    
+     //END CODE DE DECORATION
         ArrayList<Musician> list = ServiceMusician.getInstance().AffichageMusician();
        
         for (Musician u : list) {
@@ -151,10 +163,10 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
         Container cnt=new Container();
         Form f =  new Form("Form", BoxLayout.y()); 
-        Label tt = new Label("******Musician******");
-        Label ta = new Label("Votre nom :"+u.getName());
-        Label ta2 = new Label("Votre prenom :"+u.getPrenom());
-        Label ta3 = new Label("Votre description :"+u.getDescription());
+        Label tt = new Label("Musician");
+        Label ta = new Label("Nom :"+u.getName());
+        Label ta2 = new Label("Prenom :"+u.getPrenom());
+        Label ta3 = new Label("Description :"+u.getDescription());
       //  Label ta4 = new Label("Votre status :"+u.getImage());
         ImageViewer imavu;
         try {
@@ -242,7 +254,7 @@ new SpanLabel (text, "LargeWhiteText"),
 FlowLayout.encloseIn(),
 spacer
 )));
-swipe.addTab("",res.getImage("back-logo.jpeg"), pagel);
+swipe.addTab("",res.getImage("m.jpg"), pagel);
 
 }
  public void bindButtonSelection (Button btn, Label l){

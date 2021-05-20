@@ -1,60 +1,68 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.gui;
 
+import static com.codename1.charts.util.ColorUtil.red;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
-import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
+import static com.codename1.ui.Component.BOTTOM;
+import static com.codename1.ui.Component.CENTER;
+import static com.codename1.ui.Component.LEFT;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
+import com.codename1.ui.EncodedImage;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
-import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
+import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
-import com.mycompany.entities.Musician;
-import com.mycompany.services.ServiceMusician;
-import java.util.Date;
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
  *
  * @author HP
  */
-public class AjoutMusicianForm extends BaseBack{
-       Form current;
-    public AjoutMusicianForm(Resources res){
- //   super("musician", BoxLayout.x());
-   Toolbar tb=new Toolbar(true);
+public class HomeBack extends BaseBack{
+     Form current;
+    private EncodedImage placeHolder;
+    public HomeBack(Resources res){
+         //   super("musician", BoxLayout.x());
+   
+      Toolbar tb=new Toolbar(true);
     current=this;
     setToolbar(tb);
     getTitleArea().setUIID("Container");
    // setTitle("ajouter concert");
     getContentPane().setScrollVisible(false);
     super.addSideMenu(res);
-    
+   
     tb.addSearchCommand(e -> {
 });
 Tabs swipe = new Tabs();
 Label s1 = new Label();
 Label s2 = new Label();
-addTab (swipe,s1,res.getImage("m.jpg"),"","",res);
+addTab (swipe,s1,res.getImage("z.jpeg"),"","",res);
     //CODE DE DECORATION
     
     swipe.setUIID("Container");
@@ -64,21 +72,22 @@ ButtonGroup bg = new ButtonGroup();
 int size= Display.getInstance().convertToPixels(1);
 Image unselectedWalkthru =Image.createImage (size, size, 0);
 Graphics g = unselectedWalkthru.getGraphics();
-g.setColor(0xffffff);
+g.setColor(0x76FFF2);
 g.setAlpha(100);
 g.setAntiAliased(true);
 g.fillArc (0, 0, size, size, 0, 360);
 Image selectedWalkthru = Image.createImage (size, size, 0);
 g= selectedWalkthru.getGraphics();
-g.setColor(0xffffff);
+g.setColor(0x76FFF2);
 g.setAntiAliased(true);
 g.fillArc(0, 0, size, size, 0, 360);
 RadioButton[] rbs = new RadioButton[swipe.getTabCount()];
 
- 
  FlowLayout flow = new FlowLayout (CENTER);
 flow.setValign (BOTTOM);
 Container radioContainer = new Container (flow);
+//radioContainer.getStyle().setBgColor(0x99CCCC);
+//radioContainer.getStyle().setBgTransparency(255);
 for (int iter = 0; iter < rbs.length; iter++) {
 rbs[iter] = RadioButton.createToggle(unselectedWalkthru, bg);
 rbs[iter].setPressedIcon (selectedWalkthru);
@@ -92,11 +101,11 @@ rbs[ii].setSelected (true); } });
 Component.setSameSize (radioContainer, s1, s2);
 add (LayeredLayout.encloseIn(swipe,radioContainer));
 ButtonGroup barGroup = new ButtonGroup();
-RadioButton mesListes = RadioButton.createToggle("                  ", barGroup);
+RadioButton mesListes = RadioButton.createToggle("", barGroup);
 mesListes.setUIID("SelectBar");
-RadioButton liste = RadioButton.createToggle("         ADD MUSICIAN", barGroup);
+RadioButton liste = RadioButton.createToggle("BIENVENUE A ARTLIFE", barGroup);
 liste.setUIID("SelectBar");
-RadioButton partage = RadioButton.createToggle ("                     ", barGroup);
+RadioButton partage = RadioButton.createToggle ("", barGroup);
 partage.setUIID("SelectBar");
 Label arrow = new Label (res.getImage ("news-tab-down-arrow.png"), "Container");
  
@@ -121,80 +130,12 @@ bindButtonSelection (partage, arrow);
 addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
- 
- 
-    
-    
     
      //END CODE DE DECORATION
-    
-    
-    TextField name =new TextField("", "entrer name");
-    name.setUIID("TextFieldBlack");
-    addStringValue("name", name);
-    
-      TextField prenom =new TextField("", "entrer prenom");
-    prenom.setUIID("TextFieldBlack");
-    addStringValue("prenom", prenom);
-    
-    
-    TextField born =new TextField("", "entrer brithdate");
-    born.setUIID("TextFieldBlack");
-    addStringValue("born", born);
-    
-    TextField description =new TextField("", "entrer description");
-    description.setUIID("TextFieldBlack");
-    addStringValue("description", description);
-    
-    TextField image =new TextField("", "entrer image");
-    image.setUIID("TextFieldBlack");
-    addStringValue("image", image);
-    
-    Button buttonAjt=new Button("Ajouter Musician");
-    addStringValue("", buttonAjt);
-    
-//     this.getToolbar().addCommandToOverflowMenu("Stat", null, (evt)
-//                -> {
-//            new StatMusician().createPieChartForm("Musician", new ServiceMusician().getStat());
-//
-//        });
-    //onlick event button
-    buttonAjt.addActionListener((e)->{
-        try{
-            if(name.getText()=="" || description.getText()==""|| prenom.getText()==""|| born.getText()==""){
-            Dialog.show("veulliez verifier les donnÃ©es","","annuler","OK");
     }
-         else {
-    InfiniteProgress ip = new InfiniteProgress(); 
-    final Dialog iDialog = ip.showInfiniteBlocking();
-    //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-    String d="1978-11-11";
-    Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(d);
-    Musician t = new Musician(String.valueOf(name.getText()).toString(),String.valueOf(prenom.getText()).toString(),date1,String.valueOf(description.getText()).toString(),String.valueOf(image.getText()).toString());
-    System.out.println("data musician = "+t);
-    ServiceMusician.getInstance().addMusician(t);
-    iDialog.dispose(); 
-         new ListMusicianForm(res).show();
-    refreshTheme();
-
-    
-    }
-        }
-        catch (Exception ex) {
-         ex.printStackTrace();
-}
-        });
-    }
-
-    private void addStringValue(String s, Component v) {
-        add(BorderLayout.west(new Label(s,"PaddedLabel"))
-        .add(BorderLayout.CENTER,v));
-        add(createLineSeparator(0xeeeeee));
-        
-    }
-    
         private void addTab (Tabs swipe, Label spacer,  Image image, String string, String text, Resources res) {
 int size = Math.min(Display.getInstance().getDisplayWidth(), Display.getInstance().getDisplayHeight());
+  System.out.println("size howa = "+size);
 if (image.getHeight() < size) {
 image = image.scaledHeight (size);
  }
@@ -214,7 +155,7 @@ new SpanLabel (text, "LargeWhiteText"),
 FlowLayout.encloseIn(),
 spacer
 )));
-swipe.addTab("",res.getImage("m.jpg"), pagel);
+swipe.addTab("",res.getImage("z.jpeg"), pagel);
 
 }
  public void bindButtonSelection (Button btn, Label l){
@@ -227,6 +168,5 @@ private void updateArrowposition (Button btn, Label l){
 
 l.getUnselectedStyle().setMargin (LEFT, btn.getX() + btn.getWidth()  / 2 - l.getWidth() );
 l.getParent().repaint();
-}   
-    
+}     
 }

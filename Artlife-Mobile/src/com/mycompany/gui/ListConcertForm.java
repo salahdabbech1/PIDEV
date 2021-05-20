@@ -27,6 +27,7 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
+import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BorderLayout;
@@ -37,7 +38,6 @@ import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 import com.mycompany.entities.Concert;
-import com.mycompany.entities.Musician;
 import com.mycompany.services.ServiceConcert;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ import java.util.ArrayList;
  *
  * @author HP
  */
-public class ListConcertForm extends BaseForm {
+public class ListConcertForm extends BaseBack {
       Form current;
     private EncodedImage placeHolder;
 
@@ -57,21 +57,25 @@ public class ListConcertForm extends BaseForm {
     current=this;
     setToolbar(tb);
     getTitleArea().setUIID("Container");
-    setTitle("ajouter concert");
-    getContentPane().setScrollVisible(true);
+   // setTitle("ajouter concert");
+    getContentPane().setScrollVisible(false);
+    super.addSideMenu(res);
+    
    
     tb.addSearchCommand(e -> {
 });
 Tabs swipe = new Tabs();
 Label s1 = new Label();
 Label s2 = new Label();
-addTab (swipe,s1,res.getImage("back-logo.jpeg"),"","",res);
+addTab (swipe,s1,res.getImage("z.jpeg"),"","",res);
+
     //CODE DE DECORATION
-   
+    
     swipe.setUIID("Container");
 swipe.getContentPane().setUIID("Container");
 swipe.hideTabs();
 ButtonGroup bg = new ButtonGroup();
+
 int size= Display.getInstance().convertToPixels(1);
 Image unselectedWalkthru =Image.createImage (size, size, 0);
 Graphics g = unselectedWalkthru.getGraphics();
@@ -103,11 +107,11 @@ rbs[ii].setSelected (true); } });
 Component.setSameSize (radioContainer, s1, s2);
 add (LayeredLayout.encloseIn(swipe,radioContainer));
 ButtonGroup barGroup = new ButtonGroup();
-RadioButton mesListes = RadioButton.createToggle("Mes Reclamations", barGroup);
+RadioButton mesListes = RadioButton.createToggle("", barGroup);
 mesListes.setUIID("SelectBar");
-RadioButton liste = RadioButton.createToggle("Autres", barGroup);
+RadioButton liste = RadioButton.createToggle("LISTE DES CONCERTS", barGroup);
 liste.setUIID("SelectBar");
-RadioButton partage = RadioButton.createToggle ("Reclamer", barGroup);
+RadioButton partage = RadioButton.createToggle ("", barGroup);
 partage.setUIID("SelectBar");
 Label arrow = new Label (res.getImage ("news-tab-down-arrow.png"), "Container");
  
@@ -116,9 +120,11 @@ InfiniteProgress ipp = new InfiniteProgress();
 final Dialog ipDlg = ipp.showInifiniteBlocking();
 refreshTheme(); });
  
+ 
  add(LayeredLayout.encloseIn(
 GridLayout.encloseIn(3, mesListes, liste, partage),
 FlowLayout.encloseBottom (arrow) ));
+
  
  partage.setSelected(true);
 arrow.setVisible(false);
@@ -126,6 +132,7 @@ addShowListener(e -> {
 arrow.setVisible (true);
 updateArrowposition (partage, arrow);
 });
+ 
  bindButtonSelection (mesListes, arrow);
 bindButtonSelection (liste, arrow);
 bindButtonSelection (partage, arrow);
@@ -133,6 +140,41 @@ addOrientationListener(e -> {
 updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow);
 });
 
+     //END CODE DE DECORATION
+//search tbadel 3onwen tool bar
+//prepare field
+//tebda houni
+TextField searchField;
+searchField = new TextField("", "Articles' List");
+searchField.getHintLabel().setUIID("Title");
+searchField.setUIID("TextFieldBlack");
+    addStringValue("searchField", searchField);
+//getToolbar().setTitleComponent(searchField);
+//if field content changed
+searchField.addDataChangeListener((i1, i2) -> {
+String t = searchField.getText();
+if(t.length() < 1) {
+for(Component cmp : getContentPane()) {
+cmp.setHidden(false);
+cmp.setVisible(true);
+}
+} else {
+t = t.toLowerCase();
+for(Component cmp: getContentPane()) {
+//tekhou el val ta3 el champ : champ li 3malt 3lih el recherche type span label (emplacement : container->container->spanlabel )
+String val = ((SpanLabel) ((Container)((Container) cmp).getComponentAt(0)).getComponentAt(0)).getText();
+System.out.println( val );
+boolean show = val != null && val.toLowerCase().indexOf(t) > -1;
+cmp.setHidden(!show);
+cmp.setVisible(show);
+}
+}
+getContentPane().animateLayout(250);
+});
+
+
+
+//TOUFA HOUNI
         ArrayList<Concert> list = ServiceConcert.getInstance().AffichageConcert();
        
         for (Concert u : list) {
@@ -152,17 +194,19 @@ updateArrowposition(barGroup.getRadioButton (barGroup.getSelectedIndex()), arrow
 
         return img;
     }
-
+   private void addStringValue(String s, Component v) {
+        add(BorderLayout.west(new Label(s,"PaddedLabel"))
+        .add(BorderLayout.CENTER,v));
+        add(createLineSeparator(0xeeeeee));
+        
+    }
     private void addButton(Concert u,Resources res) {
 
         Container cnt=new Container();
         Form f =  new Form("Form", BoxLayout.y()); 
-        Label tt = new Label("******Concert******");
-        Label ta = new Label("nom :"+u.getName());
-        Label ta2 = new Label("musics :"+u.getMusics());
-        Label ta3 = new Label("idmusician :"+u.getIdmusician());
-    //    Label ta4 = new Label(u.getTrailer());
-      //  Label ta4 = new Label("Votre status :"+u.getImage());
+        Label ta = new Label("Nom :"+u.getName());
+        Label ta2 = new Label("Musics :"+u.getMusics());
+        Label ta3 = new Label("Musician :"+u.getIdmusician());
         ImageViewer imavu;
         try {
         imavu = new ImageViewer(getImageFromServer(u.getImage()));
@@ -221,7 +265,7 @@ lModifier.addPointerPressedListener(l->{
 });
 
 
-        f.addAll(tt,imavu,ta,ta2,ta3,supprimer,lModifier);
+        f.addAll(imavu,ta,ta2,ta3,supprimer,lModifier);
         add(f);
 
     }
@@ -249,7 +293,7 @@ new SpanLabel (text, "LargeWhiteText"),
 FlowLayout.encloseIn(),
 spacer
 )));
-swipe.addTab("",res.getImage("back-logo.jpeg"), pagel);
+swipe.addTab("",res.getImage("z.jpeg"), pagel);
 
 }
  public void bindButtonSelection (Button btn, Label l){
